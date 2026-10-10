@@ -1,0 +1,1448 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "SDS-PAGE and western blot",
+    "zh-TW": "SDS-PAGE 與西方墨點法"
+  },
+  "tags": [
+    "SDS-PAGE",
+    "western blot",
+    "immunoblot",
+    "antibody"
+  ],
+  "source": {
+    "title": "SDS-PAGE and western blot analysis",
+    "authors": [
+      "Elias Adriaenssens"
+    ],
+    "doi": "10.17504/protocols.io.eq2lyj33plx9/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-cells",
+      "role": "cultured cells",
+      "kind": "rill:cell-line",
+      "fields": {
+        "species": "text",
+        "tissue": "text",
+        "source": "text",
+        "rrid": "text",
+        "passage_number": "number"
+      }
+    },
+    {
+      "use": "u-trypsin",
+      "role": "trypsin",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-pbs",
+      "role": "PBS",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-ripa",
+      "role": "RIPA buffer",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-pi",
+      "role": "protease inhibitor (EDTA-free)",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-phos",
+      "role": "phosphatase inhibitor",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-assay",
+      "role": "detergent-compatible protein assay",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-dye",
+      "role": "6x protein loading dye with 100 mM DTT",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-gel",
+      "role": "4–12% SDS-PAGE gel",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-marker",
+      "role": "prestained protein marker",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-membrane",
+      "role": "nitrocellulose membrane",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-milk",
+      "role": "milk powder",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-pbst",
+      "role": "PBS-T (0.1% Tween 20)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-primary",
+      "role": "primary antibody",
+      "kind": "rill:antibody",
+      "fields": {
+        "target": "text",
+        "host": "text",
+        "clone": "text",
+        "conjugate": "text",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "rrid": "text",
+        "dilution": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-secondary",
+      "role": "HRP-coupled secondary antibody",
+      "kind": "rill:antibody",
+      "fields": {
+        "target": "text",
+        "host": "text",
+        "clone": "text",
+        "conjugate": "text",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "rrid": "text",
+        "dilution": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-ecl",
+      "role": "chemiluminescent HRP substrate",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-centrifuge",
+      "role": "refrigerated centrifuge",
+      "kind": "rill:instrument-centrifuge",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-transfer",
+      "role": "wet transfer tank",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-imager",
+      "role": "chemiluminescence imager",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-low",
+      "label": {
+        "en": "Cell spin",
+        "zh-TW": "收細胞離心力"
+      },
+      "role": "fixed",
+      "dimension": "rcf",
+      "value": {
+        "n": "300",
+        "unit": "×g"
+      }
+    },
+    {
+      "id": "b-low-time",
+      "label": {
+        "en": "Cell spin time",
+        "zh-TW": "收細胞離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-ripa",
+      "label": {
+        "en": "RIPA buffer per pellet",
+        "zh-TW": "每個細胞團的 RIPA 體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-lyse",
+      "label": {
+        "en": "Lysis on ice",
+        "zh-TW": "冰上裂解時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "20",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-high",
+      "label": {
+        "en": "Clearing spin",
+        "zh-TW": "澄清離心力"
+      },
+      "role": "fixed",
+      "dimension": "rcf",
+      "value": {
+        "n": "20000",
+        "unit": "×g"
+      }
+    },
+    {
+      "id": "b-high-time",
+      "label": {
+        "en": "Clearing spin time",
+        "zh-TW": "澄清離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "10",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-conc",
+      "label": {
+        "en": "Lysate protein concentration",
+        "zh-TW": "裂解液蛋白質濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "mg/mL",
+      "range": {
+        "min": {
+          "n": "1",
+          "unit": "mg/mL"
+        }
+      }
+    },
+    {
+      "id": "b-load-mass",
+      "label": {
+        "en": "Protein per lane",
+        "zh-TW": "每孔蛋白質量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "20",
+        "unit": "µg"
+      },
+      "preferred_unit": "µg",
+      "range": {
+        "min": {
+          "n": "5",
+          "unit": "µg"
+        },
+        "max": {
+          "n": "50",
+          "unit": "µg"
+        }
+      }
+    },
+    {
+      "id": "b-lysate",
+      "label": {
+        "en": "Lysate per lane",
+        "zh-TW": "每孔裂解液體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-load-mass"
+          },
+          "concentration": {
+            "box": "b-conc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-load",
+      "label": {
+        "en": "Loading volume per lane",
+        "zh-TW": "每孔上樣總體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "24",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-dye",
+      "label": {
+        "en": "6x loading dye",
+        "zh-TW": "6x 上樣染劑體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-load"
+        },
+        "b": {
+          "const": {
+            "n": "6",
+            "unit": "number"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-fill",
+      "label": {
+        "en": "RIPA to equalise volume",
+        "zh-TW": "補足體積的 RIPA"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "op": "-",
+          "a": {
+            "box": "b-load"
+          },
+          "b": {
+            "op": "/",
+            "a": {
+              "box": "b-load"
+            },
+            "b": {
+              "const": {
+                "n": "6",
+                "unit": "number"
+              }
+            }
+          }
+        },
+        "b": {
+          "box": "b-lysate"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-boil-t",
+      "label": {
+        "en": "Denaturing temperature",
+        "zh-TW": "變性溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "95",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-boil",
+      "label": {
+        "en": "Denaturing time",
+        "zh-TW": "變性時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-transfer",
+      "label": {
+        "en": "Transfer",
+        "zh-TW": "轉漬時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "1",
+        "unit": "h"
+      }
+    },
+    {
+      "id": "b-block-vol",
+      "label": {
+        "en": "Blocking buffer per step",
+        "zh-TW": "每個步驟的阻斷液體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "10",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    },
+    {
+      "id": "b-block-make",
+      "label": {
+        "en": "Blocking buffer to make (blocking, primary, secondary)",
+        "zh-TW": "需配製的阻斷液（阻斷、一級、二級抗體）"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-block-vol"
+        },
+        "b": {
+          "const": {
+            "n": "3",
+            "unit": "number"
+          }
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-milk-pct",
+      "label": {
+        "en": "Milk in blocking buffer",
+        "zh-TW": "阻斷液中奶粉濃度"
+      },
+      "role": "fixed",
+      "dimension": "percent_wv",
+      "value": {
+        "n": "5",
+        "unit": "% w/v"
+      }
+    },
+    {
+      "id": "b-milk",
+      "label": {
+        "en": "Milk powder for all the blocking buffer",
+        "zh-TW": "全部阻斷液所需奶粉"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-block-make"
+        },
+        "b": {
+          "box": "b-milk-pct"
+        }
+      },
+      "display_unit": "g"
+    },
+    {
+      "id": "b-pdil",
+      "label": {
+        "en": "Primary antibody dilution (1 in …)",
+        "zh-TW": "一級抗體稀釋倍數"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "1000",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-pvol",
+      "label": {
+        "en": "Primary antibody",
+        "zh-TW": "一級抗體體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-block-vol"
+        },
+        "b": {
+          "box": "b-pdil"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-sdil",
+      "label": {
+        "en": "Secondary antibody dilution (1 in …)",
+        "zh-TW": "二級抗體稀釋倍數"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "10000",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-svol",
+      "label": {
+        "en": "Secondary antibody",
+        "zh-TW": "二級抗體體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-block-vol"
+        },
+        "b": {
+          "box": "b-sdil"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-wash",
+      "label": {
+        "en": "Each wash",
+        "zh-TW": "每次清洗時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-lyse",
+      "title": {
+        "en": "Lyse the cells",
+        "zh-TW": "細胞裂解"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Detach ",
+              {
+                "use": "u-cells"
+              },
+              " with ",
+              {
+                "use": "u-trypsin"
+              },
+              " and pellet at ",
+              {
+                "box": "b-low"
+              },
+              ", 4 °C, for ",
+              {
+                "box": "b-low-time"
+              },
+              " on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-trypsin"
+              },
+              {
+                "text": " 使 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": " 脫離，在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-low"
+              },
+              {
+                "text": "、4 °C 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-low-time"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Wash the pellet in ",
+              {
+                "use": "u-pbs"
+              },
+              " and spin again the same way."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-pbs"
+              },
+              {
+                "text": " 清洗細胞團，再以相同條件離心一次。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Lyse each pellet in ",
+              {
+                "box": "b-ripa"
+              },
+              " of ",
+              {
+                "use": "u-ripa"
+              },
+              " with ",
+              {
+                "use": "u-pi"
+              },
+              " and ",
+              {
+                "use": "u-phos"
+              },
+              " added, on ice for ",
+              {
+                "box": "b-lyse"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "每個細胞團以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ripa"
+              },
+              {
+                "text": " 含 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-pi"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-phos"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-ripa"
+              },
+              {
+                "text": " 在冰上裂解 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-lyse"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Clear the lysate at ",
+              {
+                "box": "b-high"
+              },
+              ", 4 °C, for ",
+              {
+                "box": "b-high-time"
+              },
+              " and keep the supernatant."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-high"
+              },
+              {
+                "text": "、4 °C 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-high-time"
+              },
+              {
+                "text": " 澄清裂解液，保留上清液。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Measure protein with ",
+              {
+                "use": "u-assay"
+              },
+              ": ",
+              {
+                "box": "b-conc"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-assay"
+              },
+              {
+                "text": " 測定蛋白質濃度：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-conc"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-gel",
+      "title": {
+        "en": "Run the gel",
+        "zh-TW": "SDS-PAGE"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-load-mass"
+              },
+              " per lane, take ",
+              {
+                "box": "b-lysate"
+              },
+              " of lysate, add ",
+              {
+                "box": "b-fill"
+              },
+              " of RIPA and ",
+              {
+                "box": "b-dye"
+              },
+              " of ",
+              {
+                "use": "u-dye"
+              },
+              " (",
+              {
+                "box": "b-load"
+              },
+              " in all)."
+            ],
+            "zh-TW": [
+              {
+                "text": "每孔 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load-mass"
+              },
+              {
+                "text": "：取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-lysate"
+              },
+              {
+                "text": " 裂解液，加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-fill"
+              },
+              {
+                "text": " 的 RIPA 與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dye"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-dye"
+              },
+              {
+                "text": "（總體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load"
+              },
+              {
+                "text": "）。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "If the RIPA volume shows below zero, the lysate is too dilute for this protein amount: load less protein or a larger volume.",
+            "zh-TW": "若 RIPA 體積顯示為負值，表示裂解液濃度太低、不足以提供此蛋白質量：請減少蛋白質量或增加上樣體積。"
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Heat at ",
+              {
+                "box": "b-boil-t"
+              },
+              " for ",
+              {
+                "box": "b-boil"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-boil-t"
+              },
+              {
+                "text": " 加熱 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-boil"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Hot samples: let the tubes cool briefly and open them carefully. DTT is toxic; handle it with gloves.",
+            "zh-TW": "樣品高溫：開蓋前稍候冷卻並小心開啟。DTT 具毒性，請戴手套操作。"
+          }
+        },
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Load the samples and ",
+              {
+                "use": "u-marker"
+              },
+              " on a ",
+              {
+                "use": "u-gel"
+              },
+              " and run it."
+            ],
+            "zh-TW": [
+              {
+                "text": "將樣品與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-marker"
+              },
+              {
+                "text": " 加入 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-gel"
+              },
+              {
+                "text": " 並進行電泳。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-blot",
+      "title": {
+        "en": "Transfer and probe",
+        "zh-TW": "轉漬與抗體反應"
+      },
+      "steps": [
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Transfer the proteins onto ",
+              {
+                "use": "u-membrane"
+              },
+              " in the ",
+              {
+                "use": "i-transfer"
+              },
+              " for ",
+              {
+                "box": "b-transfer"
+              },
+              " at 4 °C."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-transfer"
+              },
+              {
+                "text": " 於 4 °C 將蛋白質轉漬至 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-membrane"
+              },
+              {
+                "text": "，時間 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-transfer"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "Make ",
+              {
+                "box": "b-block-make"
+              },
+              " of blocking buffer, ",
+              {
+                "box": "b-milk-pct"
+              },
+              " milk in ",
+              {
+                "use": "u-pbst"
+              },
+              " (",
+              {
+                "box": "b-milk"
+              },
+              " of ",
+              {
+                "use": "u-milk"
+              },
+              "), enough for blocking and both antibodies. Block for 1 hour at room temperature in ",
+              {
+                "box": "b-block-vol"
+              },
+              " of it."
+            ],
+            "zh-TW": [
+              {
+                "text": "配製 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-block-make"
+              },
+              {
+                "text": " 阻斷液：含 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-milk-pct"
+              },
+              {
+                "text": " 奶粉的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-pbst"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-milk"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-milk"
+              },
+              {
+                "text": "），足夠阻斷及兩次抗體反應使用。取其中 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-block-vol"
+              },
+              {
+                "text": " 於室溫阻斷 1 小時。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-11",
+          "text": {
+            "en": [
+              "Incubate overnight at 4 °C with ",
+              {
+                "box": "b-pvol"
+              },
+              " of ",
+              {
+                "use": "u-primary"
+              },
+              " in ",
+              {
+                "box": "b-block-vol"
+              },
+              " of blocking buffer (1 in ",
+              {
+                "box": "b-pdil"
+              },
+              ")."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-block-vol"
+              },
+              {
+                "text": " 阻斷液加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pvol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-primary"
+              },
+              {
+                "text": "（稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pdil"
+              },
+              {
+                "text": " 倍），4 °C 隔夜反應。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-12",
+          "text": {
+            "en": [
+              "Wash three times in PBS-T, ",
+              {
+                "box": "b-wash"
+              },
+              " each."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 PBS-T 清洗三次，每次 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wash"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-13",
+          "text": {
+            "en": [
+              "Incubate for 1 hour at room temperature with ",
+              {
+                "box": "b-svol"
+              },
+              " of ",
+              {
+                "use": "u-secondary"
+              },
+              " in ",
+              {
+                "box": "b-block-vol"
+              },
+              " of blocking buffer (1 in ",
+              {
+                "box": "b-sdil"
+              },
+              ")."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-block-vol"
+              },
+              {
+                "text": " 阻斷液加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-svol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-secondary"
+              },
+              {
+                "text": "（稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-sdil"
+              },
+              {
+                "text": " 倍），室溫反應 1 小時。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-14",
+          "text": {
+            "en": [
+              "Wash three times in PBS-T, ",
+              {
+                "box": "b-wash"
+              },
+              " each."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 PBS-T 清洗三次，每次 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wash"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-detect",
+      "title": {
+        "en": "Detect",
+        "zh-TW": "偵測"
+      },
+      "steps": [
+        {
+          "id": "st-15",
+          "text": {
+            "en": [
+              "Incubate the membrane with ",
+              {
+                "use": "u-ecl"
+              },
+              " and image it on the ",
+              {
+                "use": "i-imager"
+              },
+              ". Quantify the bands with image analysis software."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-ecl"
+              },
+              {
+                "text": " 覆蓋膜，用 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-imager"
+              },
+              {
+                "text": " 拍照，並以影像分析軟體定量條帶。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "sds-page-western-blot",
+    "version": "1.0.0"
+  }
+}

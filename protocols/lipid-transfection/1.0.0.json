@@ -1,0 +1,881 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Transient transfection (lipid reagent)",
+    "zh-TW": "暫時性轉染（脂質試劑）"
+  },
+  "tags": [
+    "transfection",
+    "Lipofectamine 3000",
+    "HEK293",
+    "plasmid",
+    "24-well"
+  ],
+  "source": {
+    "title": "Transfection of HEK cells with Lipofectamine 3000",
+    "authors": [
+      "Chelsie Steele",
+      "Yujie Fan"
+    ],
+    "doi": "10.17504/protocols.io.6qpvr97wzvmk/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-cells",
+      "role": "HEK cells",
+      "kind": "rill:cell-line",
+      "fields": {
+        "species": "text",
+        "tissue": "text",
+        "source": "text",
+        "rrid": "text",
+        "passage_number": "number"
+      }
+    },
+    {
+      "use": "u-plasmid",
+      "role": "plasmid DNA",
+      "kind": "rill:plasmid",
+      "fields": {
+        "backbone": "text",
+        "insert": "text",
+        "resistance": "text",
+        "length_bp": "length_bp",
+        "source": "text",
+        "concentration": "mass_concentration",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-optimem",
+      "role": "Opti-MEM reduced-serum medium",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-lipo",
+      "role": "Lipofectamine 3000 reagent",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-p3000",
+      "role": "P3000 reagent",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-plate",
+      "role": "24-well plate",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-microscope",
+      "role": "inverted microscope",
+      "kind": "rill:instrument-microscope",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-seed",
+      "label": {
+        "en": "Cells per well (day 0)",
+        "zh-TW": "每孔接種細胞數（第 0 天）"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "100000",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-wells",
+      "label": {
+        "en": "Wells to transfect",
+        "zh-TW": "欲轉染孔數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "6",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-over",
+      "label": {
+        "en": "Overage",
+        "zh-TW": "額外量比例"
+      },
+      "role": "fixed",
+      "dimension": "ratio",
+      "value": {
+        "n": "0.1",
+        "unit": "ratio"
+      }
+    },
+    {
+      "id": "b-opti",
+      "label": {
+        "en": "Opti-MEM per tube, per well",
+        "zh-TW": "每孔每管 Opti-MEM"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "25",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-lipo",
+      "label": {
+        "en": "Lipofectamine 3000 per well",
+        "zh-TW": "每孔 Lipofectamine 3000"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "1.5",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "0.75",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "1.5",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-dna-mass",
+      "label": {
+        "en": "Plasmid DNA per well",
+        "zh-TW": "每孔質體 DNA 量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "0.5",
+        "unit": "µg"
+      },
+      "preferred_unit": "µg"
+    },
+    {
+      "id": "b-dna-conc",
+      "label": {
+        "en": "Plasmid concentration",
+        "zh-TW": "質體濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/µL",
+      "range": {
+        "min": {
+          "n": "0.5",
+          "unit": "µg/µL"
+        },
+        "max": {
+          "n": "5",
+          "unit": "µg/µL"
+        }
+      }
+    },
+    {
+      "id": "b-dna-vol",
+      "label": {
+        "en": "Plasmid per well",
+        "zh-TW": "每孔質體體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-dna-mass"
+          },
+          "concentration": {
+            "box": "b-dna-conc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-p3000",
+      "label": {
+        "en": "P3000 per well (2 µL per µg DNA)",
+        "zh-TW": "每孔 P3000（每 µg DNA 2 µL）"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-dna-mass"
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "const": {
+              "n": "2",
+              "unit": "µL"
+            }
+          },
+          "b": {
+            "const": {
+              "n": "1",
+              "unit": "µg"
+            }
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-t1-opti",
+      "label": {
+        "en": "Tube 1: Opti-MEM",
+        "zh-TW": "管 1：Opti-MEM"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-opti"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-t1-lipo",
+      "label": {
+        "en": "Tube 1: Lipofectamine 3000",
+        "zh-TW": "管 1：Lipofectamine 3000"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-lipo"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-t2-opti",
+      "label": {
+        "en": "Tube 2: Opti-MEM",
+        "zh-TW": "管 2：Opti-MEM"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-opti"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-t2-dna",
+      "label": {
+        "en": "Tube 2: plasmid",
+        "zh-TW": "管 2：質體"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-dna-vol"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-t2-p3000",
+      "label": {
+        "en": "Tube 2: P3000",
+        "zh-TW": "管 2：P3000"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-p3000"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-complex-time",
+      "label": {
+        "en": "Complexing time",
+        "zh-TW": "複合物形成時間"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "15",
+        "unit": "min"
+      },
+      "preferred_unit": "min",
+      "range": {
+        "min": {
+          "n": "10",
+          "unit": "min"
+        },
+        "max": {
+          "n": "15",
+          "unit": "min"
+        }
+      }
+    },
+    {
+      "id": "b-per-well",
+      "label": {
+        "en": "Complex per well",
+        "zh-TW": "每孔加入的複合物"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "50",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-expression",
+      "label": {
+        "en": "Time to analysis",
+        "zh-TW": "至分析的時間"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "48",
+        "unit": "h"
+      },
+      "preferred_unit": "h",
+      "range": {
+        "min": {
+          "n": "24",
+          "unit": "h"
+        },
+        "max": {
+          "n": "72",
+          "unit": "h"
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-day0",
+      "title": {
+        "en": "Day 0 — Plate the cells",
+        "zh-TW": "第 0 天 — 接種細胞"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Plate ",
+              {
+                "box": "b-seed"
+              },
+              " of ",
+              {
+                "use": "u-cells"
+              },
+              " per well in a ",
+              {
+                "use": "u-plate"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plate"
+              },
+              {
+                "text": " 中每孔接種 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-seed"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-day1",
+      "title": {
+        "en": "Day 1 — Transfect",
+        "zh-TW": "第 1 天 — 轉染"
+      },
+      "steps": [
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Check the cells on the ",
+              {
+                "use": "i-microscope"
+              },
+              ": transfect at about 60–70% confluence; if they are below that, wait another day."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-microscope"
+              },
+              {
+                "text": " 檢查細胞：細胞覆蓋率約 60–70% 時進行轉染；若未達到，再等一天。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Measure the ",
+              {
+                "use": "u-plasmid"
+              },
+              " concentration (",
+              {
+                "box": "b-dna-conc"
+              },
+              ") and dilute if needed; ",
+              {
+                "box": "b-dna-mass"
+              },
+              " per well is ",
+              {
+                "box": "b-dna-vol"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "測量 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plasmid"
+              },
+              {
+                "text": " 濃度（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-conc"
+              },
+              {
+                "text": "），必要時稀釋；每孔 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-mass"
+              },
+              {
+                "text": " 相當於 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-vol"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-wells"
+              },
+              " wells plus ",
+              {
+                "box": "b-over"
+              },
+              " extra, make tube 1 per plasmid: ",
+              {
+                "box": "b-t1-opti"
+              },
+              " of ",
+              {
+                "use": "u-optimem"
+              },
+              " and ",
+              {
+                "box": "b-t1-lipo"
+              },
+              " of ",
+              {
+                "use": "u-lipo"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "依 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wells"
+              },
+              {
+                "text": " 孔（另加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-over"
+              },
+              {
+                "text": " 額外量），每種質體配製管 1：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-t1-opti"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-optimem"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-t1-lipo"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-lipo"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Make tube 2: ",
+              {
+                "box": "b-t2-opti"
+              },
+              " of Opti-MEM, ",
+              {
+                "box": "b-t2-dna"
+              },
+              " of plasmid and ",
+              {
+                "box": "b-t2-p3000"
+              },
+              " of ",
+              {
+                "use": "u-p3000"
+              },
+              ". Per well: ",
+              {
+                "box": "b-opti"
+              },
+              " Opti-MEM in each tube, ",
+              {
+                "box": "b-lipo"
+              },
+              " Lipofectamine, ",
+              {
+                "box": "b-p3000"
+              },
+              " P3000."
+            ],
+            "zh-TW": [
+              {
+                "text": "配製管 2：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-t2-opti"
+              },
+              {
+                "text": " 的 Opti-MEM、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-t2-dna"
+              },
+              {
+                "text": " 質體與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-t2-p3000"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-p3000"
+              },
+              {
+                "text": "。每孔用量：每管 Opti-MEM ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-opti"
+              },
+              {
+                "text": "、Lipofectamine ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-lipo"
+              },
+              {
+                "text": "、P3000 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-p3000"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Add tube 2 to tube 1, mix well and incubate at room temperature for ",
+              {
+                "box": "b-complex-time"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將管 2 加入管 1，充分混勻，室溫靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-complex-time"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Use the complexes soon after they form.",
+            "zh-TW": "複合物形成後請盡快使用。"
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-per-well"
+              },
+              " of complex to each well and swirl the plate gently so it spreads evenly."
+            ],
+            "zh-TW": [
+              {
+                "text": "每孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-per-well"
+              },
+              {
+                "text": " 複合物，輕輕旋轉培養盤使其均勻分布。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-after",
+      "title": {
+        "en": "After transfection",
+        "zh-TW": "轉染後"
+      },
+      "steps": [
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Return the plate to the incubator and analyse after ",
+              {
+                "box": "b-expression"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將培養盤放回培養箱，",
+                "draft": "machine"
+              },
+              {
+                "box": "b-expression"
+              },
+              {
+                "text": " 後進行分析。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "lipid-transfection",
+    "version": "1.0.0"
+  }
+}

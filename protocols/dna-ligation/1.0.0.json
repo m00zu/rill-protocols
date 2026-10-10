@@ -1,0 +1,1015 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Ligation (T4 DNA ligase)",
+    "zh-TW": "DNA 接合（T4 DNA 接合酶）"
+  },
+  "tags": [
+    "ligation",
+    "T4 DNA ligase",
+    "cloning",
+    "molar ratio"
+  ],
+  "source": {
+    "title": "Ligation Protocol WITH T4 DNA Ligase (M0202)",
+    "authors": [
+      "New England Biolabs"
+    ],
+    "doi": "10.17504/protocols.io.cdks4v",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-vector",
+      "role": "linearized vector",
+      "kind": "rill:plasmid",
+      "fields": {
+        "backbone": "text",
+        "insert": "text",
+        "resistance": "text",
+        "length_bp": "length_bp",
+        "source": "text",
+        "concentration": "mass_concentration",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-insert",
+      "role": "insert DNA",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-buffer",
+      "role": "10X T4 DNA ligase buffer",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-ligase",
+      "role": "T4 DNA ligase",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "nuclease-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-cells",
+      "role": "competent E. coli",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-block",
+      "role": "thermocycler or heat block",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-total",
+      "label": {
+        "en": "Reaction volume",
+        "zh-TW": "反應體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "20",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-buffer",
+      "label": {
+        "en": "10X ligase buffer",
+        "zh-TW": "10X 接合緩衝液"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "2",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-ligase",
+      "label": {
+        "en": "T4 DNA ligase",
+        "zh-TW": "T4 DNA 接合酶"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "1",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-vlen",
+      "label": {
+        "en": "Vector length",
+        "zh-TW": "載體長度"
+      },
+      "role": "filled",
+      "dimension": "length_bp",
+      "default": {
+        "n": "4",
+        "unit": "kb"
+      },
+      "preferred_unit": "bp"
+    },
+    {
+      "id": "b-ilen",
+      "label": {
+        "en": "Insert length",
+        "zh-TW": "插入片段長度"
+      },
+      "role": "filled",
+      "dimension": "length_bp",
+      "default": {
+        "n": "1",
+        "unit": "kb"
+      },
+      "preferred_unit": "bp"
+    },
+    {
+      "id": "b-vmass",
+      "label": {
+        "en": "Vector DNA",
+        "zh-TW": "載體 DNA 量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "50",
+        "unit": "ng"
+      },
+      "preferred_unit": "ng"
+    },
+    {
+      "id": "b-ratio",
+      "label": {
+        "en": "Insert : vector molar ratio",
+        "zh-TW": "插入片段：載體莫耳比"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "3",
+        "unit": "number"
+      },
+      "range": {
+        "min": {
+          "n": "1",
+          "unit": "number"
+        },
+        "max": {
+          "n": "10",
+          "unit": "number"
+        }
+      }
+    },
+    {
+      "id": "b-imass",
+      "label": {
+        "en": "Insert DNA",
+        "zh-TW": "插入片段 DNA 量"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "/",
+          "a": {
+            "op": "*",
+            "a": {
+              "box": "b-vmass"
+            },
+            "b": {
+              "box": "b-ilen"
+            }
+          },
+          "b": {
+            "box": "b-vlen"
+          }
+        },
+        "b": {
+          "box": "b-ratio"
+        }
+      },
+      "display_unit": "ng"
+    },
+    {
+      "id": "b-vpmol",
+      "label": {
+        "en": "Vector amount",
+        "zh-TW": "載體莫耳量"
+      },
+      "role": "computed",
+      "dimension": "amount",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-vmass"
+        },
+        "b": {
+          "op": "+",
+          "a": {
+            "op": "*",
+            "a": {
+              "op": "/",
+              "a": {
+                "box": "b-vlen"
+              },
+              "b": {
+                "const": {
+                  "n": "1",
+                  "unit": "bp"
+                }
+              }
+            },
+            "b": {
+              "const": {
+                "n": "617.96",
+                "unit": "g/mol"
+              }
+            }
+          },
+          "b": {
+            "const": {
+              "n": "36.04",
+              "unit": "g/mol"
+            }
+          }
+        }
+      },
+      "display_unit": "pmol"
+    },
+    {
+      "id": "b-ipmol",
+      "label": {
+        "en": "Insert amount",
+        "zh-TW": "插入片段莫耳量"
+      },
+      "role": "computed",
+      "dimension": "amount",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-imass"
+        },
+        "b": {
+          "op": "+",
+          "a": {
+            "op": "*",
+            "a": {
+              "op": "/",
+              "a": {
+                "box": "b-ilen"
+              },
+              "b": {
+                "const": {
+                  "n": "1",
+                  "unit": "bp"
+                }
+              }
+            },
+            "b": {
+              "const": {
+                "n": "617.96",
+                "unit": "g/mol"
+              }
+            }
+          },
+          "b": {
+            "const": {
+              "n": "36.04",
+              "unit": "g/mol"
+            }
+          }
+        }
+      },
+      "display_unit": "pmol"
+    },
+    {
+      "id": "b-vconc",
+      "label": {
+        "en": "Vector concentration",
+        "zh-TW": "載體濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "range": {
+        "min": {
+          "n": "10",
+          "unit": "ng/µL"
+        }
+      }
+    },
+    {
+      "id": "b-iconc",
+      "label": {
+        "en": "Insert concentration",
+        "zh-TW": "插入片段濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "range": {
+        "min": {
+          "n": "10",
+          "unit": "ng/µL"
+        }
+      }
+    },
+    {
+      "id": "b-vvol",
+      "label": {
+        "en": "Vector volume",
+        "zh-TW": "載體體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-vmass"
+          },
+          "concentration": {
+            "box": "b-vconc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-ivol",
+      "label": {
+        "en": "Insert volume",
+        "zh-TW": "插入片段體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-imass"
+          },
+          "concentration": {
+            "box": "b-iconc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-water",
+      "label": {
+        "en": "Water",
+        "zh-TW": "水"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "op": "-",
+          "a": {
+            "op": "-",
+            "a": {
+              "op": "-",
+              "a": {
+                "box": "b-total"
+              },
+              "b": {
+                "box": "b-buffer"
+              }
+            },
+            "b": {
+              "box": "b-ligase"
+            }
+          },
+          "b": {
+            "box": "b-vvol"
+          }
+        },
+        "b": {
+          "box": "b-ivol"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-ends",
+      "label": {
+        "en": "Ends",
+        "zh-TW": "末端型式"
+      },
+      "role": "filled",
+      "type": "choice",
+      "choices": [
+        "cohesive (sticky)",
+        "blunt or single-base overhang"
+      ],
+      "default": {
+        "text": "cohesive (sticky)"
+      }
+    },
+    {
+      "id": "b-inc-t",
+      "label": {
+        "en": "Incubation temperature",
+        "zh-TW": "反應溫度"
+      },
+      "role": "filled",
+      "dimension": "temperature",
+      "default": {
+        "n": "16",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-inc",
+      "label": {
+        "en": "Incubation time",
+        "zh-TW": "反應時間"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "16",
+        "unit": "h"
+      },
+      "preferred_unit": "h"
+    },
+    {
+      "id": "b-hi-t",
+      "label": {
+        "en": "Heat inactivation temperature",
+        "zh-TW": "熱失活溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "65",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-hi",
+      "label": {
+        "en": "Heat inactivation",
+        "zh-TW": "熱失活時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "10",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-transform",
+      "label": {
+        "en": "Ligation transformed",
+        "zh-TW": "用於轉形的接合產物"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "2",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "1",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "5",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-cells",
+      "label": {
+        "en": "Competent cells",
+        "zh-TW": "勝任細胞體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "50",
+        "unit": "µL"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-plan",
+      "title": {
+        "en": "Plan the amounts",
+        "zh-TW": "計算用量"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-vmass"
+              },
+              " of a ",
+              {
+                "box": "b-vlen"
+              },
+              " vector (",
+              {
+                "box": "b-vpmol"
+              },
+              ") and a ",
+              {
+                "box": "b-ilen"
+              },
+              " insert at ",
+              {
+                "box": "b-ratio"
+              },
+              " : 1, use ",
+              {
+                "box": "b-imass"
+              },
+              " of insert (",
+              {
+                "box": "b-ipmol"
+              },
+              ")."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vlen"
+              },
+              {
+                "text": " 載體 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vmass"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vpmol"
+              },
+              {
+                "text": "）搭配 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ilen"
+              },
+              {
+                "text": " 插入片段、莫耳比 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ratio"
+              },
+              {
+                "text": " : 1，需使用 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-imass"
+              },
+              {
+                "text": " 插入片段（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ipmol"
+              },
+              {
+                "text": "）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-set",
+      "title": {
+        "en": "Set up on ice",
+        "zh-TW": "在冰上配製"
+      },
+      "steps": [
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Thaw ",
+              {
+                "use": "u-buffer"
+              },
+              " at room temperature and mix until no precipitate is left."
+            ],
+            "zh-TW": [
+              {
+                "text": "於室溫解凍 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-buffer"
+              },
+              {
+                "text": "，混勻至沒有沉澱。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "In a tube on ice, combine ",
+              {
+                "box": "b-buffer"
+              },
+              " of buffer, ",
+              {
+                "box": "b-vvol"
+              },
+              " of ",
+              {
+                "use": "u-vector"
+              },
+              " (",
+              {
+                "box": "b-vconc"
+              },
+              "), ",
+              {
+                "box": "b-ivol"
+              },
+              " of ",
+              {
+                "use": "u-insert"
+              },
+              " (",
+              {
+                "box": "b-iconc"
+              },
+              ") and ",
+              {
+                "box": "b-water"
+              },
+              " of ",
+              {
+                "use": "u-water"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "在冰上的離心管中加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-buffer"
+              },
+              {
+                "text": " 緩衝液、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vvol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-vector"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vconc"
+              },
+              {
+                "text": "）、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ivol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-insert"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-iconc"
+              },
+              {
+                "text": "）與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-water"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "If the water volume shows below zero, the vector or insert is too dilute for these amounts: concentrate it or use less.",
+            "zh-TW": "若水量顯示為負值，表示載體或插入片段濃度太低、不足以提供此用量：請濃縮或減少用量。"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-ligase"
+              },
+              " of ",
+              {
+                "use": "u-ligase"
+              },
+              " last, for ",
+              {
+                "box": "b-total"
+              },
+              " in all. Mix gently by pipetting and spin briefly."
+            ],
+            "zh-TW": [
+              {
+                "text": "最後加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ligase"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-ligase"
+              },
+              {
+                "text": "，總體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total"
+              },
+              {
+                "text": "。以吸管輕輕混勻並短暫離心。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-ligate",
+      "title": {
+        "en": "Ligate and transform",
+        "zh-TW": "接合與轉形"
+      },
+      "steps": [
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Ends: ",
+              {
+                "box": "b-ends"
+              },
+              ". Incubate in the ",
+              {
+                "use": "i-block"
+              },
+              " at ",
+              {
+                "box": "b-inc-t"
+              },
+              " for ",
+              {
+                "box": "b-inc"
+              },
+              ". Cohesive ends also ligate in 10 minutes at room temperature; blunt ends in 2 hours at room temperature."
+            ],
+            "zh-TW": [
+              {
+                "text": "末端型式：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ends"
+              },
+              {
+                "text": "。在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-block"
+              },
+              {
+                "text": " 中以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inc-t"
+              },
+              {
+                "text": " 反應 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inc"
+              },
+              {
+                "text": "。黏性末端亦可在室溫反應 10 分鐘；平端則在室溫反應 2 小時。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Heat-inactivate at ",
+              {
+                "box": "b-hi-t"
+              },
+              " for ",
+              {
+                "box": "b-hi"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-hi-t"
+              },
+              {
+                "text": " 熱失活 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-hi"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Chill on ice and transform ",
+              {
+                "box": "b-transform"
+              },
+              " into ",
+              {
+                "box": "b-cells"
+              },
+              " of ",
+              {
+                "use": "u-cells"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "置於冰上冷卻，取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-transform"
+              },
+              {
+                "text": " 轉形至 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cells"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "dna-ligation",
+    "version": "1.0.0"
+  }
+}

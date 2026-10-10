@@ -1,0 +1,621 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "NanoDrop quantification",
+    "zh-TW": "NanoDrop 核酸定量"
+  },
+  "tags": [
+    "quantification",
+    "NanoDrop",
+    "DNA",
+    "A260"
+  ],
+  "source": {
+    "title": "Nanodrop - dsDNA Quantification",
+    "authors": [
+      "Owen Butler",
+      "Raven Coffer"
+    ],
+    "doi": "10.17504/protocols.io.36wgqx1n5lk5/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-sample",
+      "role": "nucleic acid sample",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-blank",
+      "role": "blank buffer (the sample's own buffer)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "deionized water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-wipes",
+      "role": "lint-free wipes",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-nanodrop",
+      "role": "microvolume spectrophotometer",
+      "kind": "rill:instrument-spectrophotometer",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-type",
+      "label": {
+        "en": "Sample type",
+        "zh-TW": "樣品種類"
+      },
+      "role": "filled",
+      "type": "choice",
+      "choices": [
+        "dsDNA",
+        "ssDNA",
+        "RNA"
+      ],
+      "default": {
+        "text": "dsDNA"
+      }
+    },
+    {
+      "id": "b-blank-vol",
+      "label": {
+        "en": "Blank volume",
+        "zh-TW": "空白液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "1",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-sample-vol",
+      "label": {
+        "en": "Sample volume on the pedestal",
+        "zh-TW": "上樣體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "1",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-conc",
+      "label": {
+        "en": "Concentration",
+        "zh-TW": "濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-a280",
+      "label": {
+        "en": "A260/A280",
+        "zh-TW": "A260/A280 比值"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-a230",
+      "label": {
+        "en": "A260/A230",
+        "zh-TW": "A260/A230 比值"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-left",
+      "label": {
+        "en": "Sample volume left in the tube",
+        "zh-TW": "管中剩餘樣品體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-yield",
+      "label": {
+        "en": "Total amount in the tube",
+        "zh-TW": "管中總量"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-conc"
+        },
+        "b": {
+          "box": "b-left"
+        }
+      },
+      "display_unit": "µg"
+    },
+    {
+      "id": "b-target",
+      "label": {
+        "en": "Amount needed downstream",
+        "zh-TW": "下游實驗所需量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "1",
+        "unit": "µg"
+      },
+      "preferred_unit": "ng"
+    },
+    {
+      "id": "b-vol-target",
+      "label": {
+        "en": "Volume that holds the amount needed",
+        "zh-TW": "所需量對應體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-target"
+          },
+          "concentration": {
+            "box": "b-conc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-setup",
+      "title": {
+        "en": "Set up",
+        "zh-TW": "準備"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Open the instrument software on the ",
+              {
+                "use": "i-nanodrop"
+              },
+              " and choose the application for ",
+              {
+                "box": "b-type"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "開啟 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-nanodrop"
+              },
+              {
+                "text": " 的軟體，選擇 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-type"
+              },
+              {
+                "text": " 的測量模式。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Clean the upper and lower pedestals with ",
+              {
+                "use": "u-water"
+              },
+              " on ",
+              {
+                "use": "u-wipes"
+              },
+              ", and leave them dry."
+            ],
+            "zh-TW": [
+              {
+                "text": "以沾有 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-wipes"
+              },
+              {
+                "text": " 擦拭上下測量台，並確認完全乾燥。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-blank",
+      "title": {
+        "en": "Blank",
+        "zh-TW": "空白校正"
+      },
+      "steps": [
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Pipette ",
+              {
+                "box": "b-blank-vol"
+              },
+              " of ",
+              {
+                "use": "u-blank"
+              },
+              " onto the centre of the lower pedestal, close the arm and measure the blank."
+            ],
+            "zh-TW": [
+              {
+                "text": "吸取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-blank-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-blank"
+              },
+              {
+                "text": " 滴於下測量台中央，放下測量臂並進行空白校正。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Use the buffer the samples are in (water or elution buffer). Bubbles or an off-centre drop distort the reading.",
+            "zh-TW": "請使用與樣品相同的溶液（水或溶離緩衝液）。氣泡或液滴偏離中央會使讀值失準。"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Check that the blank was accepted, then wipe both pedestals dry."
+            ],
+            "zh-TW": [
+              {
+                "text": "確認空白校正成功後，擦乾上下測量台。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-measure",
+      "title": {
+        "en": "Measure",
+        "zh-TW": "測量"
+      },
+      "steps": [
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Pipette ",
+              {
+                "box": "b-sample-vol"
+              },
+              " of ",
+              {
+                "use": "u-sample"
+              },
+              " onto the lower pedestal and measure. Record the order of the samples."
+            ],
+            "zh-TW": [
+              {
+                "text": "吸取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-sample-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-sample"
+              },
+              {
+                "text": " 滴於下測量台並測量，記錄樣品順序。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Record the concentration ",
+              {
+                "box": "b-conc"
+              },
+              ", A260/A280 ",
+              {
+                "box": "b-a280"
+              },
+              " and A260/A230 ",
+              {
+                "box": "b-a230"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "記錄濃度 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-conc"
+              },
+              {
+                "text": "、A260/A280 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-a280"
+              },
+              {
+                "text": " 與 A260/A230 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-a230"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Wipe both pedestals between samples. Do not blank again between samples of the same run: one blank applies to all of them."
+            ],
+            "zh-TW": [
+              {
+                "text": "每個樣品之間都要擦拭測量台。同一批測量中不需重新做空白校正，所有樣品共用同一次空白值。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Judge purity: pure DNA reads an A260/A280 near 1.8 (RNA near 2.0); an A260/A230 well below 2.0 suggests salt, phenol or guanidine carried over."
+            ],
+            "zh-TW": [
+              {
+                "text": "判讀純度：純 DNA 的 A260/A280 約為 1.8（RNA 約為 2.0）；A260/A230 明顯低於 2.0 表示可能殘留鹽類、酚或胍鹽。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-use",
+      "title": {
+        "en": "Use the result",
+        "zh-TW": "使用結果"
+      },
+      "steps": [
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Note the volume left in the tube, ",
+              {
+                "box": "b-left"
+              },
+              "; the tube holds ",
+              {
+                "box": "b-yield"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "記錄管中剩餘體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-left"
+              },
+              {
+                "text": "；管中總量為 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-yield"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-target"
+              },
+              ", take ",
+              {
+                "box": "b-vol-target"
+              },
+              " of the sample."
+            ],
+            "zh-TW": [
+              {
+                "text": "若需要 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-target"
+              },
+              {
+                "text": "，取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-vol-target"
+              },
+              {
+                "text": " 的樣品。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-finish",
+      "title": {
+        "en": "Finish",
+        "zh-TW": "結束"
+      },
+      "steps": [
+        {
+          "id": "st-11",
+          "text": {
+            "en": [
+              "End the run, export the results (for example as .csv) and name the samples."
+            ],
+            "zh-TW": [
+              {
+                "text": "結束測量，匯出結果（例如 .csv）並為樣品命名。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-12",
+          "text": {
+            "en": [
+              "Clean the pedestals once more, lower the arm and close the software."
+            ],
+            "zh-TW": [
+              {
+                "text": "再次清潔測量台，放下測量臂並關閉軟體。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "nanodrop-quantification",
+    "version": "1.0.0"
+  }
+}

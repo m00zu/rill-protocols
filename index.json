@@ -1,0 +1,554 @@
+{
+  "format": "rill.protocol-catalogue",
+  "schema": 1,
+  "protocols": {
+    "agarose-gel-electrophoresis": {
+      "title": {
+        "en": "Agarose gel electrophoresis",
+        "zh-TW": "瓊脂糖凝膠電泳"
+      },
+      "summary": {
+        "en": "Cast a TAE agarose gel with a DNA stain, load samples with loading dye, run and image it; agarose, stain, buffer and dye amounts are worked out for you.",
+        "zh-TW": "以 TAE 配製含 DNA 染劑的瓊脂糖凝膠，加入上樣染劑後上樣、電泳並拍照；瓊脂糖、染劑、緩衝液與上樣染劑用量均自動計算。"
+      },
+      "topic": "dna",
+      "tags": [
+        "agarose gel",
+        "electrophoresis",
+        "DNA",
+        "TAE"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/agarose-gel-electrophoresis/1.0.0.json",
+          "sha256": "2aafc6fcd754919483e7bf79de775beb0ad7c47729939aca65d364e0f46f5d17",
+          "size": 24596,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Agarose Gel Electrophoresis: DNA” by Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Agarose Gel Electrophoresis: DNA” by Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "bca-protein-assay": {
+      "title": {
+        "en": "BCA protein assay (microplate)",
+        "zh-TW": "BCA 蛋白質定量（微孔盤）"
+      },
+      "summary": {
+        "en": "Measure protein concentration with a BCA kit in a 96-well plate: BSA standards, working reagent for n wells, and the sample concentration from the standard curve.",
+        "zh-TW": "以 BCA 套組在 96 孔盤中測量蛋白質濃度：BSA 標準品、n 孔所需工作試劑，並由標準曲線算出樣品濃度。"
+      },
+      "topic": "protein",
+      "tags": [
+        "BCA",
+        "protein quantification",
+        "microplate",
+        "standard curve"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/bca-protein-assay/1.0.0.json",
+          "sha256": "d66849096cf413c2fd1c56e9a18b6dfd007acef8ce613a3d28d55f8997263d08",
+          "size": 20684,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Pierce™ BCA Protein Assay (ThermoFisher Scientific)” by Rita Chen and Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Pierce™ BCA Protein Assay (ThermoFisher Scientific)” by Rita Chen and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "cdna-synthesis": {
+      "title": {
+        "en": "cDNA synthesis",
+        "zh-TW": "cDNA 合成"
+      },
+      "summary": {
+        "en": "Reverse-transcribe 500 ng of RNA into cDNA with oligo(dT) and random hexamers; RNA and water volumes and the enzyme mix for n samples are worked out.",
+        "zh-TW": "以 oligo(dT) 與隨機六聚體將 500 ng RNA 反轉錄為 cDNA；RNA 與水的體積以及 n 個樣品的酵素混合液自動計算。"
+      },
+      "topic": "rna",
+      "tags": [
+        "cDNA",
+        "reverse transcription",
+        "RT",
+        "RNA"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/cdna-synthesis/1.0.0.json",
+          "sha256": "692b179fb883fd657ef1fd7495cf73803a5ac5498c9cdc148326bd43f019e2ac",
+          "size": 21005,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Reverse Transcription (cDNA generation) using RevertAid RT” by David Valle-Garcia (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Reverse Transcription (cDNA generation) using RevertAid RT” by David Valle-Garcia（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "dna-ligation": {
+      "title": {
+        "en": "Ligation (T4 DNA ligase)",
+        "zh-TW": "DNA 接合（T4 DNA 接合酶）"
+      },
+      "summary": {
+        "en": "Ligate an insert into a vector with T4 DNA ligase: the insert mass for a chosen molar ratio, the picomoles of each, and every volume are worked out.",
+        "zh-TW": "以 T4 DNA 接合酶將插入片段接入載體：依選定莫耳比算出插入片段質量、各自的皮莫耳數與所有體積。"
+      },
+      "topic": "dna",
+      "tags": [
+        "ligation",
+        "T4 DNA ligase",
+        "cloning",
+        "molar ratio"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/dna-ligation/1.0.0.json",
+          "sha256": "584838be35d58e4aea473d1644180f6529589ae13199a49d069eef66b7478cd6",
+          "size": 22119,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Ligation Protocol WITH T4 DNA Ligase (M0202)” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Ligation Protocol WITH T4 DNA Ligase (M0202)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "heat-shock-transformation": {
+      "title": {
+        "en": "Bacterial transformation (heat shock)",
+        "zh-TW": "細菌轉形（熱休克）"
+      },
+      "summary": {
+        "en": "Transform chemically competent E. coli with a plasmid by a 42 °C heat shock, recover in SOC, plate, and count transformants.",
+        "zh-TW": "以 42 °C 熱休克將質體轉形至化學勝任大腸桿菌，在 SOC 中復原後塗盤，並計算轉形株數。"
+      },
+      "topic": "dna",
+      "tags": [
+        "transformation",
+        "heat shock",
+        "E. coli",
+        "competent cells"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/heat-shock-transformation/1.0.0.json",
+          "sha256": "f16fdfb1af367646e0f88f6eb3781a767b5eb6fdd8c48c5dc9e80e917d482060",
+          "size": 19759,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “High Efficiency Transformation” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “High Efficiency Transformation” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "lipid-transfection": {
+      "title": {
+        "en": "Transient transfection (lipid reagent)",
+        "zh-TW": "暫時性轉染（脂質試劑）"
+      },
+      "summary": {
+        "en": "Transfect HEK cells in a 24-well plate with plasmid DNA and Lipofectamine 3000; the two complexing tubes are worked out for n wells.",
+        "zh-TW": "以質體 DNA 與 Lipofectamine 3000 轉染 24 孔盤中的 HEK 細胞；兩管複合物用量依孔數自動計算。"
+      },
+      "topic": "cells",
+      "tags": [
+        "transfection",
+        "Lipofectamine 3000",
+        "HEK293",
+        "plasmid",
+        "24-well"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/lipid-transfection/1.0.0.json",
+          "sha256": "f652f434d361275f7d9dce7fd47331ed6cd73f170cd96577fd995b9f908b74e6",
+          "size": 19646,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Transfection of HEK cells with Lipofectamine 3000” by Chelsie Steele and Yujie Fan (Caltech) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Transfection of HEK cells with Lipofectamine 3000” by Chelsie Steele and Yujie Fan (Caltech)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "nanodrop-quantification": {
+      "title": {
+        "en": "NanoDrop quantification",
+        "zh-TW": "NanoDrop 核酸定量"
+      },
+      "summary": {
+        "en": "Measure the concentration and purity of a DNA or RNA sample on a microvolume spectrophotometer, then work out the volume that holds the amount you need.",
+        "zh-TW": "以微量分光光度計測量 DNA 或 RNA 樣品的濃度與純度，並算出所需量對應的體積。"
+      },
+      "topic": "dna",
+      "tags": [
+        "quantification",
+        "NanoDrop",
+        "DNA",
+        "A260"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/nanodrop-quantification/1.0.0.json",
+          "sha256": "edac288814ff1eea0426c939d7d702be9e6a2604f5f8dc6b22e3be637c414ca9",
+          "size": 14543,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Nanodrop - dsDNA Quantification” by Owen Butler and Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Nanodrop - dsDNA Quantification” by Owen Butler and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "passaging-adherent-cells": {
+      "title": {
+        "en": "Passaging adherent cells",
+        "zh-TW": "貼附型細胞繼代"
+      },
+      "summary": {
+        "en": "Detach adherent cells with trypsin, count them on a hemocytometer with trypan blue, and seed a new vessel; density, viability and seeding volume are worked out.",
+        "zh-TW": "以胰蛋白酶使貼附細胞脫離，用台盼藍與血球計數盤計數，再接種至新容器；密度、存活率與接種體積自動計算。"
+      },
+      "topic": "cells",
+      "tags": [
+        "cell culture",
+        "passaging",
+        "trypsin",
+        "cell counting",
+        "hemocytometer"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/passaging-adherent-cells/1.0.0.json",
+          "sha256": "d472ffadcaaa5b1a5eaa3dad3bb0191d1db27e5da003e0461b8eb69fe568a1f3",
+          "size": 21435,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Detailed adherent cell passaging protocol” by Ainsley Lederer (University of Pittsburgh) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Detailed adherent cell passaging protocol” by Ainsley Lederer (University of Pittsburgh)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "pcr-taq-25ul": {
+      "title": {
+        "en": "PCR (Taq, 25 µL)",
+        "zh-TW": "PCR（Taq，25 µL）"
+      },
+      "summary": {
+        "en": "A routine 25 µL Taq PCR: master mix for n reactions, primer and template volumes worked out, and cycling with the extension time from the amplicon length.",
+        "zh-TW": "例行性 25 µL Taq PCR：計算 n 個反應的混合液、引子與模板體積，並依產物長度算出延伸時間。"
+      },
+      "topic": "dna",
+      "tags": [
+        "PCR",
+        "Taq",
+        "amplification",
+        "master mix"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/pcr-taq-25ul/1.0.0.json",
+          "sha256": "713d13e81653d7cb902d84808224cf8958ec7f4fbfbdcab7048b065fee92dbe0",
+          "size": 29113,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “PCR with Taq DNA Polymerase with Standard Taq Buffer (M0273)” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “PCR with Taq DNA Polymerase with Standard Taq Buffer (M0273)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "plasmid-miniprep": {
+      "title": {
+        "en": "Plasmid miniprep (spin column)",
+        "zh-TW": "質體小量萃取（離心管柱）"
+      },
+      "summary": {
+        "en": "Check an overnight E. coli culture by OD600, then purify plasmid DNA with an alkaline-lysis spin-column kit and work out the yield.",
+        "zh-TW": "以 OD600 確認大腸桿菌隔夜菌液後，用鹼裂解離心管柱套組純化質體 DNA，並算出產量。"
+      },
+      "topic": "dna",
+      "tags": [
+        "plasmid",
+        "miniprep",
+        "DNA extraction",
+        "E. coli"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/plasmid-miniprep/1.0.0.json",
+          "sha256": "8d37ae5054af27b585eb53ca18ae36970e8416c49c4755a4f6ddae2df4de1a81",
+          "size": 34828,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Monarch Spin Plasmid Miniprep (NEB)” by Owen Butler and Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Monarch Spin Plasmid Miniprep (NEB)” by Owen Butler and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "qpcr-sybr": {
+      "title": {
+        "en": "qPCR setup (SYBR Green)",
+        "zh-TW": "qPCR 配製（SYBR Green）"
+      },
+      "summary": {
+        "en": "Set up SYBR Green qPCR with a 2X master mix: wells per primer pair, primer volumes for a chosen final concentration and the mix with 10% overage are worked out.",
+        "zh-TW": "以 2X SYBR Green 混合液配製 qPCR：每組引子的孔數、依最終濃度計算的引子體積，以及含 10% 額外量的混合液均自動計算。"
+      },
+      "topic": "rna",
+      "tags": [
+        "qPCR",
+        "SYBR Green",
+        "real-time PCR",
+        "master mix"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/qpcr-sybr/1.0.0.json",
+          "sha256": "0221893aea597368ac3a66167d1dd7808f0f8fe01b557aafb000b6f808be8bfe",
+          "size": 22044,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “qPCR (SYBR Green)” by Vanessa Howland and Yue Ma (Van Andel Institute) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “qPCR (SYBR Green)” by Vanessa Howland and Yue Ma (Van Andel Institute)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "restriction-digest": {
+      "title": {
+        "en": "Restriction digest",
+        "zh-TW": "限制酶切割"
+      },
+      "summary": {
+        "en": "A typical 50 µL digest of 1 µg DNA with one restriction enzyme; DNA and water volumes are worked out from the DNA concentration.",
+        "zh-TW": "以單一限制酶切割 1 µg DNA 的典型 50 µL 反應；DNA 與水的體積依 DNA 濃度自動計算。"
+      },
+      "topic": "dna",
+      "tags": [
+        "restriction enzyme",
+        "digest",
+        "cloning",
+        "DNA"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/restriction-digest/1.0.0.json",
+          "sha256": "e52dcdb5923dc4759ea847b27484aa5f2edb81e763ef1de491810e99c1fdd3a7",
+          "size": 13478,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Restriction Digest” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Restriction Digest” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "rna-extraction-column": {
+      "title": {
+        "en": "RNA extraction (spin column)",
+        "zh-TW": "RNA 萃取（離心管柱）"
+      },
+      "summary": {
+        "en": "Purify total RNA from cultured cells on a silica spin column; lysis buffer with β-mercaptoethanol for n samples and the RNA yield are worked out.",
+        "zh-TW": "以矽膠離心管柱從培養細胞純化總 RNA；n 個樣品所需的含 β-巰基乙醇裂解液與 RNA 產量自動計算。"
+      },
+      "topic": "rna",
+      "tags": [
+        "RNA",
+        "RNA extraction",
+        "spin column",
+        "total RNA"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/rna-extraction-column/1.0.0.json",
+          "sha256": "c0f09792609b7c2d6a8e5d68eebb31c458cbe9a5d7aceeb518f597d2a4ba5c09",
+          "size": 28720,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “Purification of Total RNA from Cells Using Spin Technology” by Malu Tansey (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “Purification of Total RNA from Cells Using Spin Technology” by Malu Tansey（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    },
+    "sds-page-western-blot": {
+      "title": {
+        "en": "SDS-PAGE and western blot",
+        "zh-TW": "SDS-PAGE 與西方墨點法"
+      },
+      "summary": {
+        "en": "Lyse cells in RIPA, load equal protein per lane, run SDS-PAGE, transfer to nitrocellulose and detect with antibodies; loading and antibody volumes are worked out.",
+        "zh-TW": "以 RIPA 裂解細胞，每孔上樣等量蛋白質，進行 SDS-PAGE、轉漬至硝化纖維膜並以抗體偵測；上樣與抗體體積自動計算。"
+      },
+      "topic": "protein",
+      "tags": [
+        "SDS-PAGE",
+        "western blot",
+        "immunoblot",
+        "antibody"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/sds-page-western-blot/1.0.0.json",
+          "sha256": "6883a8f138e5bbb8a33baaf4f6feb1fd74da5d2e3ae8bbf47ee32390e83d7007",
+          "size": 32855,
+          "released": "2026-10-10",
+          "notes": {
+            "en": "First catalogue version. Adapted for Rill from “SDS-PAGE and western blot analysis” by Elias Adriaenssens (Sascha Martens lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "目錄第一版。改寫自 “SDS-PAGE and western blot analysis” by Elias Adriaenssens (Sascha Martens lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        }
+      ]
+    }
+  }
+}

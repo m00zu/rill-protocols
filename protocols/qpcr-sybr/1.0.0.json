@@ -1,0 +1,975 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "qPCR setup (SYBR Green)",
+    "zh-TW": "qPCR 配製（SYBR Green）"
+  },
+  "tags": [
+    "qPCR",
+    "SYBR Green",
+    "real-time PCR",
+    "master mix"
+  ],
+  "source": {
+    "title": "qPCR (SYBR Green)",
+    "authors": [
+      "Vanessa Howland",
+      "Yue Ma"
+    ],
+    "doi": "10.17504/protocols.io.bp2l6zjwrgqe/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-mm",
+      "role": "2X SYBR Green master mix",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-fwd",
+      "role": "forward primer",
+      "kind": "rill:primer",
+      "fields": {
+        "sequence": "text",
+        "direction": "text",
+        "target": "text",
+        "tm": "temperature",
+        "supplier": "text",
+        "pair": "text"
+      }
+    },
+    {
+      "use": "u-rev",
+      "role": "reverse primer",
+      "kind": "rill:primer",
+      "fields": {
+        "sequence": "text",
+        "direction": "text",
+        "target": "text",
+        "tm": "temperature",
+        "supplier": "text",
+        "pair": "text"
+      }
+    },
+    {
+      "use": "u-cdna",
+      "role": "cDNA",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "nuclease-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-plate",
+      "role": "optical reaction plate",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-seal",
+      "role": "optical adhesive cover",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-qpcr",
+      "role": "real-time PCR instrument",
+      "kind": "rill:instrument-qpcr-cycler",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-samples",
+      "label": {
+        "en": "Samples",
+        "zh-TW": "樣品數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "8",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-ntc",
+      "label": {
+        "en": "No-template controls",
+        "zh-TW": "無模板對照數"
+      },
+      "role": "fixed",
+      "dimension": "count",
+      "value": {
+        "n": "1",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-reps",
+      "label": {
+        "en": "Replicates",
+        "zh-TW": "重複數"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "3",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-wells",
+      "label": {
+        "en": "Wells per primer pair",
+        "zh-TW": "每組引子的孔數"
+      },
+      "role": "computed",
+      "dimension": "count",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "+",
+          "a": {
+            "box": "b-samples"
+          },
+          "b": {
+            "box": "b-ntc"
+          }
+        },
+        "b": {
+          "box": "b-reps"
+        }
+      }
+    },
+    {
+      "id": "b-over",
+      "label": {
+        "en": "Overage",
+        "zh-TW": "額外量比例"
+      },
+      "role": "fixed",
+      "dimension": "ratio",
+      "value": {
+        "n": "0.1",
+        "unit": "ratio"
+      }
+    },
+    {
+      "id": "b-total",
+      "label": {
+        "en": "Reaction volume",
+        "zh-TW": "反應體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "10",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "10",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "20",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-mm-per",
+      "label": {
+        "en": "2X master mix per well",
+        "zh-TW": "每孔 2X 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-total"
+        },
+        "b": {
+          "const": {
+            "n": "2",
+            "unit": "number"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-pstock",
+      "label": {
+        "en": "Primer stock",
+        "zh-TW": "引子原液濃度"
+      },
+      "role": "fixed",
+      "dimension": "molar_concentration",
+      "value": {
+        "n": "10",
+        "unit": "µM"
+      }
+    },
+    {
+      "id": "b-pfinal",
+      "label": {
+        "en": "Final concentration of each primer",
+        "zh-TW": "每條引子最終濃度"
+      },
+      "role": "filled",
+      "dimension": "molar_concentration",
+      "default": {
+        "n": "500",
+        "unit": "nM"
+      },
+      "preferred_unit": "nM",
+      "range": {
+        "min": {
+          "n": "300",
+          "unit": "nM"
+        },
+        "max": {
+          "n": "800",
+          "unit": "nM"
+        }
+      }
+    },
+    {
+      "id": "b-pvol",
+      "label": {
+        "en": "Each primer per well",
+        "zh-TW": "每孔每條引子體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "dilution_volume",
+        "args": {
+          "c1": {
+            "box": "b-pstock"
+          },
+          "c2": {
+            "box": "b-pfinal"
+          },
+          "v2": {
+            "box": "b-total"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-cdna",
+      "label": {
+        "en": "cDNA per well (1–10 ng)",
+        "zh-TW": "每孔 cDNA（1–10 ng）"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "1",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "0.5",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "2",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-water",
+      "label": {
+        "en": "Water per well",
+        "zh-TW": "每孔水量"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "op": "-",
+          "a": {
+            "op": "-",
+            "a": {
+              "op": "-",
+              "a": {
+                "box": "b-total"
+              },
+              "b": {
+                "op": "/",
+                "a": {
+                  "box": "b-total"
+                },
+                "b": {
+                  "const": {
+                    "n": "2",
+                    "unit": "number"
+                  }
+                }
+              }
+            },
+            "b": {
+              "box": "b-pvol"
+            }
+          },
+          "b": {
+            "box": "b-pvol"
+          }
+        },
+        "b": {
+          "box": "b-cdna"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mix-mm",
+      "label": {
+        "en": "Mix: 2X master mix",
+        "zh-TW": "混合液：2X 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-mm-per"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mix-primer",
+      "label": {
+        "en": "Mix: each primer",
+        "zh-TW": "混合液：每條引子"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-pvol"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mix-water",
+      "label": {
+        "en": "Mix: water",
+        "zh-TW": "混合液：水"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-water"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-per-well",
+      "label": {
+        "en": "Mix per well",
+        "zh-TW": "每孔分裝混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "box": "b-total"
+        },
+        "b": {
+          "box": "b-cdna"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-anneal",
+      "label": {
+        "en": "Annealing temperature",
+        "zh-TW": "黏合溫度"
+      },
+      "role": "filled",
+      "dimension": "temperature",
+      "default": {
+        "n": "60",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C",
+      "range": {
+        "min": {
+          "n": "55",
+          "unit": "°C"
+        },
+        "max": {
+          "n": "60",
+          "unit": "°C"
+        }
+      }
+    },
+    {
+      "id": "b-cycles",
+      "label": {
+        "en": "Cycles",
+        "zh-TW": "循環數"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "40",
+        "unit": "number"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Prepare the reagents",
+        "zh-TW": "準備試劑"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Swirl the ",
+              {
+                "use": "u-mm"
+              },
+              " to mix it. Thaw ",
+              {
+                "use": "u-cdna"
+              },
+              ", ",
+              {
+                "use": "u-fwd"
+              },
+              " and ",
+              {
+                "use": "u-rev"
+              },
+              " on ice, vortex and spin briefly."
+            ],
+            "zh-TW": [
+              {
+                "text": "旋轉混勻 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-mm"
+              },
+              {
+                "text": "。在冰上解凍 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cdna"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "use": "u-fwd"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rev"
+              },
+              {
+                "text": "，震盪後短暫離心。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-set",
+      "title": {
+        "en": "Set up the reactions",
+        "zh-TW": "配製反應"
+      },
+      "steps": [
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "For each primer pair, ",
+              {
+                "box": "b-samples"
+              },
+              " samples and ",
+              {
+                "box": "b-ntc"
+              },
+              " no-template control in ",
+              {
+                "box": "b-reps"
+              },
+              " replicates make ",
+              {
+                "box": "b-wells"
+              },
+              " wells; add ",
+              {
+                "box": "b-over"
+              },
+              " extra. Mix ",
+              {
+                "box": "b-mix-mm"
+              },
+              " of master mix, ",
+              {
+                "box": "b-mix-primer"
+              },
+              " of each primer and ",
+              {
+                "box": "b-mix-water"
+              },
+              " of ",
+              {
+                "use": "u-water"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "每組引子：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-samples"
+              },
+              {
+                "text": " 個樣品加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ntc"
+              },
+              {
+                "text": " 個無模板對照、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-reps"
+              },
+              {
+                "text": " 重複，共 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wells"
+              },
+              {
+                "text": " 孔，另加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-over"
+              },
+              {
+                "text": " 額外量。混合 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-mix-mm"
+              },
+              {
+                "text": " 混合液、每條引子各 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-mix-primer"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-mix-water"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Per ",
+              {
+                "box": "b-total"
+              },
+              " well: master mix ",
+              {
+                "box": "b-mm-per"
+              },
+              ", each primer ",
+              {
+                "box": "b-pvol"
+              },
+              " (final ",
+              {
+                "box": "b-pfinal"
+              },
+              " from ",
+              {
+                "box": "b-pstock"
+              },
+              "), water ",
+              {
+                "box": "b-water"
+              },
+              ", cDNA ",
+              {
+                "box": "b-cdna"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "每孔 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total"
+              },
+              {
+                "text": "：混合液 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-mm-per"
+              },
+              {
+                "text": "、每條引子 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pvol"
+              },
+              {
+                "text": "（由 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pstock"
+              },
+              {
+                "text": " 稀釋至 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pfinal"
+              },
+              {
+                "text": "）、水 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-water"
+              },
+              {
+                "text": "、cDNA ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cdna"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "If the water volume shows below zero, the primers and cDNA do not fit in this reaction volume: use less cDNA or a larger reaction.",
+            "zh-TW": "若水量顯示為負值，表示引子與 cDNA 放不進此反應體積：請減少 cDNA 或增加反應體積。"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Mix thoroughly and spin briefly. Put ",
+              {
+                "box": "b-per-well"
+              },
+              " of mix in each well of the ",
+              {
+                "use": "u-plate"
+              },
+              ", then ",
+              {
+                "box": "b-cdna"
+              },
+              " of cDNA (water for the no-template controls)."
+            ],
+            "zh-TW": [
+              {
+                "text": "充分混勻並短暫離心。在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plate"
+              },
+              {
+                "text": " 每孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-per-well"
+              },
+              {
+                "text": " 混合液，再加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cdna"
+              },
+              {
+                "text": " 的 cDNA（無模板對照加水）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Seal with ",
+              {
+                "use": "u-seal"
+              },
+              " and spin briefly to remove bubbles."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-seal"
+              },
+              {
+                "text": " 封盤並短暫離心去除氣泡。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "The plate can wait up to 72 hours at room temperature before the run; keep it in the dark.",
+            "zh-TW": "封好的盤子在室溫下最多可放置 72 小時再上機，請避光保存。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-run",
+      "title": {
+        "en": "Run",
+        "zh-TW": "上機"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "In the ",
+              {
+                "use": "i-qpcr"
+              },
+              ", set SYBR as reporter, no quencher, ROX as passive reference, and the reaction volume for the plate type."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-qpcr"
+              },
+              {
+                "text": " 設定報告染劑為 SYBR、無淬滅劑、被動參考染劑為 ROX，並依盤型設定反應體積。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Cycle: 50 °C for 2 minutes (UDG), 95 °C for 2 minutes, then ",
+              {
+                "box": "b-cycles"
+              },
+              " cycles of 95 °C for 15 seconds, ",
+              {
+                "box": "b-anneal"
+              },
+              " for 15 seconds and 72 °C for 1 minute."
+            ],
+            "zh-TW": [
+              {
+                "text": "循環條件：50 °C 2 分鐘（UDG）、95 °C 2 分鐘，接著 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cycles"
+              },
+              {
+                "text": " 個循環：95 °C 15 秒、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-anneal"
+              },
+              {
+                "text": " 15 秒、72 °C 1 分鐘。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Add a melt curve: 95 °C for 15 seconds, 60 °C for 1 minute, then up to 95 °C at 0.15 °C per second."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入熔解曲線：95 °C 15 秒、60 °C 1 分鐘，再以每秒 0.15 °C 升溫至 95 °C。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Start the run and export the results when it ends."
+            ],
+            "zh-TW": [
+              {
+                "text": "開始執行，結束後匯出結果。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "qpcr-sybr",
+    "version": "1.0.0"
+  }
+}

@@ -1,0 +1,593 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Restriction digest",
+    "zh-TW": "限制酶切割"
+  },
+  "tags": [
+    "restriction enzyme",
+    "digest",
+    "cloning",
+    "DNA"
+  ],
+  "source": {
+    "title": "Restriction Digest",
+    "authors": [
+      "New England Biolabs"
+    ],
+    "doi": "10.17504/protocols.io.isycefw",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-dna",
+      "role": "DNA to digest",
+      "kind": "rill:plasmid",
+      "fields": {
+        "backbone": "text",
+        "insert": "text",
+        "resistance": "text",
+        "length_bp": "length_bp",
+        "source": "text",
+        "concentration": "mass_concentration",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-buffer",
+      "role": "10X restriction buffer",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-enzyme",
+      "role": "restriction enzyme",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "nuclease-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-stop",
+      "role": "gel loading dye / stop solution",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-block",
+      "role": "heat block or incubator",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-total",
+      "label": {
+        "en": "Reaction volume",
+        "zh-TW": "反應體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "50",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-dna-mass",
+      "label": {
+        "en": "DNA",
+        "zh-TW": "DNA 量"
+      },
+      "role": "fixed",
+      "dimension": "mass",
+      "value": {
+        "n": "1",
+        "unit": "µg"
+      }
+    },
+    {
+      "id": "b-dna-conc",
+      "label": {
+        "en": "DNA concentration",
+        "zh-TW": "DNA 濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "range": {
+        "min": {
+          "n": "25",
+          "unit": "ng/µL"
+        }
+      }
+    },
+    {
+      "id": "b-dna-vol",
+      "label": {
+        "en": "DNA volume",
+        "zh-TW": "DNA 體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-dna-mass"
+          },
+          "concentration": {
+            "box": "b-dna-conc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-buffer",
+      "label": {
+        "en": "10X buffer",
+        "zh-TW": "10X 緩衝液"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "5",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-enzyme",
+      "label": {
+        "en": "Enzyme (about 10 units)",
+        "zh-TW": "限制酶（約 10 單位）"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "1",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "0.1",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "5",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-water",
+      "label": {
+        "en": "Water",
+        "zh-TW": "水"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "op": "-",
+          "a": {
+            "op": "-",
+            "a": {
+              "box": "b-total"
+            },
+            "b": {
+              "box": "b-dna-vol"
+            }
+          },
+          "b": {
+            "box": "b-buffer"
+          }
+        },
+        "b": {
+          "box": "b-enzyme"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-temp",
+      "label": {
+        "en": "Incubation temperature (enzyme-specific)",
+        "zh-TW": "反應溫度（依酵素而定）"
+      },
+      "role": "filled",
+      "dimension": "temperature",
+      "default": {
+        "n": "37",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-time",
+      "label": {
+        "en": "Incubation time",
+        "zh-TW": "反應時間"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "1",
+        "unit": "h"
+      },
+      "preferred_unit": "min",
+      "range": {
+        "min": {
+          "n": "5",
+          "unit": "min"
+        },
+        "max": {
+          "n": "16",
+          "unit": "h"
+        }
+      }
+    },
+    {
+      "id": "b-inactivation",
+      "label": {
+        "en": "Heat inactivation (from the enzyme's data sheet)",
+        "zh-TW": "熱失活條件（依酵素說明書）"
+      },
+      "role": "filled",
+      "type": "text"
+    },
+    {
+      "id": "b-stop",
+      "label": {
+        "en": "Stop solution per 50 µL",
+        "zh-TW": "每 50 µL 反應的終止液"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "10",
+        "unit": "µL"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-set",
+      "title": {
+        "en": "Set up",
+        "zh-TW": "配製"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "In a tube on ice, combine ",
+              {
+                "box": "b-water"
+              },
+              " of ",
+              {
+                "use": "u-water"
+              },
+              ", ",
+              {
+                "box": "b-dna-vol"
+              },
+              " of ",
+              {
+                "use": "u-dna"
+              },
+              " (",
+              {
+                "box": "b-dna-mass"
+              },
+              " at ",
+              {
+                "box": "b-dna-conc"
+              },
+              ") and ",
+              {
+                "box": "b-buffer"
+              },
+              " of ",
+              {
+                "use": "u-buffer"
+              },
+              ", for ",
+              {
+                "box": "b-total"
+              },
+              " in all."
+            ],
+            "zh-TW": [
+              {
+                "text": "在冰上的離心管中加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-water"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-dna"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-conc"
+              },
+              {
+                "text": " 下為 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-mass"
+              },
+              {
+                "text": "）與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-buffer"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-buffer"
+              },
+              {
+                "text": "，總體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "The DNA should be free of phenol, chloroform, ethanol, EDTA, detergents and excess salt. Below 25 ng/µL, 1 µg does not fit in the reaction and the water volume turns negative.",
+            "zh-TW": "DNA 中不應含有酚、氯仿、乙醇、EDTA、界面活性劑或過多鹽類。濃度低於 25 ng/µL 時，1 µg 放不進此反應，水量會變成負值。"
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-enzyme"
+              },
+              " of ",
+              {
+                "use": "u-enzyme"
+              },
+              " last."
+            ],
+            "zh-TW": [
+              {
+                "text": "最後加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-enzyme"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-enzyme"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Keep the enzyme at or below a tenth of the reaction volume: more glycerol causes star activity. Keep the enzyme cold.",
+            "zh-TW": "酵素體積不可超過反應體積的十分之一，否則過多甘油會造成星狀活性。酵素需保持低溫。"
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Mix by pipetting or flicking, then spin briefly. Do not vortex."
+            ],
+            "zh-TW": [
+              {
+                "text": "以吸管上下吸放或輕彈混勻，再短暫離心。請勿震盪。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-incubate",
+      "title": {
+        "en": "Digest",
+        "zh-TW": "酵素切割"
+      },
+      "steps": [
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Incubate in the ",
+              {
+                "use": "i-block"
+              },
+              " at ",
+              {
+                "box": "b-temp"
+              },
+              " for ",
+              {
+                "box": "b-time"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-block"
+              },
+              {
+                "text": " 中以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-temp"
+              },
+              {
+                "text": " 反應 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-time"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "To stop: add ",
+              {
+                "box": "b-stop"
+              },
+              " of ",
+              {
+                "use": "u-stop"
+              },
+              " per 50 µL if the DNA goes straight onto a gel; otherwise heat-inactivate (",
+              {
+                "box": "b-inactivation"
+              },
+              ") or clean up on a spin column."
+            ],
+            "zh-TW": [
+              {
+                "text": "終止反應：若直接跑膠，每 50 µL 加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-stop"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-stop"
+              },
+              {
+                "text": "；否則進行熱失活（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inactivation"
+              },
+              {
+                "text": "）或以離心管柱純化。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "restriction-digest",
+    "version": "1.0.0"
+  }
+}
