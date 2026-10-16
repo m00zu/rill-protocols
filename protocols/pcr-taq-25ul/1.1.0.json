@@ -1,0 +1,1473 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "PCR (Taq, 25 µL)",
+    "zh-TW": "PCR（Taq，25 µL）"
+  },
+  "tags": [
+    "PCR",
+    "Taq",
+    "amplification",
+    "master mix"
+  ],
+  "source": {
+    "title": "PCR with Taq DNA Polymerase with Standard Taq Buffer(M0273)",
+    "authors": [
+      "New England Biolabs"
+    ],
+    "doi": "10.17504/protocols.io.bdd5i286",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-buffer",
+      "role": "10X standard Taq reaction buffer",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-dntp",
+      "role": "10 mM dNTPs",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-fwd",
+      "role": "forward primer",
+      "kind": "rill:primer",
+      "fields": {
+        "sequence": "text",
+        "direction": "text",
+        "target": "text",
+        "tm": "temperature",
+        "supplier": "text",
+        "pair": "text"
+      }
+    },
+    {
+      "use": "u-rev",
+      "role": "reverse primer",
+      "kind": "rill:primer",
+      "fields": {
+        "sequence": "text",
+        "direction": "text",
+        "target": "text",
+        "tm": "temperature",
+        "supplier": "text",
+        "pair": "text"
+      }
+    },
+    {
+      "use": "u-template",
+      "role": "template DNA",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-taq",
+      "role": "Taq DNA polymerase",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "nuclease-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-tubes",
+      "role": "PCR tubes",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-cycler",
+      "role": "thermocycler",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-fuge",
+      "role": "microcentrifuge",
+      "kind": "rill:instrument-centrifuge",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      },
+      "tubes": "b-n"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-n",
+      "label": {
+        "en": "Reactions",
+        "zh-TW": "反應數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "8",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-over",
+      "label": {
+        "en": "Overage",
+        "zh-TW": "額外量比例"
+      },
+      "role": "fixed",
+      "dimension": "ratio",
+      "value": {
+        "n": "0.1",
+        "unit": "ratio"
+      }
+    },
+    {
+      "id": "b-total",
+      "label": {
+        "en": "Reaction volume",
+        "zh-TW": "反應體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "25",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-buf",
+      "label": {
+        "en": "10X standard Taq reaction buffer · Per reaction",
+        "zh-TW": "10X standard Taq reaction buffer · 每反應"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "2.5",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-dntp",
+      "label": {
+        "en": "10 mM dNTPs · Per reaction",
+        "zh-TW": "10 mM dNTPs · 每反應"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "0.5",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-pstock",
+      "label": {
+        "en": "Primer stock",
+        "zh-TW": "引子原液濃度"
+      },
+      "role": "fixed",
+      "dimension": "molar_concentration",
+      "value": {
+        "n": "10",
+        "unit": "µM"
+      }
+    },
+    {
+      "id": "b-pfinal",
+      "label": {
+        "en": "Final concentration of each primer",
+        "zh-TW": "每條引子最終濃度"
+      },
+      "role": "filled",
+      "dimension": "molar_concentration",
+      "default": {
+        "n": "0.2",
+        "unit": "µM"
+      },
+      "preferred_unit": "µM",
+      "range": {
+        "min": {
+          "n": "0.05",
+          "unit": "µM"
+        },
+        "max": {
+          "n": "1",
+          "unit": "µM"
+        }
+      }
+    },
+    {
+      "id": "b-pvol",
+      "label": {
+        "en": "forward primer · Per reaction",
+        "zh-TW": "forward primer · 每反應"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "dilution_volume",
+        "args": {
+          "c1": {
+            "box": "b-pstock"
+          },
+          "c2": {
+            "box": "b-pfinal"
+          },
+          "v2": {
+            "box": "b-total"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-pvol-rev",
+      "label": {
+        "en": "reverse primer · Per reaction",
+        "zh-TW": "reverse primer · 每反應"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "dilution_volume",
+        "args": {
+          "c1": {
+            "box": "b-pstock"
+          },
+          "c2": {
+            "box": "b-pfinal"
+          },
+          "v2": {
+            "box": "b-total"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-taq",
+      "label": {
+        "en": "Taq DNA polymerase · Per reaction",
+        "zh-TW": "Taq DNA polymerase · 每反應"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "0.125",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-tconc",
+      "label": {
+        "en": "Template concentration",
+        "zh-TW": "模板濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "range": {
+        "min": {
+          "n": "0.5",
+          "unit": "ng/µL"
+        }
+      }
+    },
+    {
+      "id": "b-tmass",
+      "label": {
+        "en": "Template per reaction",
+        "zh-TW": "每反應模板量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "10",
+        "unit": "ng"
+      },
+      "preferred_unit": "ng",
+      "range": {
+        "max": {
+          "n": "1000",
+          "unit": "ng"
+        }
+      }
+    },
+    {
+      "id": "b-tvol",
+      "label": {
+        "en": "Template volume",
+        "zh-TW": "模板體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-tmass"
+          },
+          "concentration": {
+            "box": "b-tconc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-water",
+      "label": {
+        "en": "nuclease-free water · Per reaction",
+        "zh-TW": "nuclease-free water · 每反應"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "box": "b-per-tube"
+        },
+        "b": {
+          "op": "+",
+          "a": {
+            "op": "+",
+            "a": {
+              "op": "+",
+              "a": {
+                "op": "+",
+                "a": {
+                  "box": "b-buf"
+                },
+                "b": {
+                  "box": "b-dntp"
+                }
+              },
+              "b": {
+                "box": "b-pvol"
+              }
+            },
+            "b": {
+              "box": "b-pvol-rev"
+            }
+          },
+          "b": {
+            "box": "b-taq"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-buf",
+      "label": {
+        "en": "10X standard Taq reaction buffer · Mix",
+        "zh-TW": "10X standard Taq reaction buffer · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-buf"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-dntp",
+      "label": {
+        "en": "10 mM dNTPs · Mix",
+        "zh-TW": "10 mM dNTPs · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-dntp"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-primer",
+      "label": {
+        "en": "forward primer · Mix",
+        "zh-TW": "forward primer · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-pvol"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-primer-rev",
+      "label": {
+        "en": "reverse primer · Mix",
+        "zh-TW": "reverse primer · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-pvol-rev"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-taq",
+      "label": {
+        "en": "Taq DNA polymerase · Mix",
+        "zh-TW": "Taq DNA polymerase · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-taq"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-water",
+      "label": {
+        "en": "nuclease-free water · Mix",
+        "zh-TW": "nuclease-free water · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-water"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-mm-sum",
+      "label": {
+        "en": "Master mix · Mix",
+        "zh-TW": "混合液總量 · 混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "+",
+        "a": {
+          "op": "+",
+          "a": {
+            "op": "+",
+            "a": {
+              "op": "+",
+              "a": {
+                "op": "+",
+                "a": {
+                  "box": "b-mm-water"
+                },
+                "b": {
+                  "box": "b-mm-buf"
+                }
+              },
+              "b": {
+                "box": "b-mm-dntp"
+              }
+            },
+            "b": {
+              "box": "b-mm-primer"
+            }
+          },
+          "b": {
+            "box": "b-mm-primer-rev"
+          }
+        },
+        "b": {
+          "box": "b-mm-taq"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-per-tube",
+      "label": {
+        "en": "Master mix per tube",
+        "zh-TW": "每管分裝混合液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "box": "b-total"
+        },
+        "b": {
+          "box": "b-tvol"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-block",
+      "label": {
+        "en": "PCR block",
+        "zh-TW": "PCR 反應槽"
+      },
+      "role": "filled",
+      "type": "layout",
+      "format": {
+        "kind": "grid",
+        "rows": 8,
+        "columns": 12,
+        "labels": "letters-numbers",
+        "preset": "pcr-96"
+      },
+      "template": []
+    },
+    {
+      "id": "b-denat-t",
+      "label": {
+        "en": "Initial denaturation temperature",
+        "zh-TW": "初始變性溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "95",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-init",
+      "label": {
+        "en": "Initial denaturation time",
+        "zh-TW": "初始變性時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "s"
+      },
+      "preferred_unit": "s"
+    },
+    {
+      "id": "b-cycles",
+      "label": {
+        "en": "Cycles of repeat 1",
+        "zh-TW": "重複 1 的循環數"
+      },
+      "role": "fixed",
+      "dimension": "count",
+      "value": {
+        "n": "30",
+        "unit": "count"
+      },
+      "preferred_unit": "count"
+    },
+    {
+      "id": "b-denat",
+      "label": {
+        "en": "Denature time",
+        "zh-TW": "變性時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "s"
+      },
+      "preferred_unit": "s"
+    },
+    {
+      "id": "b-cyc-t",
+      "label": {
+        "en": "Denature temperature",
+        "zh-TW": "變性溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "95",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-anneal-t",
+      "label": {
+        "en": "Annealing temperature",
+        "zh-TW": "黏合溫度"
+      },
+      "role": "filled",
+      "dimension": "temperature",
+      "default": {
+        "n": "55",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C",
+      "range": {
+        "min": {
+          "n": "45",
+          "unit": "°C"
+        },
+        "max": {
+          "n": "68",
+          "unit": "°C"
+        }
+      }
+    },
+    {
+      "id": "b-anneal-p",
+      "label": {
+        "en": "Anneal temperature",
+        "zh-TW": "黏合溫度"
+      },
+      "role": "computed",
+      "dimension": "temperature",
+      "formula": {
+        "box": "b-anneal-t"
+      },
+      "display_unit": "°C"
+    },
+    {
+      "id": "b-anneal",
+      "label": {
+        "en": "Anneal time",
+        "zh-TW": "黏合時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "s"
+      },
+      "preferred_unit": "s"
+    },
+    {
+      "id": "b-ext-t",
+      "label": {
+        "en": "Extend temperature",
+        "zh-TW": "延伸溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "68",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-amplicon",
+      "label": {
+        "en": "Amplicon length",
+        "zh-TW": "產物長度"
+      },
+      "role": "filled",
+      "dimension": "length_bp",
+      "default": {
+        "n": "1",
+        "unit": "kb"
+      },
+      "preferred_unit": "bp"
+    },
+    {
+      "id": "b-ext",
+      "label": {
+        "en": "Extension time (1 min per kb)",
+        "zh-TW": "延伸時間（每 kb 1 分鐘）"
+      },
+      "role": "computed",
+      "dimension": "time",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-amplicon"
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "const": {
+              "n": "1",
+              "unit": "min"
+            }
+          },
+          "b": {
+            "const": {
+              "n": "1",
+              "unit": "kb"
+            }
+          }
+        }
+      },
+      "display_unit": "s"
+    },
+    {
+      "id": "b-final-t",
+      "label": {
+        "en": "Final extension temperature",
+        "zh-TW": "最終延伸溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "68",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-final",
+      "label": {
+        "en": "Final extension time",
+        "zh-TW": "最終延伸時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      },
+      "preferred_unit": "min"
+    },
+    {
+      "id": "b-hold",
+      "label": {
+        "en": "Hold temperature",
+        "zh-TW": "保存溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "4",
+        "unit": "°C"
+      },
+      "preferred_unit": "°C"
+    },
+    {
+      "id": "b-run",
+      "label": {
+        "en": "Hold times",
+        "zh-TW": "保溫時間合計"
+      },
+      "role": "computed",
+      "dimension": "time",
+      "formula": {
+        "op": "+",
+        "a": {
+          "op": "+",
+          "a": {
+            "box": "b-init"
+          },
+          "b": {
+            "op": "*",
+            "a": {
+              "box": "b-cycles"
+            },
+            "b": {
+              "op": "+",
+              "a": {
+                "op": "+",
+                "a": {
+                  "box": "b-denat"
+                },
+                "b": {
+                  "box": "b-anneal"
+                }
+              },
+              "b": {
+                "box": "b-ext"
+              }
+            }
+          }
+        },
+        "b": {
+          "box": "b-final"
+        }
+      },
+      "display_unit": "min"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-mix",
+      "title": {
+        "en": "Set up the reactions on ice",
+        "zh-TW": "在冰上配製反應"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Thaw ",
+              {
+                "use": "u-buffer"
+              },
+              ", ",
+              {
+                "use": "u-dntp"
+              },
+              ", ",
+              {
+                "use": "u-fwd"
+              },
+              " and ",
+              {
+                "use": "u-rev"
+              },
+              " on ice; mix and spin briefly. Keep ",
+              {
+                "use": "u-taq"
+              },
+              " in the cold until it is needed."
+            ],
+            "zh-TW": [
+              {
+                "text": "在冰上解凍 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-buffer"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "use": "u-dntp"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "use": "u-fwd"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rev"
+              },
+              {
+                "text": "，混勻並短暫離心。",
+                "draft": "machine"
+              },
+              {
+                "use": "u-taq"
+              },
+              {
+                "text": " 使用前都保持低溫。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Make a master mix for ",
+              {
+                "box": "b-n"
+              },
+              " reactions of ",
+              {
+                "box": "b-total"
+              },
+              ", plus ",
+              {
+                "box": "b-over"
+              },
+              " extra; each primer goes to ",
+              {
+                "box": "b-pfinal"
+              },
+              " from a ",
+              {
+                "box": "b-pstock"
+              },
+              " stock. Add the Taq last and mix gently by pipetting:"
+            ],
+            "zh-TW": [
+              {
+                "text": "配製 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-n"
+              },
+              {
+                "text": " 個 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total"
+              },
+              {
+                "text": " 反應（另加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-over"
+              },
+              {
+                "text": " 額外量）的混合液；每條引子由 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pstock"
+              },
+              {
+                "text": " 原液稀釋至 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pfinal"
+              },
+              {
+                "text": "。Taq 最後加入，以吸管輕輕混勻：",
+                "draft": "machine"
+              }
+            ]
+          },
+          "table": {
+            "name": {
+              "en": "Component",
+              "zh-TW": "成分"
+            },
+            "columns": [
+              {
+                "id": "note",
+                "label": {
+                  "en": "Note",
+                  "zh-TW": "備註"
+                },
+                "kind": "text"
+              },
+              {
+                "id": "per",
+                "label": {
+                  "en": "Per reaction",
+                  "zh-TW": "每反應"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "mix",
+                "label": {
+                  "en": "Mix",
+                  "zh-TW": "混合液"
+                },
+                "kind": "value",
+                "role": "computed",
+                "dimension": "volume",
+                "unit": "µL",
+                "formula": {
+                  "calc": "master_mix",
+                  "args": {
+                    "per_reaction": {
+                      "cell": "per"
+                    },
+                    "n": {
+                      "box": "b-n"
+                    },
+                    "overage": {
+                      "box": "b-over"
+                    }
+                  }
+                }
+              }
+            ],
+            "rows": [
+              {
+                "id": "water",
+                "use": "u-water",
+                "cells": {
+                  "per": "b-water",
+                  "mix": "b-mm-water"
+                },
+                "rule": {
+                  "column": "per",
+                  "fill_to": "b-per-tube"
+                }
+              },
+              {
+                "id": "buffer",
+                "use": "u-buffer",
+                "cells": {
+                  "per": "b-buf",
+                  "mix": "b-mm-buf"
+                }
+              },
+              {
+                "id": "dntp",
+                "use": "u-dntp",
+                "cells": {
+                  "per": "b-dntp",
+                  "mix": "b-mm-dntp"
+                }
+              },
+              {
+                "id": "fwd",
+                "use": "u-fwd",
+                "cells": {
+                  "per": "b-pvol",
+                  "mix": "b-mm-primer"
+                },
+                "rule": {
+                  "column": "per",
+                  "formula": {
+                    "calc": "dilution_volume",
+                    "args": {
+                      "c1": {
+                        "box": "b-pstock"
+                      },
+                      "c2": {
+                        "box": "b-pfinal"
+                      },
+                      "v2": {
+                        "box": "b-total"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "id": "rev",
+                "use": "u-rev",
+                "cells": {
+                  "per": "b-pvol-rev",
+                  "mix": "b-mm-primer-rev"
+                },
+                "rule": {
+                  "column": "per",
+                  "formula": {
+                    "calc": "dilution_volume",
+                    "args": {
+                      "c1": {
+                        "box": "b-pstock"
+                      },
+                      "c2": {
+                        "box": "b-pfinal"
+                      },
+                      "v2": {
+                        "box": "b-total"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "id": "taq",
+                "use": "u-taq",
+                "cells": {
+                  "per": "b-taq",
+                  "mix": "b-mm-taq"
+                },
+                "text": {
+                  "note": {
+                    "en": "add last",
+                    "zh-TW": "最後加入"
+                  }
+                }
+              }
+            ],
+            "total": {
+              "label": {
+                "en": "Master mix",
+                "zh-TW": "混合液總量"
+              },
+              "cells": {
+                "mix": "b-mm-sum"
+              }
+            }
+          },
+          "caution": {
+            "en": "Add the polymerase last and keep everything on ice until the block is hot. If the water volume shows below zero, the template is too dilute for this amount: concentrate it or use less.",
+            "zh-TW": "聚合酶最後加入，並在加熱模組達溫前全程置於冰上。 若水量顯示為負值，表示模板濃度太低、不足以提供此用量：請濃縮或減少用量。"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Put ",
+              {
+                "box": "b-per-tube"
+              },
+              " of master mix into each of the ",
+              {
+                "use": "u-tubes"
+              },
+              ", then add ",
+              {
+                "box": "b-tvol"
+              },
+              " of ",
+              {
+                "use": "u-template"
+              },
+              " (",
+              {
+                "box": "b-tmass"
+              },
+              " at ",
+              {
+                "box": "b-tconc"
+              },
+              ")."
+            ],
+            "zh-TW": [
+              {
+                "text": "每支 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-tubes"
+              },
+              {
+                "text": " 分裝 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-per-tube"
+              },
+              {
+                "text": " 混合液，再加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tvol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-template"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tconc"
+              },
+              {
+                "text": " 下為 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tmass"
+              },
+              {
+                "text": "）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Mix gently and spin the liquid to the bottom in the ",
+              {
+                "use": "i-fuge"
+              },
+              ". Overlay with mineral oil only if the cycler has no heated lid."
+            ],
+            "zh-TW": [
+              {
+                "text": "輕輕混勻，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-fuge"
+              },
+              {
+                "text": " 短暫離心使液體集中於管底。若儀器沒有熱蓋，再覆蓋礦物油。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-cycle",
+      "title": {
+        "en": "Thermocycling",
+        "zh-TW": "熱循環"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Move the tubes from ice into the ",
+              {
+                "use": "i-cycler"
+              },
+              ", with the block already at the initial denaturation temperature. Record where each tube goes: ",
+              {
+                "box": "b-block"
+              }
+            ],
+            "zh-TW": [
+              {
+                "text": "將反應管由冰上移至 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-cycler"
+              },
+              {
+                "text": "，此時加熱模組應已達初始變性溫度。記錄每支管的位置：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-block"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Run this program for an amplicon of ",
+              {
+                "box": "b-amplicon"
+              },
+              ", annealing at ",
+              {
+                "box": "b-anneal-t"
+              },
+              ":"
+            ],
+            "zh-TW": [
+              {
+                "text": "依產物長度 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-amplicon"
+              },
+              {
+                "text": "、黏合溫度 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-anneal-t"
+              },
+              {
+                "text": "，執行以下程式：",
+                "draft": "machine"
+              }
+            ]
+          },
+          "program": {
+            "segments": [
+              {
+                "id": "s-init",
+                "name": {
+                  "en": "Initial denaturation",
+                  "zh-TW": "初始變性"
+                },
+                "temp": "b-denat-t",
+                "time": "b-init"
+              },
+              {
+                "id": "r-cycle",
+                "cycles": "b-cycles",
+                "stages": [
+                  {
+                    "id": "s-denat",
+                    "name": {
+                      "en": "Denature",
+                      "zh-TW": "變性"
+                    },
+                    "temp": "b-cyc-t",
+                    "time": "b-denat"
+                  },
+                  {
+                    "id": "s-anneal",
+                    "name": {
+                      "en": "Anneal",
+                      "zh-TW": "黏合"
+                    },
+                    "temp": "b-anneal-p",
+                    "time": "b-anneal"
+                  },
+                  {
+                    "id": "s-ext",
+                    "name": {
+                      "en": "Extend",
+                      "zh-TW": "延伸"
+                    },
+                    "temp": "b-ext-t",
+                    "time": "b-ext"
+                  }
+                ]
+              },
+              {
+                "id": "s-final",
+                "name": {
+                  "en": "Final extension",
+                  "zh-TW": "最終延伸"
+                },
+                "temp": "b-final-t",
+                "time": "b-final"
+              },
+              {
+                "id": "s-hold",
+                "name": {
+                  "en": "Hold",
+                  "zh-TW": "保存"
+                },
+                "temp": "b-hold",
+                "forever": true
+              }
+            ],
+            "total": "b-run"
+          },
+          "duration": {
+            "box": "b-run"
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "pcr-taq-25ul",
+    "version": "1.1.0"
+  }
+}

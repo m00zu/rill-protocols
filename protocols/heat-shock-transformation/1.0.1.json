@@ -1,0 +1,890 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Bacterial transformation (heat shock)",
+    "zh-TW": "細菌轉形（熱休克）"
+  },
+  "tags": [
+    "transformation",
+    "heat shock",
+    "E. coli",
+    "competent cells"
+  ],
+  "source": {
+    "title": "High Efficiency Transformation",
+    "authors": [
+      "New England Biolabs"
+    ],
+    "doi": "10.17504/protocols.io.14egn2bdzg5d/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-cells",
+      "role": "chemically competent E. coli",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-plasmid",
+      "role": "plasmid DNA",
+      "kind": "rill:plasmid",
+      "fields": {
+        "backbone": "text",
+        "insert": "text",
+        "resistance": "text",
+        "length_bp": "length_bp",
+        "source": "text",
+        "concentration": "mass_concentration",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-soc",
+      "role": "SOC outgrowth medium",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-plates",
+      "role": "selective agar plates",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-tubes",
+      "role": "transformation tubes",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-bath",
+      "role": "42 °C water bath or heat block",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-shaker",
+      "role": "37 °C shaking incubator",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-thaw",
+      "label": {
+        "en": "Thawing on ice",
+        "zh-TW": "冰上解凍時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "10",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-cells",
+      "label": {
+        "en": "Competent cells",
+        "zh-TW": "勝任細胞體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "50",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-dna-mass",
+      "label": {
+        "en": "Plasmid DNA",
+        "zh-TW": "質體 DNA 量"
+      },
+      "role": "filled",
+      "dimension": "mass",
+      "default": {
+        "n": "100",
+        "unit": "ng"
+      },
+      "preferred_unit": "ng",
+      "range": {
+        "min": {
+          "n": "1",
+          "unit": "pg"
+        },
+        "max": {
+          "n": "100",
+          "unit": "ng"
+        }
+      }
+    },
+    {
+      "id": "b-dna-conc",
+      "label": {
+        "en": "Plasmid concentration",
+        "zh-TW": "質體濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL"
+    },
+    {
+      "id": "b-dna-vol",
+      "label": {
+        "en": "Plasmid volume",
+        "zh-TW": "質體體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "volume_from_mass",
+        "args": {
+          "mass": {
+            "box": "b-dna-mass"
+          },
+          "concentration": {
+            "box": "b-dna-conc"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-ice1",
+      "label": {
+        "en": "On ice",
+        "zh-TW": "冰上靜置時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-shock-t",
+      "label": {
+        "en": "Heat shock temperature",
+        "zh-TW": "熱休克溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "42",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-shock",
+      "label": {
+        "en": "Heat shock",
+        "zh-TW": "熱休克時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "s"
+      }
+    },
+    {
+      "id": "b-ice2",
+      "label": {
+        "en": "Back on ice",
+        "zh-TW": "回冰時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-soc",
+      "label": {
+        "en": "SOC",
+        "zh-TW": "SOC 體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "950",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-rec-t",
+      "label": {
+        "en": "Outgrowth temperature",
+        "zh-TW": "復原培養溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "37",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-rec",
+      "label": {
+        "en": "Outgrowth",
+        "zh-TW": "復原培養時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "1",
+        "unit": "h"
+      }
+    },
+    {
+      "id": "b-shake",
+      "label": {
+        "en": "Shaking",
+        "zh-TW": "振盪速度"
+      },
+      "role": "fixed",
+      "dimension": "speed",
+      "value": {
+        "n": "250",
+        "unit": "rpm"
+      }
+    },
+    {
+      "id": "b-plated",
+      "label": {
+        "en": "Volume spread per plate",
+        "zh-TW": "每盤塗布體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "50",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "100",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-dilution",
+      "label": {
+        "en": "Dilution of the plated suspension",
+        "zh-TW": "塗盤菌液的稀釋倍數"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "10",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-colonies",
+      "label": {
+        "en": "Colonies on that plate",
+        "zh-TW": "該盤菌落數"
+      },
+      "role": "filled",
+      "dimension": "count"
+    },
+    {
+      "id": "b-total-vol",
+      "label": {
+        "en": "Volume after outgrowth",
+        "zh-TW": "復原培養後總體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "+",
+        "a": {
+          "op": "+",
+          "a": {
+            "box": "b-cells"
+          },
+          "b": {
+            "box": "b-dna-vol"
+          }
+        },
+        "b": {
+          "box": "b-soc"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-transformants",
+      "label": {
+        "en": "Transformants in the whole tube",
+        "zh-TW": "整管轉形株總數"
+      },
+      "role": "computed",
+      "dimension": "count",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "*",
+          "a": {
+            "box": "b-colonies"
+          },
+          "b": {
+            "box": "b-dilution"
+          }
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "op": "+",
+            "a": {
+              "op": "+",
+              "a": {
+                "box": "b-cells"
+              },
+              "b": {
+                "box": "b-dna-vol"
+              }
+            },
+            "b": {
+              "box": "b-soc"
+            }
+          },
+          "b": {
+            "box": "b-plated"
+          }
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-transform",
+      "title": {
+        "en": "Transform",
+        "zh-TW": "轉形"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Thaw a tube of ",
+              {
+                "use": "u-cells"
+              },
+              " on ice for ",
+              {
+                "box": "b-thaw"
+              },
+              ". Mix gently and pipette ",
+              {
+                "box": "b-cells"
+              },
+              " into a chilled tube from ",
+              {
+                "use": "u-tubes"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將一管 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": " 置於冰上解凍 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-thaw"
+              },
+              {
+                "text": "。輕輕混勻後，取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cells"
+              },
+              {
+                "text": " 加入預冷的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-tubes"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-thaw"
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-dna-vol"
+              },
+              " of ",
+              {
+                "use": "u-plasmid"
+              },
+              " (",
+              {
+                "box": "b-dna-mass"
+              },
+              " at ",
+              {
+                "box": "b-dna-conc"
+              },
+              ") and flick the tube 4–5 times to mix."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plasmid"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-conc"
+              },
+              {
+                "text": " 下為 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dna-mass"
+              },
+              {
+                "text": "），輕彈管壁 4–5 次混勻。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Do not vortex competent cells. Keep the DNA volume small (at most a tenth of the cell volume).",
+            "zh-TW": "勝任細胞請勿震盪。DNA 體積應盡量少（不超過細胞體積的十分之一）。"
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Leave on ice for ",
+              {
+                "box": "b-ice1"
+              },
+              " without mixing."
+            ],
+            "zh-TW": [
+              {
+                "text": "冰上靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ice1"
+              },
+              {
+                "text": "，不要混合。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-ice1"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Heat shock in the ",
+              {
+                "use": "i-bath"
+              },
+              " at exactly ",
+              {
+                "box": "b-shock-t"
+              },
+              " for exactly ",
+              {
+                "box": "b-shock"
+              },
+              ". Do not mix."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-bath"
+              },
+              {
+                "text": " 在準確的 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-shock-t"
+              },
+              {
+                "text": " 熱休克準確的 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-shock"
+              },
+              {
+                "text": "，不要混合。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Time and temperature matter here: a longer or hotter shock lowers the efficiency.",
+            "zh-TW": "時間與溫度都很關鍵：熱休克過久或過熱會降低效率。"
+          },
+          "duration": {
+            "box": "b-shock"
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Put back on ice for ",
+              {
+                "box": "b-ice2"
+              },
+              " without mixing."
+            ],
+            "zh-TW": [
+              {
+                "text": "放回冰上 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ice2"
+              },
+              {
+                "text": "，不要混合。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-ice2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-recover",
+      "title": {
+        "en": "Recover and plate",
+        "zh-TW": "復原與塗盤"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-soc"
+              },
+              " of room-temperature ",
+              {
+                "use": "u-soc"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-soc"
+              },
+              {
+                "text": " 室溫的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-soc"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Incubate in the ",
+              {
+                "use": "i-shaker"
+              },
+              " at ",
+              {
+                "box": "b-rec-t"
+              },
+              " for ",
+              {
+                "box": "b-rec"
+              },
+              ", shaking at ",
+              {
+                "box": "b-shake"
+              },
+              ". Meanwhile warm the ",
+              {
+                "use": "u-plates"
+              },
+              " to 37 °C."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-shaker"
+              },
+              {
+                "text": " 中以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rec-t"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-shake"
+              },
+              {
+                "text": " 振盪培養 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rec"
+              },
+              {
+                "text": "。同時將 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plates"
+              },
+              {
+                "text": " 預熱至 37 °C。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-rec"
+          }
+        },
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Mix the cells well and make 10-fold serial dilutions in SOC."
+            ],
+            "zh-TW": [
+              {
+                "text": "將細胞充分混勻，以 SOC 進行 10 倍序列稀釋。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Spread ",
+              {
+                "box": "b-plated"
+              },
+              " of each dilution on a plate and incubate overnight at 37 °C (or 24 h at 30 °C, or 48 h at 25 °C)."
+            ],
+            "zh-TW": [
+              {
+                "text": "每個稀釋度取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-plated"
+              },
+              {
+                "text": " 塗布於培養盤，37 °C 隔夜培養（或 30 °C 24 小時、25 °C 48 小時）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-count",
+      "title": {
+        "en": "Count",
+        "zh-TW": "計數"
+      },
+      "steps": [
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "Count the colonies on a plate with 30–300 colonies: ",
+              {
+                "box": "b-colonies"
+              },
+              " at dilution ",
+              {
+                "box": "b-dilution"
+              },
+              ". The tube held ",
+              {
+                "box": "b-total-vol"
+              },
+              " and ",
+              {
+                "box": "b-transformants"
+              },
+              " transformants; divide by the DNA mass in µg for the efficiency (transformants per µg)."
+            ],
+            "zh-TW": [
+              {
+                "text": "選擇菌落數 30–300 的培養盤計數：稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dilution"
+              },
+              {
+                "text": " 倍時為 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-colonies"
+              },
+              {
+                "text": "。整管體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total-vol"
+              },
+              {
+                "text": "，共 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-transformants"
+              },
+              {
+                "text": " 個轉形株；除以 DNA 質量（µg）即為轉形效率（每 µg 轉形株數）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "heat-shock-transformation",
+    "version": "1.0.1"
+  }
+}

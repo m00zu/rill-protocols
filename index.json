@@ -38,6 +38,18 @@
             "zh-TW": "目錄第一版。改寫自 “Agarose Gel Electrophoresis: DNA” by Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/agarose-gel-electrophoresis/1.1.0.json",
+          "sha256": "8e73bf8dc4d787451df0d2b3e38a05381409f818f897685ae0acaa7d20e13638",
+          "size": 25222,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the loading order is recorded in gel lanes, the ladder in lane 1. 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Agarose Gel Electrophoresis: DNA” by Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：上樣順序記錄於膠體泳道，標準品位於第 1 道。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Agarose Gel Electrophoresis: DNA” by Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -47,8 +59,8 @@
         "zh-TW": "BCA 蛋白質定量（微孔盤）"
       },
       "summary": {
-        "en": "Measure protein concentration with a BCA kit in a 96-well plate: BSA standards, working reagent for n wells, and the sample concentration from the standard curve.",
-        "zh-TW": "以 BCA 套組在 96 孔盤中測量蛋白質濃度：BSA 標準品、n 孔所需工作試劑，並由標準曲線算出樣品濃度。"
+        "en": "Measure protein concentration with a BCA kit in a 96-well plate: BSA standards, working reagent for n wells, the A562 reading and each sample's concentration from the fitted standard curve.",
+        "zh-TW": "以 BCA 套組在 96 孔盤中測量蛋白質濃度：BSA 標準品、n 孔所需工作試劑、A562 讀值，並由擬合的標準曲線算出每個樣品的濃度。"
       },
       "topic": "protein",
       "tags": [
@@ -77,6 +89,18 @@
             "zh-TW": "目錄第一版。改寫自 “Pierce™ BCA Protein Assay (ThermoFisher Scientific)” by Rita Chen and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.2.0",
+          "path": "protocols/bca-protein-assay/1.2.0.json",
+          "sha256": "fd1c16a0925324f5d0513f33b387f7a7c23584da1668c56e119cabab66dd357d",
+          "size": 32374,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.2.0: the plate takes the A562 reading (typed, pasted or imported from the plate reader's file) and step 6 fits the standard curve itself, linear by default (quadratic and 4-parameter offered with their R²): the blank is subtracted, replicates averaged and each sample read off the curve and multiplied back by its dilution. This replaces the slope, intercept, readings and dilution typed by hand in steps 6–7 (the same linear fit, now done by Rill); every other value and source is kept. 1.1.0: a change of form, not of science (every value and source kept): the standards are a dilution table, and the plate is a 96-well layout whose standards A–I (columns 1–9, in triplicate) the protocol fixes, the samples filled with Fill pattern. 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. Step 4 takes the incubation box as its duration and the 10 min cooling as the wait after it; the wait is a typed 10 min and does not follow the cooling box if that is edited. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Pierce™ BCA Protein Assay (ThermoFisher Scientific)” by Rita Chen and Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.2.0：孔盤可記錄 A562 讀值（手動輸入、貼上或匯入讀盤機檔案），第 6 步直接擬合標準曲線，預設為線性（另提供二次與四參數擬合及其 R²）：扣除空白、平均重複，並由曲線讀出每個樣品後乘回稀釋倍數。此取代第 6–7 步手動輸入的斜率、截距、讀值與稀釋倍數（相同的線性擬合，改由 Rill 計算）；其他數值與來源均保留。1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：標準品改為稀釋表格，孔盤改為 96 孔配置：標準品 A–I（第 1–9 行，三重複）由流程固定，樣品以 Fill pattern 填入。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；第 4 步的時長取培養欄位，10 分鐘冷卻為其後的等待；等待為固定的 10 分鐘，不會隨冷卻欄位的修改而變。文字與欄位未更動。1.0.0：改寫自 “Pierce™ BCA Protein Assay (ThermoFisher Scientific)” by Rita Chen and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -116,6 +140,18 @@
             "zh-TW": "目錄第一版。改寫自 “Reverse Transcription (cDNA generation) using RevertAid RT” by David Valle-Garcia（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/cdna-synthesis/1.1.0.json",
+          "sha256": "15ac334fa1fcc17c0c97fba3d5fabe6b5475d5990b8044a61519ed2f16820e79",
+          "size": 25673,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the enzyme mix is a table, and the incubation is a thermal program (its hold times are the step's duration). 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Reverse Transcription (cDNA generation) using RevertAid RT” by David Valle-Garcia (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：酵素混合液改為表格，反應條件改為溫控程式（保持時間即為步驟時長）。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Reverse Transcription (cDNA generation) using RevertAid RT” by David Valle-Garcia（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -155,6 +191,18 @@
             "zh-TW": "目錄第一版。改寫自 “Ligation Protocol WITH T4 DNA Ligase (M0202)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/dna-ligation/1.1.0.json",
+          "sha256": "d3aae293494599c816100739bb60f62892025b99a7af8f65b754385759480cd4",
+          "size": 22742,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the reaction is a table in one step (water fills to the reaction volume; the ligase its last row, added last). 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Ligation Protocol WITH T4 DNA Ligase (M0202)” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：反應改為同一步驟中的表格（水補足至反應體積；接合酶列於最後並最後加入）。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Ligation Protocol WITH T4 DNA Ligase (M0202)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -192,6 +240,18 @@
           "notes": {
             "en": "First catalogue version. Adapted for Rill from “High Efficiency Transformation” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
             "zh-TW": "目錄第一版。改寫自 “High Efficiency Transformation” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.0.1",
+          "path": "protocols/heat-shock-transformation/1.0.1.json",
+          "sha256": "0a253b3e0468cfd42f4ac9d25ee6306ad12d2df0d79b68afc286a5e07ba52246",
+          "size": 20084,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “High Efficiency Transformation” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “High Efficiency Transformation” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
         }
@@ -234,6 +294,18 @@
             "zh-TW": "目錄第一版。改寫自 “Transfection of HEK cells with Lipofectamine 3000” by Chelsie Steele and Yujie Fan (Caltech)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/lipid-transfection/1.1.0.json",
+          "sha256": "235c4c2a5ca4be74aa3a4f5f047632322e9ae3c07de85d5c085ffc40ea941a21",
+          "size": 23359,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): tubes 1 and 2 are per-well tables, and the transfected wells are recorded on the 24-well plate. 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Transfection of HEK cells with Lipofectamine 3000” by Chelsie Steele and Yujie Fan (Caltech) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：管 1 與管 2 改為每孔用量表格，轉染孔位記錄於 24 孔盤。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Transfection of HEK cells with Lipofectamine 3000” by Chelsie Steele and Yujie Fan (Caltech)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -313,6 +385,18 @@
             "zh-TW": "目錄第一版。改寫自 “Detailed adherent cell passaging protocol” by Ainsley Lederer (University of Pittsburgh)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.0.1",
+          "path": "protocols/passaging-adherent-cells/1.0.1.json",
+          "sha256": "2198d98820f66f838d6c67a4364310b251d766c64900873021d3f85d59c03735",
+          "size": 21575,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Detailed adherent cell passaging protocol” by Ainsley Lederer (University of Pittsburgh) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Detailed adherent cell passaging protocol” by Ainsley Lederer (University of Pittsburgh)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.4.0"
         }
       ]
     },
@@ -352,6 +436,18 @@
             "zh-TW": "目錄第一版。改寫自 “PCR with Taq DNA Polymerase with Standard Taq Buffer (M0273)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/pcr-taq-25ul/1.1.0.json",
+          "sha256": "14c7a0e9e0f54c3b4bc7f4cc48d86a11404936b47db0a082dbaa6d6c2ddb113a",
+          "size": 33924,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the master mix is a table in one step (water fills to the mix per tube; forward and reverse primer each a row; the Taq its last row, added last), the cycling is a thermal program whose hold times are the step's duration (it replaces the Cycling time box and the two steps it took), the tubes are recorded in a PCR block, and the spin-down names a microcentrifuge (with the balance helper, counting Reactions). 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol; the cycling step gains a computed Cycling time (cycles × (denaturation + annealing + extension)), named in its text, as its duration. 1.0.0: Adapted for Rill from “PCR with Taq DNA Polymerase with Standard Taq Buffer (M0273)” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：混合液改為同一步驟中的表格（水補足至每管混合液體積；正向與反向引子各占一列；Taq 列於最後並最後加入），熱循環改為溫控程式，其保持時間即為步驟時長（取代「循環總時間」欄位及原有兩個步驟），反應管位置記錄於 PCR 反應槽，短暫離心步驟註明微量離心機（附平衡配置助手，以反應數計管數）。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “PCR with Taq DNA Polymerase with Standard Taq Buffer (M0273)” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -391,6 +487,18 @@
             "zh-TW": "目錄第一版。改寫自 “Monarch Spin Plasmid Miniprep (NEB)” by Owen Butler and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/plasmid-miniprep/1.1.0.json",
+          "sha256": "ca1f9c152abac04b7cee9e9febf3b25cefccdd6397363f6a7c2a554b59f957a9",
+          "size": 36292,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the lysate spin and the first column spin name the microcentrifuge (with the balance helper). 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Monarch Spin Plasmid Miniprep (NEB)” by Owen Butler and Raven Coffer (DAMP Lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：裂解液離心與第一次管柱離心註明微量離心機（附平衡配置助手）。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Monarch Spin Plasmid Miniprep (NEB)” by Owen Butler and Raven Coffer (DAMP Lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -430,6 +538,18 @@
             "zh-TW": "目錄第一版。改寫自 “qPCR (SYBR Green)” by Vanessa Howland and Yue Ma (Van Andel Institute)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/qpcr-sybr/1.1.0.json",
+          "sha256": "256e9429ee59fdf6c53dbc794c4432baa6d2bb74e31de0133b8140713be7bd85",
+          "size": 32838,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the mix is a table (water fills to the mix per well), the cycling and melt curve are one thermal program, and the plate is a qPCR plate layout whose no-template controls (column 9) the protocol fixes, the samples filled with Fill pattern. First catalogue version. Adapted for Rill from “qPCR (SYBR Green)” by Vanessa Howland and Yue Ma (Van Andel Institute) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：混合液改為表格（水補足至每孔混合液體積），熱循環與熔解曲線合併為一個溫控程式，孔盤改為 qPCR 反應盤配置：無模板對照（第 9 行）由流程固定，樣品以 Fill pattern 填入。目錄第一版。改寫自 “qPCR (SYBR Green)” by Vanessa Howland and Yue Ma (Van Andel Institute)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -469,6 +589,18 @@
             "zh-TW": "目錄第一版。改寫自 “Restriction Digest” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/restriction-digest/1.1.0.json",
+          "sha256": "0c5d4ed23aa329ab234e15352ba590070f62317c4ba87e50e583d4a722c8196b",
+          "size": 14287,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the reaction is a table in one step (water fills to 50 µL; the enzyme its last row, added last). 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Restriction Digest” by New England Biolabs (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：反應改為同一步驟中的表格（水補足至 50 µL；限制酶列於最後並最後加入）。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Restriction Digest” by New England Biolabs（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -508,6 +640,18 @@
             "zh-TW": "目錄第一版。改寫自 “Purification of Total RNA from Cells Using Spin Technology” by Malu Tansey（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/rna-extraction-column/1.1.0.json",
+          "sha256": "4f078b31886f189387ed6c3016220242c4eab64e76e03a7cb8d1601598a25056",
+          "size": 29511,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the column spin names the microcentrifuge, and the balance helper counts Samples. 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. No change to the text or the boxes. 1.0.0: Adapted for Rill from “Purification of Total RNA from Cells Using Spin Technology” by Malu Tansey (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：管柱離心步驟註明微量離心機，平衡配置助手以樣品數計管數。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；文字與欄位未更動。1.0.0：改寫自 “Purification of Total RNA from Cells Using Spin Technology” by Malu Tansey（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     },
@@ -547,6 +691,57 @@
             "zh-TW": "目錄第一版。改寫自 “SDS-PAGE and western blot analysis” by Elias Adriaenssens (Sascha Martens lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
           },
           "min_rill": "0.4.0"
+        },
+        {
+          "version": "1.1.0",
+          "path": "protocols/sds-page-western-blot/1.1.0.json",
+          "sha256": "20ed6e47d5d37810e4efcc042dce74257bf45a98209878991f893559ba005de0",
+          "size": 34065,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.1.0: a change of form, not of science (every value and source kept): the loading order is recorded in gel lanes, the marker in lane 1. 1.0.1: step durations added; each step that states a time (a time box, or a time in its text) now carries it, so the Timeline plans the protocol. The two three-wash steps are planned as a fixed 15 min (3 × 5 min); that duration does not follow the wash box if it is edited. No change to the text or the boxes. 1.0.0: Adapted for Rill from “SDS-PAGE and western blot analysis” by Elias Adriaenssens (Sascha Martens lab) (CC BY 4.0): rewritten in Rill's own words, with boxes, computed values and unlinked material uses. The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.1.0：僅改變呈現形式，科學內容不變（所有數值與來源均保留）：上樣順序記錄於膠體泳道，蛋白質標記位於第 1 道。1.0.1：新增步驟時長，凡步驟寫明時間（時間欄位或文字中的時間）皆帶有時長，時間軸即可排程；兩個「洗三次」的步驟以固定 15 分鐘（3 × 5 分鐘）排程；該時長不會隨清洗欄位的修改而變。文字與欄位未更動。1.0.0：改寫自 “SDS-PAGE and western blot analysis” by Elias Adriaenssens (Sascha Martens lab)（CC BY 4.0）：以 Rill 的格式重新撰寫，加入欄位、計算值與未連結的材料用途。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
+        }
+      ]
+    },
+    "bradford-protein-assay": {
+      "title": {
+        "en": "Bradford protein assay (microplate)",
+        "zh-TW": "Bradford 蛋白質定量（微孔盤）"
+      },
+      "summary": {
+        "en": "Measure protein concentration with Bradford's dye-binding assay in a 96-well plate: BSA standards, the A595 reading, each sample's concentration from the fitted standard curve, and equal loads for a gel.",
+        "zh-TW": "以 Bradford 染劑結合法在 96 孔盤中測量蛋白質濃度：BSA 標準品、A595 讀值、由擬合的標準曲線算出每個樣品的濃度，並算出跑膠的等量上樣。"
+      },
+      "topic": "protein",
+      "tags": [
+        "Bradford",
+        "protein quantification",
+        "microplate",
+        "standard curve"
+      ],
+      "licence": "CC BY 4.0",
+      "languages": [
+        "en",
+        "zh-TW"
+      ],
+      "machine_languages": [
+        "zh-TW"
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "path": "protocols/bradford-protein-assay/1.0.0.json",
+          "sha256": "1343ec70b8669c3f88a82b69466c4fee9636cff60be5c9f4bec98cf3914268fa",
+          "size": 23171,
+          "released": "2026-10-16",
+          "notes": {
+            "en": "1.0.0: Adapted for Rill from “Bradford protein assay – Protein concentration measurement (single 595 nm read)” by Daniel C. Moreira (protocols.io, CC BY 4.0), after M. M. Bradford, Anal. Biochem. 72 (1976) 248–254: rewritten in Rill's own words, with the standards as a dilution table, a 96-well layout, the A595 reading and a fitted standard curve (quadratic by default), and an optional table of equal loads for a gel (each sample's µL for the curve's amount, Laemmli and water). The 繁體中文 text is a machine draft awaiting a person's confirmation.",
+            "zh-TW": "1.0.0：改寫自 Daniel C. Moreira 的 “Bradford protein assay – Protein concentration measurement (single 595 nm read)”（protocols.io，CC BY 4.0），方法源自 M. M. Bradford, Anal. Biochem. 72 (1976) 248–254：以 Rill 的格式重新撰寫，標準品為稀釋表格，加入 96 孔配置、A595 讀值與擬合的標準曲線（預設二次），並可選用跑膠等量上樣表。繁體中文內容為機器草稿，尚待人員確認。"
+          },
+          "min_rill": "0.5.0"
         }
       ]
     }

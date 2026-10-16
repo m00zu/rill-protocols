@@ -1,0 +1,929 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Passaging adherent cells",
+    "zh-TW": "貼附型細胞繼代"
+  },
+  "tags": [
+    "cell culture",
+    "passaging",
+    "trypsin",
+    "cell counting",
+    "hemocytometer"
+  ],
+  "source": {
+    "title": "Detailed adherent cell passaging protocol",
+    "authors": [
+      "Ainsley Lederer"
+    ],
+    "doi": "10.17504/protocols.io.14egn51mqg5d/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-cells",
+      "role": "adherent cell line",
+      "kind": "rill:cell-line",
+      "fields": {
+        "species": "text",
+        "tissue": "text",
+        "source": "text",
+        "rrid": "text",
+        "passage_number": "number"
+      }
+    },
+    {
+      "use": "u-pbs",
+      "role": "DPBS (no calcium or magnesium)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-trypsin",
+      "role": "trypsin-EDTA",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-medium",
+      "role": "complete growth medium",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-trypan",
+      "role": "trypan blue",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-hemo",
+      "role": "hemocytometer",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-tube",
+      "role": "15 mL conical tube",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-vessel",
+      "role": "new culture vessel",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-microscope",
+      "role": "inverted microscope",
+      "kind": "rill:instrument-microscope",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-centrifuge",
+      "role": "centrifuge",
+      "kind": "rill:instrument-centrifuge",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-passage",
+      "label": {
+        "en": "Passage number of the cells",
+        "zh-TW": "細胞繼代數"
+      },
+      "role": "filled",
+      "dimension": "number"
+    },
+    {
+      "id": "b-trypsin",
+      "label": {
+        "en": "Trypsin-EDTA",
+        "zh-TW": "胰蛋白酶-EDTA 體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "1",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    },
+    {
+      "id": "b-tryp-time",
+      "label": {
+        "en": "Trypsin time at 37 °C",
+        "zh-TW": "37 °C 胰蛋白酶作用時間"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "1.5",
+        "unit": "min"
+      },
+      "preferred_unit": "min"
+    },
+    {
+      "id": "b-neutral",
+      "label": {
+        "en": "Complete medium to neutralise (4 × trypsin)",
+        "zh-TW": "中和用完整培養基（胰蛋白酶的 4 倍）"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-trypsin"
+        },
+        "b": {
+          "const": {
+            "n": "4",
+            "unit": "number"
+          }
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-spin",
+      "label": {
+        "en": "Spin",
+        "zh-TW": "離心力"
+      },
+      "role": "fixed",
+      "dimension": "rcf",
+      "value": {
+        "n": "300",
+        "unit": "×g"
+      }
+    },
+    {
+      "id": "b-spin-time",
+      "label": {
+        "en": "Spin time",
+        "zh-TW": "離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-resus",
+      "label": {
+        "en": "Volume of the cell suspension",
+        "zh-TW": "細胞懸浮液體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "5",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    },
+    {
+      "id": "b-count-vol",
+      "label": {
+        "en": "Cells taken for counting",
+        "zh-TW": "取樣計數的細胞體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "10",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-trypan-vol",
+      "label": {
+        "en": "Trypan blue added",
+        "zh-TW": "加入的台盼藍體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "10",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-dil",
+      "label": {
+        "en": "Dilution factor",
+        "zh-TW": "稀釋倍數"
+      },
+      "role": "computed",
+      "dimension": "number",
+      "formula": {
+        "op": "/",
+        "a": {
+          "op": "+",
+          "a": {
+            "box": "b-count-vol"
+          },
+          "b": {
+            "box": "b-trypan-vol"
+          }
+        },
+        "b": {
+          "box": "b-count-vol"
+        }
+      }
+    },
+    {
+      "id": "b-live",
+      "label": {
+        "en": "Live cells per large square (mean)",
+        "zh-TW": "每大格活細胞數（平均）"
+      },
+      "role": "filled",
+      "dimension": "number"
+    },
+    {
+      "id": "b-dead",
+      "label": {
+        "en": "Dead (blue) cells per large square (mean)",
+        "zh-TW": "每大格死細胞數（藍色，平均）"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "0",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-density",
+      "label": {
+        "en": "Live cell density",
+        "zh-TW": "活細胞密度"
+      },
+      "role": "computed",
+      "dimension": "cell_density",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "*",
+          "a": {
+            "box": "b-live"
+          },
+          "b": {
+            "box": "b-dil"
+          }
+        },
+        "b": {
+          "const": {
+            "n": "10000",
+            "unit": "cells/mL"
+          }
+        }
+      },
+      "display_unit": "cells/mL"
+    },
+    {
+      "id": "b-total",
+      "label": {
+        "en": "Live cells harvested",
+        "zh-TW": "收集的活細胞總數"
+      },
+      "role": "computed",
+      "dimension": "count",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-density"
+        },
+        "b": {
+          "box": "b-resus"
+        }
+      }
+    },
+    {
+      "id": "b-viability",
+      "label": {
+        "en": "Viability",
+        "zh-TW": "存活率"
+      },
+      "role": "computed",
+      "dimension": "ratio",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-live"
+        },
+        "b": {
+          "op": "+",
+          "a": {
+            "box": "b-live"
+          },
+          "b": {
+            "box": "b-dead"
+          }
+        }
+      }
+    },
+    {
+      "id": "b-seed",
+      "label": {
+        "en": "Cells to seed",
+        "zh-TW": "欲接種的細胞數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "750000",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-seed-vol",
+      "label": {
+        "en": "Cell suspension to seed",
+        "zh-TW": "接種所需細胞懸浮液體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-seed"
+        },
+        "b": {
+          "box": "b-density"
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-new-medium",
+      "label": {
+        "en": "Fresh medium in the new vessel",
+        "zh-TW": "新容器中的新鮮培養基"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "12",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-harvest",
+      "title": {
+        "en": "Harvest",
+        "zh-TW": "收集細胞"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Passage ",
+              {
+                "use": "u-cells"
+              },
+              " (passage ",
+              {
+                "box": "b-passage"
+              },
+              ") at about 70–80% confluence, checked on the ",
+              {
+                "use": "i-microscope"
+              },
+              ". Aspirate the medium and wash twice with ",
+              {
+                "use": "u-pbs"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-microscope"
+              },
+              {
+                "text": " 下確認 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": "（繼代數 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-passage"
+              },
+              {
+                "text": "）覆蓋率約 70–80% 時進行繼代。吸除培養基，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-pbs"
+              },
+              {
+                "text": " 清洗兩次。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Work in a biosafety cabinet with sterile technique, and treat the cells and all waste as biohazardous.",
+            "zh-TW": "請在生物安全櫃內以無菌技術操作，細胞與所有廢棄物均視為生物危害物。"
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-trypsin"
+              },
+              " of ",
+              {
+                "use": "u-trypsin"
+              },
+              " and incubate at 37 °C for ",
+              {
+                "box": "b-tryp-time"
+              },
+              " (strength and time depend on the cell line)."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-trypsin"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-trypsin"
+              },
+              {
+                "text": "，37 °C 作用 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tryp-time"
+              },
+              {
+                "text": "（濃度與時間依細胞株而定）。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-tryp-time"
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Check that the cells have rounded up and begin to lift; if not, give them 1 minute more. Tap the vessel to release them, then add ",
+              {
+                "box": "b-neutral"
+              },
+              " of ",
+              {
+                "use": "u-medium"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "確認細胞已變圓並開始脫離；若尚未脫離，再作用 1 分鐘。輕拍容器使細胞脫落，再加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-neutral"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-medium"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Long trypsin exposure damages cells; neutralise promptly.",
+            "zh-TW": "胰蛋白酶作用過久會傷害細胞，請盡快中和。"
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Rinse remaining cells off the surface, collect everything in a ",
+              {
+                "use": "u-tube"
+              },
+              ", and pipette up and down 10–20 times to break up clumps."
+            ],
+            "zh-TW": [
+              {
+                "text": "沖下殘留的細胞，全部收集至 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-tube"
+              },
+              {
+                "text": "，上下吸放 10–20 次打散細胞團。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "If the cells are too dilute, spin at ",
+              {
+                "box": "b-spin"
+              },
+              " for ",
+              {
+                "box": "b-spin-time"
+              },
+              " on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              ", aspirate leaving about 100 µL, and resuspend in fresh medium. Suspension volume: ",
+              {
+                "box": "b-resus"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "若細胞太稀，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 在 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin-time"
+              },
+              {
+                "text": "，吸除上清液並留約 100 µL，以新鮮培養基重新懸浮。懸浮液體積：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-resus"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-spin-time"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-count",
+      "title": {
+        "en": "Count",
+        "zh-TW": "計數"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Mix ",
+              {
+                "box": "b-count-vol"
+              },
+              " of cells with ",
+              {
+                "box": "b-trypan-vol"
+              },
+              " of ",
+              {
+                "use": "u-trypan"
+              },
+              " (dilution ",
+              {
+                "box": "b-dil"
+              },
+              ") and load the ",
+              {
+                "use": "u-hemo"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-count-vol"
+              },
+              {
+                "text": " 細胞與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-trypan-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-trypan"
+              },
+              {
+                "text": " 混合（稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dil"
+              },
+              {
+                "text": " 倍），加入 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-hemo"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Count the large corner squares: live cells ",
+              {
+                "box": "b-live"
+              },
+              ", dead cells ",
+              {
+                "box": "b-dead"
+              },
+              " per square. Density ",
+              {
+                "box": "b-density"
+              },
+              "; total ",
+              {
+                "box": "b-total"
+              },
+              "; viability ",
+              {
+                "box": "b-viability"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "計數四角大格：每格活細胞 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-live"
+              },
+              {
+                "text": "、死細胞 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dead"
+              },
+              {
+                "text": "。密度 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-density"
+              },
+              {
+                "text": "；總數 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-total"
+              },
+              {
+                "text": "；存活率 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-viability"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-seed",
+      "title": {
+        "en": "Seed",
+        "zh-TW": "接種"
+      },
+      "steps": [
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-seed"
+              },
+              ", add ",
+              {
+                "box": "b-seed-vol"
+              },
+              " of suspension to ",
+              {
+                "box": "b-new-medium"
+              },
+              " of medium in the ",
+              {
+                "use": "u-vessel"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "接種 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-seed"
+              },
+              {
+                "text": " 時，將 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-seed-vol"
+              },
+              {
+                "text": " 懸浮液加入 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-vessel"
+              },
+              {
+                "text": " 中的 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-new-medium"
+              },
+              {
+                "text": " 培養基。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Spread the cells evenly by moving the vessel north–south and east–west, then return it to the incubator."
+            ],
+            "zh-TW": [
+              {
+                "text": "以前後、左右方向移動容器使細胞均勻分布，再放回培養箱。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "passaging-adherent-cells",
+    "version": "1.0.1"
+  }
+}

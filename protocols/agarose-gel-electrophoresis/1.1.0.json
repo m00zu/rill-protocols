@@ -1,0 +1,1064 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Agarose gel electrophoresis",
+    "zh-TW": "瓊脂糖凝膠電泳"
+  },
+  "tags": [
+    "agarose gel",
+    "electrophoresis",
+    "DNA",
+    "TAE"
+  ],
+  "source": {
+    "title": "Agarose Gel Electrophoresis: DNA",
+    "authors": [
+      "Raven Coffer"
+    ],
+    "doi": "10.17504/protocols.io.bp2l6odjrlqe/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-agarose",
+      "role": "agarose",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-tae50",
+      "role": "50X TAE buffer",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "deionized water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-stain",
+      "role": "DNA gel stain (SYBR Safe or similar)",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-ladder",
+      "role": "DNA ladder",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-dye",
+      "role": "6X loading dye",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-samples",
+      "role": "DNA samples",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-strips",
+      "role": "PCR strip tubes",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-power",
+      "role": "power supply",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-imager",
+      "role": "gel imager",
+      "kind": "rill:instrument-other",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-tae",
+      "label": {
+        "en": "1X TAE to make",
+        "zh-TW": "欲配製的 1X TAE 體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "500",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    },
+    {
+      "id": "b-tae-fold",
+      "label": {
+        "en": "TAE stock strength (X)",
+        "zh-TW": "TAE 原液倍數（X）"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "50",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-tae-stock",
+      "label": {
+        "en": "50X TAE",
+        "zh-TW": "50X TAE 體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-tae"
+        },
+        "b": {
+          "box": "b-tae-fold"
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-tae-water",
+      "label": {
+        "en": "Water for the 1X TAE",
+        "zh-TW": "配製 1X TAE 的水量"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "box": "b-tae"
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "box": "b-tae"
+          },
+          "b": {
+            "box": "b-tae-fold"
+          }
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-mode",
+      "label": {
+        "en": "Gel purpose",
+        "zh-TW": "膠體用途"
+      },
+      "role": "filled",
+      "type": "choice",
+      "choices": [
+        "analytical",
+        "preparative"
+      ],
+      "default": {
+        "text": "analytical"
+      }
+    },
+    {
+      "id": "b-gel-vol",
+      "label": {
+        "en": "Gel volume (small 50 mL, large 100 mL)",
+        "zh-TW": "膠體體積（小膠 50 mL、大膠 100 mL）"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "50",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL"
+    },
+    {
+      "id": "b-pct",
+      "label": {
+        "en": "Agarose percentage",
+        "zh-TW": "瓊脂糖濃度"
+      },
+      "role": "filled",
+      "dimension": "percent_wv",
+      "default": {
+        "n": "1",
+        "unit": "% w/v"
+      },
+      "preferred_unit": "% w/v",
+      "range": {
+        "min": {
+          "n": "0.5",
+          "unit": "% w/v"
+        },
+        "max": {
+          "n": "3",
+          "unit": "% w/v"
+        }
+      }
+    },
+    {
+      "id": "b-agarose",
+      "label": {
+        "en": "Agarose to weigh",
+        "zh-TW": "需秤取的瓊脂糖"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-gel-vol"
+        },
+        "b": {
+          "box": "b-pct"
+        }
+      },
+      "display_unit": "g"
+    },
+    {
+      "id": "b-stain-fold",
+      "label": {
+        "en": "Stain dilution (1 in …)",
+        "zh-TW": "染劑稀釋倍數"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "10000",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-stain",
+      "label": {
+        "en": "Gel stain",
+        "zh-TW": "膠體染劑體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-gel-vol"
+        },
+        "b": {
+          "box": "b-stain-fold"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-set",
+      "label": {
+        "en": "Setting time",
+        "zh-TW": "凝固時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "45",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-sample",
+      "label": {
+        "en": "Sample per lane (analytical 5 µL, preparative 125 µL)",
+        "zh-TW": "每孔樣品體積（分析用 5 µL、製備用 125 µL）"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "5",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-dye",
+      "label": {
+        "en": "6X loading dye",
+        "zh-TW": "6X 上樣染劑體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-sample"
+        },
+        "b": {
+          "const": {
+            "n": "5",
+            "unit": "number"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-load",
+      "label": {
+        "en": "Volume to load",
+        "zh-TW": "上樣總體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "+",
+        "a": {
+          "box": "b-sample"
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "box": "b-sample"
+          },
+          "b": {
+            "const": {
+              "n": "5",
+              "unit": "number"
+            }
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-gel",
+      "label": {
+        "en": "Gel lanes",
+        "zh-TW": "膠體泳道"
+      },
+      "role": "filled",
+      "type": "layout",
+      "format": {
+        "kind": "lanes",
+        "lanes": 15
+      },
+      "template": [
+        {
+          "wells": "1",
+          "role": "ladder",
+          "material": "u-ladder"
+        }
+      ]
+    },
+    {
+      "id": "b-voltage",
+      "label": {
+        "en": "Voltage",
+        "zh-TW": "電壓"
+      },
+      "role": "fixed",
+      "type": "text",
+      "value": {
+        "text": "120 V"
+      }
+    },
+    {
+      "id": "b-run",
+      "label": {
+        "en": "Run time (analytical 45 min, preparative 25 min)",
+        "zh-TW": "電泳時間（分析用 45 分鐘、製備用 25 分鐘）"
+      },
+      "role": "filled",
+      "dimension": "time",
+      "default": {
+        "n": "45",
+        "unit": "min"
+      },
+      "preferred_unit": "min"
+    },
+    {
+      "id": "b-ladder-name",
+      "label": {
+        "en": "Ladder used",
+        "zh-TW": "使用的 DNA 標準品"
+      },
+      "role": "filled",
+      "type": "text"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Prepare",
+        "zh-TW": "準備"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Choose the gel: ",
+              {
+                "box": "b-mode"
+              },
+              ". Pick the agarose percentage for the fragment sizes you expect (a simulation tool helps), the gel size and a comb with a lane for every sample plus the ladder."
+            ],
+            "zh-TW": [
+              {
+                "text": "選擇膠體用途：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-mode"
+              },
+              {
+                "text": "。依預期片段大小決定瓊脂糖濃度（可用模擬軟體輔助），並選擇膠體大小與齒梳，孔數需足夠容納所有樣品與標準品。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Make ",
+              {
+                "box": "b-tae"
+              },
+              " of 1X TAE: ",
+              {
+                "box": "b-tae-stock"
+              },
+              " of ",
+              {
+                "use": "u-tae50"
+              },
+              " (a ",
+              {
+                "box": "b-tae-fold"
+              },
+              "-fold stock) and ",
+              {
+                "box": "b-tae-water"
+              },
+              " of ",
+              {
+                "use": "u-water"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "配製 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tae"
+              },
+              {
+                "text": " 的 1X TAE：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tae-stock"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-tae50"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tae-fold"
+              },
+              {
+                "text": " 倍原液）加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-tae-water"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Set the gel tray in the casting tray and check that it is level."
+            ],
+            "zh-TW": [
+              {
+                "text": "將膠盤放入鑄膠槽，確認水平。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-cast",
+      "title": {
+        "en": "Cast the gel",
+        "zh-TW": "鑄膠"
+      },
+      "steps": [
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Weigh ",
+              {
+                "box": "b-agarose"
+              },
+              " of ",
+              {
+                "use": "u-agarose"
+              },
+              " (agarose, not the agar used for plates; ",
+              {
+                "box": "b-gel-vol"
+              },
+              " at ",
+              {
+                "box": "b-pct"
+              },
+              ") into a flask and add ",
+              {
+                "box": "b-gel-vol"
+              },
+              " of 1X TAE. Swirl."
+            ],
+            "zh-TW": [
+              {
+                "text": "秤取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-agarose"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-agarose"
+              },
+              {
+                "text": "（瓊脂糖，勿與培養盤用的洋菜粉混淆；",
+                "draft": "machine"
+              },
+              {
+                "box": "b-gel-vol"
+              },
+              {
+                "text": "、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-pct"
+              },
+              {
+                "text": "）放入錐形瓶，加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-gel-vol"
+              },
+              {
+                "text": " 的 1X TAE 並搖勻。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Heat in the microwave in 20-second bursts, swirling between them, until no particles are left."
+            ],
+            "zh-TW": [
+              {
+                "text": "以微波爐每次加熱 20 秒，期間搖晃，直到完全沒有顆粒。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Use heat-resistant gloves: the flask is hot and the agarose can boil over suddenly.",
+            "zh-TW": "請戴隔熱手套：錐形瓶很燙，瓊脂糖溶液可能突然沸騰溢出。"
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-stain"
+              },
+              " of ",
+              {
+                "use": "u-stain"
+              },
+              " (1 in ",
+              {
+                "box": "b-stain-fold"
+              },
+              ") and swirl until the colour is even."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-stain"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-stain"
+              },
+              {
+                "text": "（稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-stain-fold"
+              },
+              {
+                "text": " 倍），搖勻至顏色均勻。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Wear gloves when handling DNA stains.",
+            "zh-TW": "處理 DNA 染劑時請戴手套。"
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Pour into the mould, pop bubbles with a tip, insert the comb and let the gel set for ",
+              {
+                "box": "b-set"
+              },
+              ". Remove the comb carefully."
+            ],
+            "zh-TW": [
+              {
+                "text": "倒入膠盤，以吸管尖戳破氣泡，插入齒梳，靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-set"
+              },
+              {
+                "text": " 凝固後小心拔出齒梳。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-set"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-load",
+      "title": {
+        "en": "Load",
+        "zh-TW": "上樣"
+      },
+      "steps": [
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "In ",
+              {
+                "use": "u-strips"
+              },
+              ", mix ",
+              {
+                "box": "b-sample"
+              },
+              " of each ",
+              {
+                "use": "u-samples"
+              },
+              " with ",
+              {
+                "box": "b-dye"
+              },
+              " of ",
+              {
+                "use": "u-dye"
+              },
+              ". Prepare the ",
+              {
+                "use": "u-ladder"
+              },
+              " the same way at the analytical volume."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-strips"
+              },
+              {
+                "text": " 中，將每個 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-samples"
+              },
+              {
+                "text": " 取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-sample"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dye"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-dye"
+              },
+              {
+                "text": " 混合。",
+                "draft": "machine"
+              },
+              {
+                "use": "u-ladder"
+              },
+              {
+                "text": " 以分析用體積同樣配製。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Spin the strips briefly to remove bubbles."
+            ],
+            "zh-TW": [
+              {
+                "text": "短暫離心八連管以去除氣泡。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "Place the gel in the tank with the wells at the negative (black) end, and fill with 1X TAE until the gel is covered."
+            ],
+            "zh-TW": [
+              {
+                "text": "將膠體放入電泳槽，加樣孔朝負極（黑色）端，加入 1X TAE 至蓋過膠體。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-11",
+          "text": {
+            "en": [
+              "Load ",
+              {
+                "box": "b-load"
+              },
+              " per lane, slowly, with the tip just inside the well. Ladder used: ",
+              {
+                "box": "b-ladder-name"
+              },
+              ". Record the order: ",
+              {
+                "box": "b-gel"
+              }
+            ],
+            "zh-TW": [
+              {
+                "text": "每孔緩慢加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load"
+              },
+              {
+                "text": "，吸管尖只需伸入孔內。使用的標準品：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ladder-name"
+              },
+              {
+                "text": "。記錄順序：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-gel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-run",
+      "title": {
+        "en": "Run and image",
+        "zh-TW": "電泳與拍照"
+      },
+      "steps": [
+        {
+          "id": "st-12",
+          "text": {
+            "en": [
+              "Close the lid, connect the leads (black to black, red to red) to the ",
+              {
+                "use": "i-power"
+              },
+              " and run at ",
+              {
+                "box": "b-voltage"
+              },
+              " for ",
+              {
+                "box": "b-run"
+              },
+              ". Bubbles should rise from the electrodes."
+            ],
+            "zh-TW": [
+              {
+                "text": "蓋上蓋子，將電線接到 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-power"
+              },
+              {
+                "text": "（黑接黑、紅接紅），以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-voltage"
+              },
+              {
+                "text": " 電泳 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-run"
+              },
+              {
+                "text": "。電極應有氣泡產生。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Turn the power supply off before opening the lid or touching the leads.",
+            "zh-TW": "打開蓋子或碰觸電線前，請先關閉電源供應器。"
+          },
+          "duration": {
+            "box": "b-run"
+          }
+        },
+        {
+          "id": "st-13",
+          "text": {
+            "en": [
+              "Turn off the power, take out the gel and image it on the ",
+              {
+                "use": "i-imager"
+              },
+              " with the bands bright but not saturated."
+            ],
+            "zh-TW": [
+              {
+                "text": "關閉電源，取出膠體，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-imager"
+              },
+              {
+                "text": " 拍照，條帶要明亮但不過度飽和。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "If the imager uses UV light, close its door or shield before switching on, and protect your eyes and skin.",
+            "zh-TW": "若影像系統使用紫外光，開燈前請關上門或防護罩，並保護眼睛與皮膚。"
+          }
+        },
+        {
+          "id": "st-14",
+          "text": {
+            "en": [
+              "If the bands are not separated enough, run 5–15 minutes more and image again. Label the image with the ladder sizes and sample names."
+            ],
+            "zh-TW": [
+              {
+                "text": "若條帶分離不足，再電泳 5–15 分鐘後重新拍照。在影像上標示標準品大小與樣品名稱。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-clean",
+      "title": {
+        "en": "Clean up",
+        "zh-TW": "清潔"
+      },
+      "steps": [
+        {
+          "id": "st-15",
+          "text": {
+            "en": [
+              "Dispose of the gel as your local rules require; pour the used buffer away with water and wipe the equipment."
+            ],
+            "zh-TW": [
+              {
+                "text": "依當地規定處理膠體；用過的緩衝液以清水沖掉，並擦拭器材。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "agarose-gel-electrophoresis",
+    "version": "1.1.0"
+  }
+}

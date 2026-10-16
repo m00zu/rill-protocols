@@ -1,0 +1,1527 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Plasmid miniprep (spin column)",
+    "zh-TW": "質體小量萃取（離心管柱）"
+  },
+  "tags": [
+    "plasmid",
+    "miniprep",
+    "DNA extraction",
+    "E. coli"
+  ],
+  "source": {
+    "title": "Monarch Spin Plasmid Miniprep (NEB)",
+    "authors": [
+      "Owen Butler",
+      "Raven Coffer"
+    ],
+    "doi": "10.17504/protocols.io.n92ld46yxl5b/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-culture",
+      "role": "overnight E. coli culture",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-medium",
+      "role": "culture medium (blank)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-kit",
+      "role": "plasmid miniprep kit (spin columns)",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-b1",
+      "role": "resuspension buffer (with RNase A)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-b2",
+      "role": "lysis buffer",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-b3",
+      "role": "neutralization buffer",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-bz",
+      "role": "binding/wash buffer (with isopropanol)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-wz",
+      "role": "wash buffer (with ethanol)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-elution",
+      "role": "elution buffer or nuclease-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-bleach",
+      "role": "10% bleach",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-plate",
+      "role": "clear 96-well plate",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-tubes",
+      "role": "1.5 mL microcentrifuge tubes",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-reader",
+      "role": "plate reader",
+      "kind": "rill:instrument-plate-reader",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-centrifuge",
+      "role": "microcentrifuge",
+      "kind": "rill:instrument-centrifuge",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    },
+    {
+      "use": "i-nanodrop",
+      "role": "microvolume spectrophotometer",
+      "kind": "rill:instrument-spectrophotometer",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-blank-well",
+      "label": {
+        "en": "Medium per blank well",
+        "zh-TW": "空白孔培養基"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-med-well",
+      "label": {
+        "en": "Medium per sample well",
+        "zh-TW": "樣品孔培養基"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "90",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-cult-well",
+      "label": {
+        "en": "Culture per sample well",
+        "zh-TW": "樣品孔菌液"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "10",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-od-blank",
+      "label": {
+        "en": "OD600 of the blanks (mean)",
+        "zh-TW": "空白 OD600（平均）"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "measured_with": "i-reader"
+    },
+    {
+      "id": "b-od-sample",
+      "label": {
+        "en": "OD600 of the 1:10 dilution (mean)",
+        "zh-TW": "1:10 稀釋液 OD600（平均）"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "measured_with": "i-reader"
+    },
+    {
+      "id": "b-od-dil",
+      "label": {
+        "en": "Dilution factor",
+        "zh-TW": "稀釋倍數"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "10",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-od",
+      "label": {
+        "en": "Corrected OD600 of the culture",
+        "zh-TW": "校正後菌液 OD600"
+      },
+      "role": "computed",
+      "dimension": "number",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "-",
+          "a": {
+            "box": "b-od-sample"
+          },
+          "b": {
+            "box": "b-od-blank"
+          }
+        },
+        "b": {
+          "box": "b-od-dil"
+        }
+      }
+    },
+    {
+      "id": "b-culture",
+      "label": {
+        "en": "Culture pelleted",
+        "zh-TW": "離心的菌液體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "1.5",
+        "unit": "mL"
+      },
+      "preferred_unit": "mL",
+      "range": {
+        "min": {
+          "n": "1",
+          "unit": "mL"
+        },
+        "max": {
+          "n": "5",
+          "unit": "mL"
+        }
+      }
+    },
+    {
+      "id": "b-rcf",
+      "label": {
+        "en": "Centrifugation speed",
+        "zh-TW": "離心力"
+      },
+      "role": "fixed",
+      "dimension": "rcf",
+      "value": {
+        "n": "16000",
+        "unit": "×g"
+      }
+    },
+    {
+      "id": "b-b1",
+      "label": {
+        "en": "Resuspension buffer",
+        "zh-TW": "懸浮緩衝液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "200",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-b2",
+      "label": {
+        "en": "Lysis buffer",
+        "zh-TW": "裂解緩衝液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "200",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-lysis",
+      "label": {
+        "en": "Lysis time",
+        "zh-TW": "裂解時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "1",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-b3",
+      "label": {
+        "en": "Neutralization buffer",
+        "zh-TW": "中和緩衝液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "400",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-neutral",
+      "label": {
+        "en": "Neutralization time",
+        "zh-TW": "中和時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "2",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-clear",
+      "label": {
+        "en": "Clearing spin",
+        "zh-TW": "澄清離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-load",
+      "label": {
+        "en": "Supernatant onto the column",
+        "zh-TW": "上柱上清液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "800",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-bz",
+      "label": {
+        "en": "Binding/wash buffer",
+        "zh-TW": "結合/清洗緩衝液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "200",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-wz",
+      "label": {
+        "en": "Wash buffer",
+        "zh-TW": "清洗緩衝液體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "400",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-spin",
+      "label": {
+        "en": "Column spin",
+        "zh-TW": "管柱離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "1",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-elute-temp",
+      "label": {
+        "en": "Elution buffer temperature",
+        "zh-TW": "溶離液預熱溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "50",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-elute",
+      "label": {
+        "en": "Elution volume",
+        "zh-TW": "溶離體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "45",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-conc",
+      "label": {
+        "en": "Plasmid concentration",
+        "zh-TW": "質體濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-recovered",
+      "label": {
+        "en": "Eluate recovered",
+        "zh-TW": "回收的溶離液體積"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "40",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-yield",
+      "label": {
+        "en": "Plasmid yield",
+        "zh-TW": "質體產量"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-conc"
+        },
+        "b": {
+          "box": "b-recovered"
+        }
+      },
+      "display_unit": "µg"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Before you start",
+        "zh-TW": "開始之前"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Check that RNase A has been added to ",
+              {
+                "use": "u-b1"
+              },
+              ", isopropanol to ",
+              {
+                "use": "u-bz"
+              },
+              " and ethanol to ",
+              {
+                "use": "u-wz"
+              },
+              ", as the ",
+              {
+                "use": "u-kit"
+              },
+              " instructions say."
+            ],
+            "zh-TW": [
+              {
+                "text": "依照 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-kit"
+              },
+              {
+                "text": " 說明，確認 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-b1"
+              },
+              {
+                "text": " 已加入 RNase A、",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bz"
+              },
+              {
+                "text": " 已加入異丙醇、",
+                "draft": "machine"
+              },
+              {
+                "use": "u-wz"
+              },
+              {
+                "text": " 已加入乙醇。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Wipe the bench and pipettes with a DNA and RNase decontaminant, then with 70% ethanol."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 DNA 與 RNase 去除劑擦拭桌面與微量吸管，再以 70% 乙醇擦拭。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-od",
+      "title": {
+        "en": "Check the overnight culture",
+        "zh-TW": "確認隔夜菌液"
+      },
+      "steps": [
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "In the ",
+              {
+                "use": "u-plate"
+              },
+              ", add ",
+              {
+                "box": "b-blank-well"
+              },
+              " of ",
+              {
+                "use": "u-medium"
+              },
+              " to two wells as blanks."
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plate"
+              },
+              {
+                "text": " 中，於兩個孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-blank-well"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-medium"
+              },
+              {
+                "text": " 作為空白。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-med-well"
+              },
+              " of medium and ",
+              {
+                "box": "b-cult-well"
+              },
+              " of ",
+              {
+                "use": "u-culture"
+              },
+              " to two wells per culture (a 1:10 dilution) and mix well. Keep the rest of the culture."
+            ],
+            "zh-TW": [
+              {
+                "text": "每個菌液取兩孔，各加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-med-well"
+              },
+              {
+                "text": " 培養基與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cult-well"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-culture"
+              },
+              {
+                "text": "（1:10 稀釋）並混勻。保留剩餘菌液。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Read OD600 on the ",
+              {
+                "use": "i-reader"
+              },
+              ": blanks ",
+              {
+                "box": "b-od-blank"
+              },
+              ", samples ",
+              {
+                "box": "b-od-sample"
+              },
+              ". The culture's corrected OD600, (sample − blank) × ",
+              {
+                "box": "b-od-dil"
+              },
+              ", is ",
+              {
+                "box": "b-od"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-reader"
+              },
+              {
+                "text": " 讀取 OD600：空白 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-od-blank"
+              },
+              {
+                "text": "、樣品 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-od-sample"
+              },
+              {
+                "text": "。校正後的菌液 OD600 為（樣品 − 空白）× ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-od-dil"
+              },
+              {
+                "text": " = ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-od"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Go on when the corrected OD600 is above 1. Add ",
+              {
+                "use": "u-bleach"
+              },
+              " to the used wells, wait 10 minutes and discard the plate as biohazard waste."
+            ],
+            "zh-TW": [
+              {
+                "text": "校正後 OD600 大於 1 再繼續。在用過的孔中加入 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bleach"
+              },
+              {
+                "text": "，靜置 10 分鐘後將盤子丟入生物危害廢棄物。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "10",
+            "unit": "min"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-lyse",
+      "title": {
+        "en": "Pellet, resuspend and lyse",
+        "zh-TW": "收菌、懸浮與裂解"
+      },
+      "steps": [
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Pellet ",
+              {
+                "box": "b-culture"
+              },
+              " of culture at ",
+              {
+                "box": "b-rcf"
+              },
+              " for 30 seconds on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              " and discard the supernatant into bleach."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 在 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rcf"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-culture"
+              },
+              {
+                "text": " 菌液 30 秒，將上清液倒入漂白水中。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "30",
+            "unit": "s"
+          }
+        },
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Resuspend the pellet in ",
+              {
+                "box": "b-b1"
+              },
+              " of ",
+              {
+                "use": "u-b1"
+              },
+              " by pipetting, and move it to a labelled tube from ",
+              {
+                "use": "u-tubes"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-b1"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-b1"
+              },
+              {
+                "text": " 上下吸放懸浮菌塊，移至已標示的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-tubes"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-b2"
+              },
+              " of ",
+              {
+                "use": "u-b2"
+              },
+              ", invert gently 10 times and leave at room temperature for ",
+              {
+                "box": "b-lysis"
+              },
+              ". The lysate turns clear and viscous."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-b2"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-b2"
+              },
+              {
+                "text": "，輕輕上下翻轉 10 次，室溫靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-lysis"
+              },
+              {
+                "text": "。裂解液會變得澄清而黏稠。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Do not vortex, and do not lyse longer than 1 minute: the plasmid can be denatured for good. The lysis buffer is alkaline; wear gloves and eye protection.",
+            "zh-TW": "請勿震盪，裂解時間不可超過 1 分鐘，否則質體可能發生不可逆的變性。裂解液為鹼性，請戴手套與護目鏡。"
+          },
+          "duration": {
+            "box": "b-lysis"
+          }
+        },
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-b3"
+              },
+              " of ",
+              {
+                "use": "u-b3"
+              },
+              ", invert until the colour is uniformly yellow, and leave at room temperature for ",
+              {
+                "box": "b-neutral"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-b3"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-b3"
+              },
+              {
+                "text": "，翻轉至顏色均勻呈黃色，室溫靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-neutral"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-neutral"
+          }
+        },
+        {
+          "id": "st-11",
+          "text": {
+            "en": [
+              "Start warming ",
+              {
+                "use": "u-elution"
+              },
+              " to ",
+              {
+                "box": "b-elute-temp"
+              },
+              " for the elution."
+            ],
+            "zh-TW": [
+              {
+                "text": "開始將 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-elution"
+              },
+              {
+                "text": " 預熱至 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-elute-temp"
+              },
+              {
+                "text": "，供溶離使用。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-bind",
+      "title": {
+        "en": "Bind and wash",
+        "zh-TW": "結合與清洗"
+      },
+      "steps": [
+        {
+          "id": "st-12",
+          "text": {
+            "en": [
+              "Centrifuge the lysate on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              " at ",
+              {
+                "box": "b-rcf"
+              },
+              " for ",
+              {
+                "box": "b-clear"
+              },
+              ". The pellet should stick firmly to the tube wall; spin again if it does not."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rcf"
+              },
+              {
+                "text": " 於 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 離心裂解液 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-clear"
+              },
+              {
+                "text": "。沉澱應緊貼管壁，若沒有則再離心一次。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-clear"
+          }
+        },
+        {
+          "id": "st-13",
+          "text": {
+            "en": [
+              "Move ",
+              {
+                "box": "b-load"
+              },
+              " of the supernatant to a spin column without touching the pellet, and spin on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              " at ",
+              {
+                "box": "b-rcf"
+              },
+              " for ",
+              {
+                "box": "b-spin"
+              },
+              ". Discard the flow-through."
+            ],
+            "zh-TW": [
+              {
+                "text": "小心避開沉澱，取 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load"
+              },
+              {
+                "text": " 上清液移至離心管柱，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rcf"
+              },
+              {
+                "text": " 於 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "，倒掉流出液。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Collect the flow-through as chemical (ethanol) waste. It contains a guanidine salt: never mix it with bleach, which releases a toxic gas.",
+            "zh-TW": "流出液請收集為化學（乙醇）廢液。其中含有胍鹽，切勿與漂白水混合，否則會產生有毒氣體。"
+          },
+          "duration": {
+            "box": "b-spin"
+          }
+        },
+        {
+          "id": "st-14",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-bz"
+              },
+              " of ",
+              {
+                "use": "u-bz"
+              },
+              " and spin for ",
+              {
+                "box": "b-spin"
+              },
+              ". Discard the flow-through."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-bz"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bz"
+              },
+              {
+                "text": "，離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "，倒掉流出液。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-spin"
+          }
+        },
+        {
+          "id": "st-15",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-wz"
+              },
+              " of ",
+              {
+                "use": "u-wz"
+              },
+              " and spin for ",
+              {
+                "box": "b-spin"
+              },
+              ". Spin once more for ",
+              {
+                "box": "b-spin"
+              },
+              " to dry the membrane."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wz"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-wz"
+              },
+              {
+                "text": "，離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "。再空轉離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": " 以乾燥濾膜。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Collect the flow-through as ethanol waste.",
+            "zh-TW": "流出液請收集為乙醇廢液。"
+          },
+          "duration": {
+            "n": "2",
+            "unit": "min"
+          }
+        },
+        {
+          "id": "st-16",
+          "text": {
+            "en": [
+              "Move the column to a clean labelled tube without touching the flow-through, and let the ethanol evaporate for 2 minutes with the lid open."
+            ],
+            "zh-TW": [
+              {
+                "text": "將管柱移至乾淨、已標示的離心管，勿碰觸流出液，開蓋靜置 2 分鐘讓乙醇揮發。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "2",
+            "unit": "min"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-elute",
+      "title": {
+        "en": "Elute and measure",
+        "zh-TW": "溶離與測量"
+      },
+      "steps": [
+        {
+          "id": "st-17",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-elute"
+              },
+              " of the warmed elution buffer to the centre of the membrane, incubate 5 minutes at 37 °C and spin for ",
+              {
+                "box": "b-spin"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-elute"
+              },
+              {
+                "text": " 預熱的溶離液加在濾膜中央，37 °C 靜置 5 分鐘後離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "6",
+            "unit": "min"
+          }
+        },
+        {
+          "id": "st-18",
+          "text": {
+            "en": [
+              "Put the eluate back on the membrane, incubate 3 minutes at 37 °C and spin again; this raises the yield."
+            ],
+            "zh-TW": [
+              {
+                "text": "將溶離液再加回濾膜上，37 °C 靜置 3 分鐘後再次離心，可提高產量。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "3",
+            "unit": "min"
+          }
+        },
+        {
+          "id": "st-19",
+          "text": {
+            "en": [
+              "Measure on the ",
+              {
+                "use": "i-nanodrop"
+              },
+              ": ",
+              {
+                "box": "b-conc"
+              },
+              ". Volume recovered ",
+              {
+                "box": "b-recovered"
+              },
+              "; yield ",
+              {
+                "box": "b-yield"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-nanodrop"
+              },
+              {
+                "text": " 測量：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-conc"
+              },
+              {
+                "text": "。回收體積 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-recovered"
+              },
+              {
+                "text": "；產量 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-yield"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-20",
+          "text": {
+            "en": [
+              "Store at 4 °C for up to a day, or at −20 °C for longer."
+            ],
+            "zh-TW": [
+              {
+                "text": "一天內使用可存放於 4 °C，較長時間請存放於 −20 °C。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-clean",
+      "title": {
+        "en": "Clean up",
+        "zh-TW": "清潔"
+      },
+      "steps": [
+        {
+          "id": "st-21",
+          "text": {
+            "en": [
+              "Add bleach to the remaining cultures, wait 30 minutes, then pour down the drain with water and discard the culture tubes as biohazard waste."
+            ],
+            "zh-TW": [
+              {
+                "text": "於剩餘菌液加入漂白水，靜置 30 分鐘後以清水沖入水槽，培養管丟入生物危害廢棄物。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "30",
+            "unit": "min"
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "plasmid-miniprep",
+    "version": "1.1.0"
+  }
+}

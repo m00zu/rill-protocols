@@ -1,0 +1,980 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "Bradford protein assay (microplate)",
+    "zh-TW": "Bradford 蛋白質定量（微孔盤）"
+  },
+  "tags": [
+    "Bradford",
+    "protein quantification",
+    "microplate",
+    "standard curve"
+  ],
+  "source": {
+    "title": "Bradford protein assay – Protein concentration measurement (single 595 nm read)",
+    "authors": [
+      "Daniel C. Moreira"
+    ],
+    "doi": "10.17504/protocols.io.14egnxd3ml5d/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-reagent",
+      "role": "Bradford dye reagent",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-bsa",
+      "role": "BSA stock (4 mg/mL)",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-buffer",
+      "role": "buffer (PBS, or the samples' buffer)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-samples",
+      "role": "protein samples",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-plate",
+      "role": "clear flat-bottom 96-well plate",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-laemmli",
+      "role": "4× Laemmli sample buffer",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-reader",
+      "role": "plate reader (595 nm)",
+      "kind": "rill:instrument-plate-reader",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-std-a-v",
+      "label": {
+        "en": "A · Volume",
+        "zh-TW": "A · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "50",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-a-d",
+      "label": {
+        "en": "A · Buffer",
+        "zh-TW": "A · 緩衝液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "450",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-a-c",
+      "label": {
+        "en": "A · BSA",
+        "zh-TW": "A · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "400",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-b-v",
+      "label": {
+        "en": "B · Volume",
+        "zh-TW": "B · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-b-d",
+      "label": {
+        "en": "B · Buffer",
+        "zh-TW": "B · 緩衝液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-b-c",
+      "label": {
+        "en": "B · BSA",
+        "zh-TW": "B · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "200",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-c-v",
+      "label": {
+        "en": "C · Volume",
+        "zh-TW": "C · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-c-d",
+      "label": {
+        "en": "C · Buffer",
+        "zh-TW": "C · 緩衝液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-c-c",
+      "label": {
+        "en": "C · BSA",
+        "zh-TW": "C · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-d-v",
+      "label": {
+        "en": "D · Volume",
+        "zh-TW": "D · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-d-d",
+      "label": {
+        "en": "D · Buffer",
+        "zh-TW": "D · 緩衝液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-d-c",
+      "label": {
+        "en": "D · BSA",
+        "zh-TW": "D · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "50",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-e-v",
+      "label": {
+        "en": "E (blank) · Volume",
+        "zh-TW": "E（空白） · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "0",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-e-d",
+      "label": {
+        "en": "E (blank) · Buffer",
+        "zh-TW": "E（空白） · 緩衝液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-e-c",
+      "label": {
+        "en": "E (blank) · BSA",
+        "zh-TW": "E（空白） · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "0",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-well",
+      "label": {
+        "en": "Standard or sample per well",
+        "zh-TW": "每孔標準品或樣品"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "10",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-plate",
+      "label": {
+        "en": "Plate",
+        "zh-TW": "孔盤配置"
+      },
+      "role": "filled",
+      "type": "layout",
+      "format": {
+        "kind": "grid",
+        "rows": 8,
+        "columns": 12,
+        "labels": "letters-numbers"
+      },
+      "quantity": {
+        "name": "BSA",
+        "dimension": "mass_concentration",
+        "unit": "µg/mL"
+      },
+      "template": [
+        {
+          "wells": "A1:A2",
+          "role": "standard",
+          "label": "A",
+          "quantity": {
+            "n": "400",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "B1:B2",
+          "role": "standard",
+          "label": "B",
+          "quantity": {
+            "n": "200",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "C1:C2",
+          "role": "standard",
+          "label": "C",
+          "quantity": {
+            "n": "100",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "D1:D2",
+          "role": "standard",
+          "label": "D",
+          "quantity": {
+            "n": "50",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "E1:E2",
+          "role": "standard",
+          "label": "E",
+          "quantity": {
+            "n": "0",
+            "unit": "µg/mL"
+          }
+        }
+      ],
+      "readings": [
+        {
+          "name": "A595",
+          "unit": null,
+          "wavelength": "595 nm",
+          "step": "st-5"
+        }
+      ],
+      "dilutions": [
+        "5",
+        "10"
+      ]
+    },
+    {
+      "id": "b-reagent-well",
+      "label": {
+        "en": "Bradford reagent per well",
+        "zh-TW": "每孔 Bradford 試劑"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "250",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-wells",
+      "label": {
+        "en": "Wells",
+        "zh-TW": "孔數"
+      },
+      "role": "computed",
+      "dimension": "count",
+      "formula": {
+        "calc": "wells_used",
+        "args": {
+          "box": "b-plate"
+        }
+      }
+    },
+    {
+      "id": "b-reagent",
+      "label": {
+        "en": "Bradford reagent",
+        "zh-TW": "Bradford 試劑總量"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "display_unit": "mL",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-reagent-well"
+        },
+        "b": {
+          "box": "b-wells"
+        }
+      }
+    },
+    {
+      "id": "b-inc",
+      "label": {
+        "en": "Incubation",
+        "zh-TW": "反應時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "5",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-load",
+      "label": {
+        "en": "Load volume",
+        "zh-TW": "上樣體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "20",
+        "unit": "µL"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Prepare",
+        "zh-TW": "準備"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Make the BSA standards from ",
+              {
+                "use": "u-bsa"
+              },
+              " in ",
+              {
+                "use": "u-buffer"
+              },
+              ", mixing each before taking from it:"
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-buffer"
+              },
+              {
+                "text": " 稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bsa"
+              },
+              {
+                "text": " 製備 BSA 標準品，每管取用前先混勻：",
+                "draft": "machine"
+              }
+            ]
+          },
+          "table": {
+            "name": {
+              "en": "Standard",
+              "zh-TW": "標準品"
+            },
+            "columns": [
+              {
+                "id": "from",
+                "label": {
+                  "en": "From",
+                  "zh-TW": "取自"
+                },
+                "kind": "text"
+              },
+              {
+                "id": "vol",
+                "label": {
+                  "en": "Volume",
+                  "zh-TW": "體積"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "buf",
+                "label": {
+                  "en": "Buffer",
+                  "zh-TW": "緩衝液"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "conc",
+                "label": {
+                  "en": "BSA",
+                  "zh-TW": "BSA 濃度"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "mass_concentration",
+                "unit": "µg/mL"
+              }
+            ],
+            "rows": [
+              {
+                "id": "a",
+                "label": {
+                  "en": "A",
+                  "zh-TW": "A"
+                },
+                "cells": {
+                  "vol": "b-std-a-v",
+                  "buf": "b-std-a-d",
+                  "conc": "b-std-a-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "stock",
+                    "zh-TW": "原液"
+                  }
+                }
+              },
+              {
+                "id": "b",
+                "label": {
+                  "en": "B",
+                  "zh-TW": "B"
+                },
+                "cells": {
+                  "vol": "b-std-b-v",
+                  "buf": "b-std-b-d",
+                  "conc": "b-std-b-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "A",
+                    "zh-TW": "A"
+                  }
+                }
+              },
+              {
+                "id": "c",
+                "label": {
+                  "en": "C",
+                  "zh-TW": "C"
+                },
+                "cells": {
+                  "vol": "b-std-c-v",
+                  "buf": "b-std-c-d",
+                  "conc": "b-std-c-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "B",
+                    "zh-TW": "B"
+                  }
+                }
+              },
+              {
+                "id": "d",
+                "label": {
+                  "en": "D",
+                  "zh-TW": "D"
+                },
+                "cells": {
+                  "vol": "b-std-d-v",
+                  "buf": "b-std-d-d",
+                  "conc": "b-std-d-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "C",
+                    "zh-TW": "C"
+                  }
+                }
+              },
+              {
+                "id": "e",
+                "label": {
+                  "en": "E (blank)",
+                  "zh-TW": "E（空白）"
+                },
+                "cells": {
+                  "vol": "b-std-e-v",
+                  "buf": "b-std-e-d",
+                  "conc": "b-std-e-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "—",
+                    "zh-TW": "—"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "Dilute ",
+              {
+                "use": "u-samples"
+              },
+              " in the same buffer so that each reads within the standards (0.05–0.4 mg/mL); two dilutions of each make one of them likely to."
+            ],
+            "zh-TW": [
+              {
+                "text": "以相同緩衝液稀釋 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-samples"
+              },
+              {
+                "text": "，使讀值落在標準品範圍內（0.05–0.4 mg/mL）；每個樣品做兩個稀釋倍數，較可能有一個落在範圍內。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-read",
+      "title": {
+        "en": "Plate and read",
+        "zh-TW": "加樣與讀值"
+      },
+      "steps": [
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Into ",
+              {
+                "use": "u-plate"
+              },
+              ", pipette ",
+              {
+                "box": "b-well"
+              },
+              " of each standard, the blank and each sample, each in duplicate. Place your samples with Fill pattern: ",
+              {
+                "box": "b-plate"
+              }
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plate"
+              },
+              {
+                "text": " 中，每孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-well"
+              },
+              {
+                "text": " 的標準品、空白與樣品，各做二重複。以「Fill pattern」填入你的樣品：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-plate"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-reagent-well"
+              },
+              " of ",
+              {
+                "use": "u-reagent"
+              },
+              " to each of these wells (",
+              {
+                "box": "b-wells"
+              },
+              " wells, ",
+              {
+                "box": "b-reagent"
+              },
+              " in all) and leave at room temperature for ",
+              {
+                "box": "b-inc"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "在上述每孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-reagent-well"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-reagent"
+              },
+              {
+                "text": "（共 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wells"
+              },
+              {
+                "text": " 孔，總計 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-reagent"
+              },
+              {
+                "text": "），於室溫靜置 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inc"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-inc"
+          },
+          "caution": {
+            "en": "Read after the 5 min and within 1 h. At high protein concentrations the dye–protein complex starts to precipitate after 10–15 min, so read such plates promptly.",
+            "zh-TW": "靜置 5 分鐘後、1 小時內讀值。蛋白質濃度高時，染劑–蛋白質複合物在 10–15 分鐘後即開始沉澱，此時請盡快讀值。"
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Read the absorbance at 595 nm on the ",
+              {
+                "use": "i-reader"
+              },
+              " and read the samples off the standard curve."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-reader"
+              },
+              {
+                "text": " 讀取 595 nm 吸光值，並由標準曲線讀出樣品濃度。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "curve": {
+            "layout": "b-plate",
+            "reading": "A595",
+            "standards": {
+              "step": "st-1",
+              "column": "conc"
+            },
+            "fit": "quadratic",
+            "unit": "µg/mL",
+            "target": {
+              "n": "20",
+              "unit": "µg"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-load",
+      "title": {
+        "en": "Equal loads (optional)",
+        "zh-TW": "等量上樣（選用）"
+      },
+      "steps": [
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "If the samples go on a gel: load the amount step 5's curve is read for (its “For … µg”) of each sample in ",
+              {
+                "box": "b-load"
+              },
+              " with ",
+              {
+                "use": "u-laemmli"
+              },
+              " and water:"
+            ],
+            "zh-TW": [
+              {
+                "text": "若樣品要跑膠：每個樣品取第 5 步標準曲線所設定的蛋白量（其「For … µg」），與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-laemmli"
+              },
+              {
+                "text": " 及水配成 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load"
+              },
+              {
+                "text": "：",
+                "draft": "machine"
+              }
+            ]
+          },
+          "table": {
+            "rows_from": {
+              "step": "st-5"
+            },
+            "name": {
+              "en": "Sample",
+              "zh-TW": "樣品"
+            },
+            "rows": [],
+            "columns": [
+              {
+                "id": "conc",
+                "label": {
+                  "en": "Conc.",
+                  "zh-TW": "濃度"
+                },
+                "kind": "result",
+                "field": "conc",
+                "unit": "mg/mL"
+              },
+              {
+                "id": "protein",
+                "label": {
+                  "en": "Protein",
+                  "zh-TW": "蛋白質"
+                },
+                "kind": "result",
+                "field": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "laemmli",
+                "label": {
+                  "en": "Laemmli 4×",
+                  "zh-TW": "Laemmli 4×"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL",
+                "value": {
+                  "n": "5",
+                  "unit": "µL"
+                }
+              },
+              {
+                "id": "water",
+                "label": {
+                  "en": "Water",
+                  "zh-TW": "水"
+                },
+                "kind": "value",
+                "role": "computed",
+                "dimension": "volume",
+                "unit": "µL",
+                "fill_to": "b-load"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "bradford-protein-assay",
+    "version": "1.0.0"
+  }
+}

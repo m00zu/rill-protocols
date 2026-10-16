@@ -1,0 +1,1257 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "RNA extraction (spin column)",
+    "zh-TW": "RNA 萃取（離心管柱）"
+  },
+  "tags": [
+    "RNA",
+    "RNA extraction",
+    "spin column",
+    "total RNA"
+  ],
+  "source": {
+    "title": "Purification of Total RNA from Cells Using Spin Technology",
+    "authors": [
+      "Malu Tansey"
+    ],
+    "doi": "10.17504/protocols.io.81wgbxeeqlpk/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-cells",
+      "role": "cultured cells",
+      "kind": "rill:cell-line",
+      "fields": {
+        "species": "text",
+        "tissue": "text",
+        "source": "text",
+        "rrid": "text",
+        "passage_number": "number"
+      }
+    },
+    {
+      "use": "u-pbs",
+      "role": "PBS",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-trypsin",
+      "role": "0.25% trypsin",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-kit",
+      "role": "RNA spin-column kit",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-rlt",
+      "role": "lysis buffer",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-bme",
+      "role": "β-mercaptoethanol",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-eth",
+      "role": "70% ethanol",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-rw1",
+      "role": "wash buffer 1",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-rpe",
+      "role": "wash buffer 2 (with ethanol)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-water",
+      "role": "RNase-free water",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-shredder",
+      "role": "homogenizer spin column",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-zap",
+      "role": "RNase decontamination solution",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-centrifuge",
+      "role": "microcentrifuge",
+      "kind": "rill:instrument-centrifuge",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      },
+      "tubes": "b-n"
+    },
+    {
+      "use": "i-nanodrop",
+      "role": "microvolume spectrophotometer",
+      "kind": "rill:instrument-spectrophotometer",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-n",
+      "label": {
+        "en": "Samples",
+        "zh-TW": "樣品數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "6",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-cells",
+      "label": {
+        "en": "Cells per sample",
+        "zh-TW": "每個樣品細胞數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "1000000",
+        "unit": "count"
+      },
+      "range": {
+        "max": {
+          "n": "10000000",
+          "unit": "count"
+        }
+      }
+    },
+    {
+      "id": "b-rlt",
+      "label": {
+        "en": "Lysis buffer per sample (350 µL below 5 × 10⁶ cells, 600 µL above)",
+        "zh-TW": "每樣品裂解液（少於 5 × 10⁶ 細胞用 350 µL，以上用 600 µL）"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "350",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "350",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "600",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-over",
+      "label": {
+        "en": "Overage",
+        "zh-TW": "額外量比例"
+      },
+      "role": "fixed",
+      "dimension": "ratio",
+      "value": {
+        "n": "0.1",
+        "unit": "ratio"
+      }
+    },
+    {
+      "id": "b-rlt-total",
+      "label": {
+        "en": "Lysis buffer to prepare",
+        "zh-TW": "需配製的裂解液"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-rlt"
+          },
+          "n": {
+            "box": "b-n"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-bme-per",
+      "label": {
+        "en": "β-mercaptoethanol per 1 mL lysis buffer",
+        "zh-TW": "每 1 mL 裂解液的 β-巰基乙醇"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "20",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-bme",
+      "label": {
+        "en": "β-mercaptoethanol",
+        "zh-TW": "β-巰基乙醇體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "/",
+          "a": {
+            "box": "b-rlt-total"
+          },
+          "b": {
+            "const": {
+              "n": "1",
+              "unit": "mL"
+            }
+          }
+        },
+        "b": {
+          "box": "b-bme-per"
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-eth-vol",
+      "label": {
+        "en": "70% ethanol (1 volume)",
+        "zh-TW": "70% 乙醇（等體積）"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "box": "b-rlt"
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-load",
+      "label": {
+        "en": "Most loaded per spin",
+        "zh-TW": "每次上柱最多體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "700",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-rw1",
+      "label": {
+        "en": "Wash buffer 1",
+        "zh-TW": "清洗液 1 體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "700",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-rpe",
+      "label": {
+        "en": "Wash buffer 2",
+        "zh-TW": "清洗液 2 體積"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "500",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-speed",
+      "label": {
+        "en": "Spin speed",
+        "zh-TW": "離心轉速"
+      },
+      "role": "fixed",
+      "dimension": "speed",
+      "value": {
+        "n": "10000",
+        "unit": "rpm"
+      }
+    },
+    {
+      "id": "b-spin",
+      "label": {
+        "en": "Wash spin",
+        "zh-TW": "清洗離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "15",
+        "unit": "s"
+      }
+    },
+    {
+      "id": "b-final-spin",
+      "label": {
+        "en": "Final wash spin",
+        "zh-TW": "最後一次清洗的離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "2",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-dry",
+      "label": {
+        "en": "Membrane-drying spin",
+        "zh-TW": "乾燥濾膜的離心時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "1",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-elute",
+      "label": {
+        "en": "RNase-free water for elution",
+        "zh-TW": "溶離用無 RNase 水"
+      },
+      "role": "filled",
+      "dimension": "volume",
+      "default": {
+        "n": "40",
+        "unit": "µL"
+      },
+      "preferred_unit": "µL",
+      "range": {
+        "min": {
+          "n": "30",
+          "unit": "µL"
+        },
+        "max": {
+          "n": "50",
+          "unit": "µL"
+        }
+      }
+    },
+    {
+      "id": "b-conc",
+      "label": {
+        "en": "RNA concentration",
+        "zh-TW": "RNA 濃度"
+      },
+      "role": "filled",
+      "dimension": "mass_concentration",
+      "preferred_unit": "ng/µL",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-a280",
+      "label": {
+        "en": "A260/A280",
+        "zh-TW": "A260/A280 比值"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "measured_with": "i-nanodrop"
+    },
+    {
+      "id": "b-yield",
+      "label": {
+        "en": "RNA yield",
+        "zh-TW": "RNA 產量"
+      },
+      "role": "computed",
+      "dimension": "mass",
+      "formula": {
+        "op": "*",
+        "a": {
+          "box": "b-conc"
+        },
+        "b": {
+          "box": "b-elute"
+        }
+      },
+      "display_unit": "µg"
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Before you start",
+        "zh-TW": "開始之前"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Wear gloves and treat them, the bench and pipettes with ",
+              {
+                "use": "u-zap"
+              },
+              ". Work quickly and at room temperature throughout, including the centrifuge (not below 20 °C)."
+            ],
+            "zh-TW": [
+              {
+                "text": "戴上手套，並以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-zap"
+              },
+              {
+                "text": " 處理手套、桌面與微量吸管。全程在室溫下快速操作，離心機溫度也不可低於 20 °C。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-n"
+              },
+              " samples plus ",
+              {
+                "box": "b-over"
+              },
+              " extra, prepare ",
+              {
+                "box": "b-rlt-total"
+              },
+              " of ",
+              {
+                "use": "u-rlt"
+              },
+              " with ",
+              {
+                "box": "b-bme"
+              },
+              " of ",
+              {
+                "use": "u-bme"
+              },
+              " (",
+              {
+                "box": "b-bme-per"
+              },
+              " per mL, as the source gives; the kit handbook gives 10 µL per mL). It keeps for a month at room temperature."
+            ],
+            "zh-TW": [
+              {
+                "text": "依 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-n"
+              },
+              {
+                "text": " 個樣品（另加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-over"
+              },
+              {
+                "text": " 額外量），配製 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rlt-total"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rlt"
+              },
+              {
+                "text": "，加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-bme"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bme"
+              },
+              {
+                "text": "（每 mL 加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-bme-per"
+              },
+              {
+                "text": "，此為來源實驗步驟的用量；套組手冊為每 mL 10 µL）。室溫可保存一個月。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Add β-mercaptoethanol in a fume hood. The lysis buffer contains a guanidine salt: never mix it or its waste with bleach.",
+            "zh-TW": "請在化學排煙櫃中加入 β-巰基乙醇。裂解液含胍鹽，切勿與漂白水混合，其廢液亦同。"
+          }
+        },
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "Check that ethanol has been added to ",
+              {
+                "use": "u-rpe"
+              },
+              " as the ",
+              {
+                "use": "u-kit"
+              },
+              " bottle says."
+            ],
+            "zh-TW": [
+              {
+                "text": "依 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-kit"
+              },
+              {
+                "text": " 瓶身標示，確認 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rpe"
+              },
+              {
+                "text": " 已加入乙醇。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-lyse",
+      "title": {
+        "en": "Harvest and lyse",
+        "zh-TW": "收集與裂解"
+      },
+      "steps": [
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Harvest ",
+              {
+                "box": "b-cells"
+              },
+              " of ",
+              {
+                "use": "u-cells"
+              },
+              " per sample (at most 10⁷): lyse directly in the dish after removing all medium, or detach with ",
+              {
+                "use": "u-trypsin"
+              },
+              ", pellet and wash in ",
+              {
+                "use": "u-pbs"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "每個樣品收集 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cells"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-cells"
+              },
+              {
+                "text": "（最多 10⁷）：完全移除培養基後直接在培養皿中裂解，或以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-trypsin"
+              },
+              {
+                "text": " 使細胞脫離後離心並以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-pbs"
+              },
+              {
+                "text": " 清洗。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-rlt"
+              },
+              " of lysis buffer, pipette or vortex until no clumps are left."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rlt"
+              },
+              {
+                "text": " 裂解液，上下吸放或震盪至無細胞團。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Load the lysate on a ",
+              {
+                "use": "u-shredder"
+              },
+              " and spin for 2 minutes at full speed on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將裂解液加入 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-shredder"
+              },
+              {
+                "text": "，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 全速離心 2 分鐘。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "2",
+            "unit": "min"
+          }
+        },
+        {
+          "id": "st-7",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-eth-vol"
+              },
+              " of ",
+              {
+                "use": "u-eth"
+              },
+              " to the homogenised lysate and mix by pipetting."
+            ],
+            "zh-TW": [
+              {
+                "text": "在均質後的裂解液中加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-eth-vol"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-eth"
+              },
+              {
+                "text": "，以吸管混勻。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-bind",
+      "title": {
+        "en": "Bind and wash",
+        "zh-TW": "結合與清洗"
+      },
+      "steps": [
+        {
+          "id": "st-8",
+          "text": {
+            "en": [
+              "Load up to ",
+              {
+                "box": "b-load"
+              },
+              " of the sample, including any precipitate, on an RNA spin column and spin on the ",
+              {
+                "use": "i-centrifuge"
+              },
+              " for ",
+              {
+                "box": "b-spin"
+              },
+              " at ",
+              {
+                "box": "b-speed"
+              },
+              ". Discard the flow-through; repeat with the rest of the sample."
+            ],
+            "zh-TW": [
+              {
+                "text": "將最多 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-load"
+              },
+              {
+                "text": " 的樣品（含沉澱）加入 RNA 離心管柱，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-speed"
+              },
+              {
+                "text": " 於 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-centrifuge"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "，倒掉流出液；剩餘樣品重複此步驟。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-spin"
+          }
+        },
+        {
+          "id": "st-9",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-rw1"
+              },
+              " of ",
+              {
+                "use": "u-rw1"
+              },
+              ", spin for ",
+              {
+                "box": "b-spin"
+              },
+              " at ",
+              {
+                "box": "b-speed"
+              },
+              " and discard the flow-through."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rw1"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rw1"
+              },
+              {
+                "text": "，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-speed"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "，倒掉流出液。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-spin"
+          }
+        },
+        {
+          "id": "st-10",
+          "text": {
+            "en": [
+              "Add ",
+              {
+                "box": "b-rpe"
+              },
+              " of ",
+              {
+                "use": "u-rpe"
+              },
+              ", spin for ",
+              {
+                "box": "b-spin"
+              },
+              " at ",
+              {
+                "box": "b-speed"
+              },
+              " and discard the flow-through."
+            ],
+            "zh-TW": [
+              {
+                "text": "加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rpe"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rpe"
+              },
+              {
+                "text": "，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-speed"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-spin"
+              },
+              {
+                "text": "，倒掉流出液。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-spin"
+          }
+        },
+        {
+          "id": "st-11",
+          "text": {
+            "en": [
+              "Wash once more with ",
+              {
+                "box": "b-rpe"
+              },
+              " of wash buffer 2, spinning for ",
+              {
+                "box": "b-final-spin"
+              },
+              " at ",
+              {
+                "box": "b-speed"
+              },
+              ". Discard the flow-through."
+            ],
+            "zh-TW": [
+              {
+                "text": "再以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rpe"
+              },
+              {
+                "text": " 清洗液 2 清洗一次，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-speed"
+              },
+              {
+                "text": " 離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-final-spin"
+              },
+              {
+                "text": "，倒掉流出液。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-final-spin"
+          }
+        },
+        {
+          "id": "st-dry",
+          "text": {
+            "en": [
+              "Move the column to a new 2 mL collection tube and spin it empty for ",
+              {
+                "box": "b-dry"
+              },
+              " at full speed to dry the membrane."
+            ],
+            "zh-TW": [
+              {
+                "text": "將管柱移至新的 2 mL 收集管，空轉全速離心 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-dry"
+              },
+              {
+                "text": " 以乾燥濾膜。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "caution": {
+            "en": "Ethanol carried into the eluate inhibits reverse transcription and qPCR; do not let the column touch the flow-through.",
+            "zh-TW": "殘留乙醇進入溶離液會抑制反轉錄與 qPCR；管柱不可碰觸流出液。"
+          },
+          "duration": {
+            "box": "b-dry"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-elute",
+      "title": {
+        "en": "Elute and measure",
+        "zh-TW": "溶離與測量"
+      },
+      "steps": [
+        {
+          "id": "st-12",
+          "text": {
+            "en": [
+              "Move the column to a new 1.5 mL tube, add ",
+              {
+                "box": "b-elute"
+              },
+              " of ",
+              {
+                "use": "u-water"
+              },
+              " to the membrane and spin for 1 minute at ",
+              {
+                "box": "b-speed"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "將管柱移至新的 1.5 mL 管，在濾膜上加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-elute"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-water"
+              },
+              {
+                "text": "，以 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-speed"
+              },
+              {
+                "text": " 離心 1 分鐘。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "n": "1",
+            "unit": "min"
+          }
+        },
+        {
+          "id": "st-13",
+          "text": {
+            "en": [
+              "Measure on the ",
+              {
+                "use": "i-nanodrop"
+              },
+              ": ",
+              {
+                "box": "b-conc"
+              },
+              ", A260/A280 ",
+              {
+                "box": "b-a280"
+              },
+              ". Yield ",
+              {
+                "box": "b-yield"
+              },
+              ". Store the RNA at −70 °C or below."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-nanodrop"
+              },
+              {
+                "text": " 測量：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-conc"
+              },
+              {
+                "text": "，A260/A280 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-a280"
+              },
+              {
+                "text": "。產量 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-yield"
+              },
+              {
+                "text": "。RNA 請保存於 −70 °C 以下。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "rna-extraction-column",
+    "version": "1.1.0"
+  }
+}

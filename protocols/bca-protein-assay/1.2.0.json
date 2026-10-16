@@ -1,0 +1,1450 @@
+{
+  "format": "rill-protocol",
+  "version": 1,
+  "title": {
+    "en": "BCA protein assay (microplate)",
+    "zh-TW": "BCA 蛋白質定量（微孔盤）"
+  },
+  "tags": [
+    "BCA",
+    "protein quantification",
+    "microplate",
+    "standard curve"
+  ],
+  "source": {
+    "title": "Pierce™ BCA Protein Assay (ThermoFisher Scientific)",
+    "authors": [
+      "Rita Chen",
+      "Raven Coffer"
+    ],
+    "doi": "10.17504/protocols.io.4r3l2zp5jl1y/v1",
+    "licence": "CC BY 4.0"
+  },
+  "languages": [
+    "en",
+    "zh-TW"
+  ],
+  "materials": [
+    {
+      "use": "u-ra",
+      "role": "BCA Reagent A",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-rb",
+      "role": "BCA Reagent B",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-bsa",
+      "role": "BSA standard (2 mg/mL)",
+      "kind": "rill:reagent",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "number",
+        "concentration": "text",
+        "storage": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-diluent",
+      "role": "diluent (the samples' buffer)",
+      "kind": "rill:medium-buffer",
+      "fields": {
+        "composition": "text",
+        "ph": "number",
+        "final_volume": "volume",
+        "supplier": "text",
+        "catalogue_no": "text",
+        "storage": "text",
+        "notes": "text",
+        "lot": "text"
+      }
+    },
+    {
+      "use": "u-samples",
+      "role": "protein samples",
+      "kind": "rill:other",
+      "fields": {
+        "notes": "text"
+      }
+    },
+    {
+      "use": "u-plate",
+      "role": "clear flat-bottom 96-well plate",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    },
+    {
+      "use": "u-seal",
+      "role": "plate seal",
+      "kind": "rill:consumable",
+      "fields": {
+        "supplier": "text",
+        "catalogue_no": "text",
+        "pack_size": "count",
+        "format": "text"
+      }
+    }
+  ],
+  "instruments": [
+    {
+      "use": "i-reader",
+      "role": "plate reader (562 nm)",
+      "kind": "rill:instrument-plate-reader",
+      "fields": {
+        "model": "text",
+        "manufacturer": "text",
+        "serial_no": "text",
+        "location": "text",
+        "last_calibration": "text",
+        "settings": "text"
+      }
+    }
+  ],
+  "boxes": [
+    {
+      "id": "b-std-a-v",
+      "label": {
+        "en": "A · Volume",
+        "zh-TW": "A · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "300",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-a-d",
+      "label": {
+        "en": "A · Diluent",
+        "zh-TW": "A · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "0",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-a-c",
+      "label": {
+        "en": "A · BSA",
+        "zh-TW": "A · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "2000",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-b-v",
+      "label": {
+        "en": "B · Volume",
+        "zh-TW": "B · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "375",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-b-d",
+      "label": {
+        "en": "B · Diluent",
+        "zh-TW": "B · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "125",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-b-c",
+      "label": {
+        "en": "B · BSA",
+        "zh-TW": "B · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "1500",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-c-v",
+      "label": {
+        "en": "C · Volume",
+        "zh-TW": "C · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-c-d",
+      "label": {
+        "en": "C · Diluent",
+        "zh-TW": "C · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-c-c",
+      "label": {
+        "en": "C · BSA",
+        "zh-TW": "C · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "1000",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-d-v",
+      "label": {
+        "en": "D · Volume",
+        "zh-TW": "D · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "175",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-d-d",
+      "label": {
+        "en": "D · Diluent",
+        "zh-TW": "D · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "175",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-d-c",
+      "label": {
+        "en": "D · BSA",
+        "zh-TW": "D · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "750",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-e-v",
+      "label": {
+        "en": "E · Volume",
+        "zh-TW": "E · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-e-d",
+      "label": {
+        "en": "E · Diluent",
+        "zh-TW": "E · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-e-c",
+      "label": {
+        "en": "E · BSA",
+        "zh-TW": "E · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "500",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-f-v",
+      "label": {
+        "en": "F · Volume",
+        "zh-TW": "F · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-f-d",
+      "label": {
+        "en": "F · Diluent",
+        "zh-TW": "F · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-f-c",
+      "label": {
+        "en": "F · BSA",
+        "zh-TW": "F · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "250",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-g-v",
+      "label": {
+        "en": "G · Volume",
+        "zh-TW": "G · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-g-d",
+      "label": {
+        "en": "G · Diluent",
+        "zh-TW": "G · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "325",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-g-c",
+      "label": {
+        "en": "G · BSA",
+        "zh-TW": "G · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "125",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-h-v",
+      "label": {
+        "en": "H · Volume",
+        "zh-TW": "H · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "100",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-h-d",
+      "label": {
+        "en": "H · Diluent",
+        "zh-TW": "H · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "400",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-h-c",
+      "label": {
+        "en": "H · BSA",
+        "zh-TW": "H · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "25",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-std-i-v",
+      "label": {
+        "en": "I (blank) · Volume",
+        "zh-TW": "I（空白） · 體積"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "0",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-i-d",
+      "label": {
+        "en": "I (blank) · Diluent",
+        "zh-TW": "I（空白） · 稀釋液"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "400",
+        "unit": "µL"
+      },
+      "dimension": "volume",
+      "preferred_unit": "µL"
+    },
+    {
+      "id": "b-std-i-c",
+      "label": {
+        "en": "I (blank) · BSA",
+        "zh-TW": "I（空白） · BSA 濃度"
+      },
+      "role": "fixed",
+      "value": {
+        "n": "0",
+        "unit": "µg/mL"
+      },
+      "dimension": "mass_concentration",
+      "preferred_unit": "µg/mL"
+    },
+    {
+      "id": "b-unknowns",
+      "label": {
+        "en": "Unknown samples",
+        "zh-TW": "未知樣品數"
+      },
+      "role": "filled",
+      "dimension": "count",
+      "default": {
+        "n": "8",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-standards",
+      "label": {
+        "en": "Standards (A–I, including the blank)",
+        "zh-TW": "標準品數（A–I，含空白）"
+      },
+      "role": "fixed",
+      "dimension": "count",
+      "value": {
+        "n": "9",
+        "unit": "count"
+      }
+    },
+    {
+      "id": "b-reps",
+      "label": {
+        "en": "Replicates",
+        "zh-TW": "重複數"
+      },
+      "role": "filled",
+      "dimension": "number",
+      "default": {
+        "n": "3",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-wells",
+      "label": {
+        "en": "Wells",
+        "zh-TW": "孔數"
+      },
+      "role": "computed",
+      "dimension": "count",
+      "formula": {
+        "op": "*",
+        "a": {
+          "op": "+",
+          "a": {
+            "box": "b-standards"
+          },
+          "b": {
+            "box": "b-unknowns"
+          }
+        },
+        "b": {
+          "box": "b-reps"
+        }
+      }
+    },
+    {
+      "id": "b-wr-well",
+      "label": {
+        "en": "Working reagent per well",
+        "zh-TW": "每孔工作試劑"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "200",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-over",
+      "label": {
+        "en": "Overage",
+        "zh-TW": "額外量比例"
+      },
+      "role": "fixed",
+      "dimension": "ratio",
+      "value": {
+        "n": "0.1",
+        "unit": "ratio"
+      }
+    },
+    {
+      "id": "b-wr",
+      "label": {
+        "en": "Working reagent",
+        "zh-TW": "工作試劑總量"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "calc": "master_mix",
+        "args": {
+          "per_reaction": {
+            "box": "b-wr-well"
+          },
+          "n": {
+            "box": "b-wells"
+          },
+          "overage": {
+            "box": "b-over"
+          }
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-ab",
+      "label": {
+        "en": "Parts of Reagent A per part of Reagent B",
+        "zh-TW": "試劑 A 對試劑 B 的份數比"
+      },
+      "role": "fixed",
+      "dimension": "number",
+      "value": {
+        "n": "50",
+        "unit": "number"
+      }
+    },
+    {
+      "id": "b-rb",
+      "label": {
+        "en": "Reagent B",
+        "zh-TW": "試劑 B 體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "/",
+        "a": {
+          "box": "b-wr"
+        },
+        "b": {
+          "op": "+",
+          "a": {
+            "box": "b-ab"
+          },
+          "b": {
+            "const": {
+              "n": "1",
+              "unit": "number"
+            }
+          }
+        }
+      },
+      "display_unit": "µL"
+    },
+    {
+      "id": "b-ra",
+      "label": {
+        "en": "Reagent A",
+        "zh-TW": "試劑 A 體積"
+      },
+      "role": "computed",
+      "dimension": "volume",
+      "formula": {
+        "op": "-",
+        "a": {
+          "box": "b-wr"
+        },
+        "b": {
+          "op": "/",
+          "a": {
+            "box": "b-wr"
+          },
+          "b": {
+            "op": "+",
+            "a": {
+              "box": "b-ab"
+            },
+            "b": {
+              "const": {
+                "n": "1",
+                "unit": "number"
+              }
+            }
+          }
+        }
+      },
+      "display_unit": "mL"
+    },
+    {
+      "id": "b-sample-well",
+      "label": {
+        "en": "Sample or standard per well",
+        "zh-TW": "每孔樣品或標準品"
+      },
+      "role": "fixed",
+      "dimension": "volume",
+      "value": {
+        "n": "25",
+        "unit": "µL"
+      }
+    },
+    {
+      "id": "b-plate",
+      "label": {
+        "en": "Plate",
+        "zh-TW": "孔盤配置"
+      },
+      "role": "filled",
+      "type": "layout",
+      "format": {
+        "kind": "grid",
+        "rows": 8,
+        "columns": 12,
+        "labels": "letters-numbers"
+      },
+      "quantity": {
+        "name": "BSA",
+        "dimension": "mass_concentration",
+        "unit": "µg/mL"
+      },
+      "template": [
+        {
+          "wells": "A1:C1",
+          "role": "standard",
+          "label": "A",
+          "quantity": {
+            "n": "2000",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A2:C2",
+          "role": "standard",
+          "label": "B",
+          "quantity": {
+            "n": "1500",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A3:C3",
+          "role": "standard",
+          "label": "C",
+          "quantity": {
+            "n": "1000",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A4:C4",
+          "role": "standard",
+          "label": "D",
+          "quantity": {
+            "n": "750",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A5:C5",
+          "role": "standard",
+          "label": "E",
+          "quantity": {
+            "n": "500",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A6:C6",
+          "role": "standard",
+          "label": "F",
+          "quantity": {
+            "n": "250",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A7:C7",
+          "role": "standard",
+          "label": "G",
+          "quantity": {
+            "n": "125",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A8:C8",
+          "role": "standard",
+          "label": "H",
+          "quantity": {
+            "n": "25",
+            "unit": "µg/mL"
+          }
+        },
+        {
+          "wells": "A9:C9",
+          "role": "blank",
+          "label": "I",
+          "quantity": {
+            "n": "0",
+            "unit": "µg/mL"
+          }
+        }
+      ],
+      "readings": [
+        {
+          "name": "A562",
+          "unit": null,
+          "wavelength": "562 nm",
+          "step": "st-5"
+        }
+      ]
+    },
+    {
+      "id": "b-inc-t",
+      "label": {
+        "en": "Incubation temperature",
+        "zh-TW": "反應溫度"
+      },
+      "role": "fixed",
+      "dimension": "temperature",
+      "value": {
+        "n": "37",
+        "unit": "°C"
+      }
+    },
+    {
+      "id": "b-inc",
+      "label": {
+        "en": "Incubation",
+        "zh-TW": "反應時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "30",
+        "unit": "min"
+      }
+    },
+    {
+      "id": "b-cool",
+      "label": {
+        "en": "Cooling to room temperature",
+        "zh-TW": "回到室溫時間"
+      },
+      "role": "fixed",
+      "dimension": "time",
+      "value": {
+        "n": "10",
+        "unit": "min"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "s-prep",
+      "title": {
+        "en": "Prepare",
+        "zh-TW": "準備"
+      },
+      "steps": [
+        {
+          "id": "st-1",
+          "text": {
+            "en": [
+              "Make nine standards from ",
+              {
+                "use": "u-bsa"
+              },
+              " and ",
+              {
+                "use": "u-diluent"
+              },
+              " in 2 mL tubes:"
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-bsa"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-diluent"
+              },
+              {
+                "text": " 在 2 mL 管中配製九個標準品：",
+                "draft": "machine"
+              }
+            ]
+          },
+          "table": {
+            "name": {
+              "en": "Vial",
+              "zh-TW": "管"
+            },
+            "columns": [
+              {
+                "id": "from",
+                "label": {
+                  "en": "From",
+                  "zh-TW": "取自"
+                },
+                "kind": "text"
+              },
+              {
+                "id": "vol",
+                "label": {
+                  "en": "Volume",
+                  "zh-TW": "體積"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "dil",
+                "label": {
+                  "en": "Diluent",
+                  "zh-TW": "稀釋液"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "volume",
+                "unit": "µL"
+              },
+              {
+                "id": "conc",
+                "label": {
+                  "en": "BSA",
+                  "zh-TW": "BSA 濃度"
+                },
+                "kind": "value",
+                "role": "fixed",
+                "dimension": "mass_concentration",
+                "unit": "µg/mL"
+              }
+            ],
+            "rows": [
+              {
+                "id": "a",
+                "label": {
+                  "en": "A",
+                  "zh-TW": "A"
+                },
+                "cells": {
+                  "vol": "b-std-a-v",
+                  "dil": "b-std-a-d",
+                  "conc": "b-std-a-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "stock",
+                    "zh-TW": "原液"
+                  }
+                }
+              },
+              {
+                "id": "b",
+                "label": {
+                  "en": "B",
+                  "zh-TW": "B"
+                },
+                "cells": {
+                  "vol": "b-std-b-v",
+                  "dil": "b-std-b-d",
+                  "conc": "b-std-b-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "stock",
+                    "zh-TW": "原液"
+                  }
+                }
+              },
+              {
+                "id": "c",
+                "label": {
+                  "en": "C",
+                  "zh-TW": "C"
+                },
+                "cells": {
+                  "vol": "b-std-c-v",
+                  "dil": "b-std-c-d",
+                  "conc": "b-std-c-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "stock",
+                    "zh-TW": "原液"
+                  }
+                }
+              },
+              {
+                "id": "d",
+                "label": {
+                  "en": "D",
+                  "zh-TW": "D"
+                },
+                "cells": {
+                  "vol": "b-std-d-v",
+                  "dil": "b-std-d-d",
+                  "conc": "b-std-d-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "B",
+                    "zh-TW": "B"
+                  }
+                }
+              },
+              {
+                "id": "e",
+                "label": {
+                  "en": "E",
+                  "zh-TW": "E"
+                },
+                "cells": {
+                  "vol": "b-std-e-v",
+                  "dil": "b-std-e-d",
+                  "conc": "b-std-e-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "C",
+                    "zh-TW": "C"
+                  }
+                }
+              },
+              {
+                "id": "f",
+                "label": {
+                  "en": "F",
+                  "zh-TW": "F"
+                },
+                "cells": {
+                  "vol": "b-std-f-v",
+                  "dil": "b-std-f-d",
+                  "conc": "b-std-f-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "E",
+                    "zh-TW": "E"
+                  }
+                }
+              },
+              {
+                "id": "g",
+                "label": {
+                  "en": "G",
+                  "zh-TW": "G"
+                },
+                "cells": {
+                  "vol": "b-std-g-v",
+                  "dil": "b-std-g-d",
+                  "conc": "b-std-g-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "F",
+                    "zh-TW": "F"
+                  }
+                }
+              },
+              {
+                "id": "h",
+                "label": {
+                  "en": "H",
+                  "zh-TW": "H"
+                },
+                "cells": {
+                  "vol": "b-std-h-v",
+                  "dil": "b-std-h-d",
+                  "conc": "b-std-h-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "G",
+                    "zh-TW": "G"
+                  }
+                }
+              },
+              {
+                "id": "i",
+                "label": {
+                  "en": "I (blank)",
+                  "zh-TW": "I（空白）"
+                },
+                "cells": {
+                  "vol": "b-std-i-v",
+                  "dil": "b-std-i-d",
+                  "conc": "b-std-i-c"
+                },
+                "text": {
+                  "from": {
+                    "en": "—",
+                    "zh-TW": "—"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-2",
+          "text": {
+            "en": [
+              "For ",
+              {
+                "box": "b-unknowns"
+              },
+              " samples in ",
+              {
+                "box": "b-reps"
+              },
+              " replicates plus ",
+              {
+                "box": "b-standards"
+              },
+              " standards (",
+              {
+                "box": "b-wells"
+              },
+              " wells, plus ",
+              {
+                "box": "b-over"
+              },
+              " extra), mix ",
+              {
+                "box": "b-wr"
+              },
+              " of working reagent: ",
+              {
+                "box": "b-ra"
+              },
+              " of ",
+              {
+                "use": "u-ra"
+              },
+              " and ",
+              {
+                "box": "b-rb"
+              },
+              " of ",
+              {
+                "use": "u-rb"
+              },
+              " (",
+              {
+                "box": "b-ab"
+              },
+              " : 1)."
+            ],
+            "zh-TW": [
+              {
+                "box": "b-unknowns"
+              },
+              {
+                "text": " 個樣品、",
+                "draft": "machine"
+              },
+              {
+                "box": "b-reps"
+              },
+              {
+                "text": " 重複，加上 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-standards"
+              },
+              {
+                "text": " 個標準品（共 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wells"
+              },
+              {
+                "text": " 孔，另加 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-over"
+              },
+              {
+                "text": " 額外量），配製 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wr"
+              },
+              {
+                "text": " 工作試劑：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ra"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-ra"
+              },
+              {
+                "text": " 與 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-rb"
+              },
+              {
+                "text": " 的 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-rb"
+              },
+              {
+                "text": "（",
+                "draft": "machine"
+              },
+              {
+                "box": "b-ab"
+              },
+              {
+                "text": " : 1）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-plate",
+      "title": {
+        "en": "Plate and incubate",
+        "zh-TW": "加樣與反應"
+      },
+      "steps": [
+        {
+          "id": "st-3",
+          "text": {
+            "en": [
+              "In the ",
+              {
+                "use": "u-plate"
+              },
+              ", add ",
+              {
+                "box": "b-wr-well"
+              },
+              " of working reagent to each well, then ",
+              {
+                "box": "b-sample-well"
+              },
+              " of each standard or ",
+              {
+                "use": "u-samples"
+              },
+              " in replicate. Pipette to mix. Fill your samples into the plate with Fill pattern: ",
+              {
+                "box": "b-plate"
+              }
+            ],
+            "zh-TW": [
+              {
+                "text": "在 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-plate"
+              },
+              {
+                "text": " 中，每孔加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-wr-well"
+              },
+              {
+                "text": " 工作試劑，再依重複數加入 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-sample-well"
+              },
+              {
+                "text": " 的標準品或 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-samples"
+              },
+              {
+                "text": "，以吸管混勻。以「Fill pattern」填入你的樣品：",
+                "draft": "machine"
+              },
+              {
+                "box": "b-plate"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-4",
+          "text": {
+            "en": [
+              "Cover with ",
+              {
+                "use": "u-seal"
+              },
+              " and incubate at ",
+              {
+                "box": "b-inc-t"
+              },
+              " for ",
+              {
+                "box": "b-inc"
+              },
+              ", then let the plate cool to room temperature for ",
+              {
+                "box": "b-cool"
+              },
+              "."
+            ],
+            "zh-TW": [
+              {
+                "text": "以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "u-seal"
+              },
+              {
+                "text": " 封盤，",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inc-t"
+              },
+              {
+                "text": " 反應 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-inc"
+              },
+              {
+                "text": "，再讓盤子回到室溫 ",
+                "draft": "machine"
+              },
+              {
+                "box": "b-cool"
+              },
+              {
+                "text": "。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "duration": {
+            "box": "b-inc"
+          },
+          "wait": {
+            "n": "10",
+            "unit": "min"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s-read",
+      "title": {
+        "en": "Read and calculate",
+        "zh-TW": "讀值與計算"
+      },
+      "steps": [
+        {
+          "id": "st-5",
+          "text": {
+            "en": [
+              "Remove the seal and read absorbance at 562 nm on the ",
+              {
+                "use": "i-reader"
+              },
+              " (540–590 nm also works)."
+            ],
+            "zh-TW": [
+              {
+                "text": "移除封膜，以 ",
+                "draft": "machine"
+              },
+              {
+                "use": "i-reader"
+              },
+              {
+                "text": " 讀取 562 nm 吸光值（540–590 nm 亦可）。",
+                "draft": "machine"
+              }
+            ]
+          }
+        },
+        {
+          "id": "st-6",
+          "text": {
+            "en": [
+              "Subtract the blank and fit the standard curve. Each sample is read off it and multiplied back by its dilution."
+            ],
+            "zh-TW": [
+              {
+                "text": "扣除空白值並擬合標準曲線。每個樣品由曲線讀出濃度，並乘回其稀釋倍數。",
+                "draft": "machine"
+              }
+            ]
+          },
+          "curve": {
+            "layout": "b-plate",
+            "reading": "A562",
+            "standards": {
+              "step": "st-1",
+              "column": "conc"
+            },
+            "fit": "linear",
+            "unit": "µg/mL"
+          }
+        }
+      ]
+    }
+  ],
+  "catalogue": {
+    "id": "bca-protein-assay",
+    "version": "1.2.0"
+  }
+}
